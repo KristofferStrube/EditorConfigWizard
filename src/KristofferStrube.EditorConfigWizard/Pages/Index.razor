@@ -1,0 +1,44 @@
+﻿@page "/"
+
+<h1>Code-style Rules for C#/.NET EditorConfig</h1>
+<p>For a start the this page lists the rules we have put into our system and lists their choices and samples for the different options.</p>
+<hr />
+
+@foreach (var codeStyleRule in CodeStyleRules)
+{
+    @foreach (var option in codeStyleRule.Options)
+    {
+        <details>
+            <summary>
+                <span style="font-size:25px;"><code>@option.Name</code> </span> - @codeStyleRule.Title (@codeStyleRule.Id)
+            </summary>
+            @if (option.ValueOptions is OneOfManyValueOptions oneOfMany)
+            {
+                <div class="row">
+                    @foreach (var optionValue in oneOfMany.Options)
+                    {
+                        <div class="col col-12 col-xl-6">
+                            <big style="font-weight:@(optionValue.Value == oneOfMany.DefaultOptionValue ? "900" : "500")"><code>@optionValue.Value</code> - </big>
+                            @optionValue.Description
+                            <HighLightedCode Code=@optionValue.Sample.AsMultilineString() />
+                        </div>
+                    }
+                </div>
+            }
+            else if (option.ValueOptions is OrderedSetWithOneOrMoreOfManyValueOptions orderedSet)
+            {
+                <p>
+                    This rule takes an ordered list of the following options without repititions.
+                </p>
+                <div style="display:flex;flex-direction:row;flex-wrap:wrap;gap:5px;">
+                    @foreach (var value in orderedSet.Options)
+                    {
+                        <div style="background-color:#272822;border-radius:5px;padding:5px;">
+                            <code>@value</code>
+                        </div>
+                    }
+                </div>
+            }
+        </details>
+    }
+}

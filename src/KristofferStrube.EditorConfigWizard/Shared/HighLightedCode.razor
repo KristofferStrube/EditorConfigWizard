@@ -1,0 +1,22 @@
+﻿@inject IJSRuntime JSRuntime
+
+<pre><code class="@Language" style="border-radius:5px;" @ref=codeBlock>
+        @Code.Trim()
+</code></pre>
+
+@code {
+    private ElementReference codeBlock;
+
+    [Parameter]
+    public string Code { get; set; } = "";
+
+    [Parameter]
+    public string Language { get; set; } = "CSharp";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+
+        await JSRuntime.InvokeVoidAsync("hljs.highlightElement", codeBlock);
+    }
+}

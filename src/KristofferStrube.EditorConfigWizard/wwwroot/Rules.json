@@ -1,0 +1,330 @@
+[
+    {
+        "Id": "IDE0003",
+        "Title": "Remove this qualification",
+        "Options": [
+            {
+                "Name": "dotnet_style_qualification_for_field",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer fields to be prefaced with this in C#.",
+                            "Sample": "this.capacity = 0;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer fields not to be prefaced with this.",
+                            "Sample": "capacity = 0;"
+                        }
+                    ],
+                    "DefaultOptionValue": "false"
+                }
+            },
+            {
+                "Name": "dotnet_style_qualification_for_property",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer properties to be prefaced with this in C#",
+                            "Sample": "this.ID = 0;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer properties not to be prefaced with this.",
+                            "Sample": "ID = 0;"
+                        }
+                    ],
+                    "DefaultOptionValue": "false"
+                }
+            },
+            {
+                "Name": "dotnet_style_qualification_for_method",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer methods to be prefaced with this in C#",
+                            "Sample": "this.Display();"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer methods not to be prefaced with this.",
+                            "Sample": "Display();"
+                        }
+                    ],
+                    "DefaultOptionValue": "false"
+                }
+            },
+            {
+                "Name": "dotnet_style_qualification_for_event",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer events to be prefaced with this in C#",
+                            "Sample": "this.Elapsed += Handler;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer events not to be prefaced with this.",
+                            "Sample": "Elapsed += Handler;"
+                        }
+                    ],
+                    "DefaultOptionValue": "false"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0049",
+        "Title": "Use language keywords instead of framework type names for type references",
+        "Options": [
+            {
+                "Name": "dotnet_style_predefined_type_for_locals_parameters_members",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer the language keyword for local variables, method parameters, and class members.",
+                            "Sample": "private int _member;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer the type name for local variables, method parameters, and class members",
+                            "Sample": "private Int32 _member;"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            },
+            {
+                "Name": "dotnet_style_predefined_type_for_member_access",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer the language keyword for member access expressions.",
+                            "Sample": "var local = int.MaxValue;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer the type name for member access expressions.",
+                            "Sample": "var local = Int32.MaxValue;"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0036",
+        "Title": "Order modifiers",
+        "Options": [
+            {
+                "Name": "csharp_preferred_modifier_order",
+                "ValueOptions": {
+                    "$type": "OrderedSetWithOneOrMoreOfMany",
+                    "Options": [
+                        "public",
+                        "private",
+                        "protected",
+                        "internal",
+                        "file",
+                        "static",
+                        "extern",
+                        "new",
+                        "virtual",
+                        "abstract",
+                        "sealed",
+                        "override",
+                        "readonly",
+                        "unsafe",
+                        "required",
+                        "volatile",
+                        "async"
+                    ],
+                    "DefaultOptionValue": "public, private, protected, internal, file, static, extern, new, virtual, abstract, sealed, override, readonly, unsafe, required, volatile, async"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0040",
+        "Title": "Add accessibility modifiers",
+        "Options": [
+            {
+                "Name": "dotnet_style_require_accessibility_modifiers",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "always",
+                            "Description": "Prefer accessibility modifiers to be specified.",
+                            "Sample": [
+                                "class MyClass",
+                                "{",
+                                "    public const string thisFieldIsConst = \"constant\";",
+                                "}",
+                                "",
+                                "interface IMyInterface",
+                                "{",
+                                "    public string SomeProperty { get; set; }",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "for_non_interface_members",
+                            "Description": "Prefer accessibility modifiers except for public interface members.",
+                            "Sample": [
+                                "class MyClass",
+                                "{",
+                                "    private const string thisFieldIsConst = \"constant\";",
+                                "}",
+                                "",
+                                "interface IMyInterface",
+                                "{",
+                                "    string SomeProperty { get; set; }",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "never",
+                            "Description": "Do not prefer accessibility modifiers to be specified.",
+                            "Sample": [
+                                "class MyClass",
+                                "{",
+                                "    const string thisFieldIsConst = \"constant\";",
+                                "}",
+                                "interface IMyInterface",
+                                "{",
+                                "    string SomeProperty { get; set; }",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "omit_if_default",
+                            "Description": "Prefer accessibility modifiers except if they are the default modifier.",
+                            "Sample": [
+                                "class MyClass",
+                                "{",
+                                "    const string thisFieldIsConst = \"constant\";",
+                                "}",
+                                "interface IMyInterface",
+                                "{",
+                                "    string SomeProperty { get; set; }",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "for_non_interface_members"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0044",
+        "Title": "Add readonly modifier",
+        "Options": [
+            {
+                "Name": "dotnet_style_readonly_field",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer that private fields be marked readonly if they're only ever assigned inline or in a constructor.",
+                            "Sample": [
+                                "class MyClass",
+                                "{",
+                                "    private readonly int _daysInYear = 365;",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Specify no preference over whether private fields are marked readonly.",
+                            "Sample": [
+                                "class MyClass",
+                                "{",
+                                "    private int _daysInYear = 365;",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0062",
+        "Title": "Make local function static",
+        "Options": [
+            {
+                "Name": "csharp_prefer_static_local_function",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer local functions to be marked static.",
+                            "Sample": [
+                                "void M()",
+                                "{",
+                                "    Hello();",
+                                "    static void Hello() => Console.WriteLine(\"Hello\");",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer local functions not to be marked static.",
+                            "Sample": [
+                                "void M()",
+                                "{",
+                                "    Hello();",
+                                "    void Hello() => Console.WriteLine(\"Hello\");",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true:suggestion"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0047,IDE0048",
+        "Title": "Add/Remove parentheses for clarity",
+        "Options": [
+            {
+                "Name": "dotnet_style_parentheses_in_arithmetic_binary_operators",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "always_for_clarity",
+                            "Description": "Prefer parentheses to clarify arithmetic operator precedence.",
+                            "Sample": "var v = a + (b * c);"
+                        },
+                        {
+                            "Value": "never_if_unnecessary",
+                            "Description": "Prefer no parentheses when arithmetic operator precedence is obvious",
+                            "Sample": "var v = a + b * c;"
+                        }
+                    ],
+                    "DefaultOptionValue": "always_for_clarity"
+                }
+            }
+        ]
+    }
+]

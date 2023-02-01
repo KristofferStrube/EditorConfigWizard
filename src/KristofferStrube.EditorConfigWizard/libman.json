@@ -1,0 +1,11 @@
+{
+    "version": "1.0",
+    "defaultProvider": "cdnjs",
+    "libraries": [
+        {
+            "library": "highlight.js@11.7.0",
+            "destination": "wwwroot/lib",
+            "files": [ "highlight.min.js", "styles/monokai.min.css" ],
+        }
+    ]
+}
