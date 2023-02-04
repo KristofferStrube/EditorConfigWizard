@@ -15,7 +15,7 @@ dotnet_diagnostic.IDE0048.severity = suggestion
 
 The first line specifies that this applies to `.cs` and `.vb` files.
 
-The second line specifies that the editor will try to always have parenthesis around arithmetic sub expressions where it could be confusing to know which would be calculated first like in `1 + 2 * 3` which might be read like `(1 + 2) * 3` if you are not trained in the precedence of arithmetic operators whereas it would be more clear to write `(1 + 2) * 3`. The other possible value for this option is `never_if_unnecessary` which obviously has the opposite effect.
+The second line specifies that the editor will try to always have parenthesis around arithmetic sub expressions where it could be confusing to know which would be calculated first like in `1 + 2 * 3` which might be read like `(1 + 2) * 3` if you are not trained in the precedence of arithmetic operators whereas it would be more clear to write `1 + (2 * 3)`. The other possible value for this option is `never_if_unnecessary` which obviously has the opposite effect.
 
 *(`dotnet_style_parentheses_in_arithmetic_binary_operators` is a part of the rule with Id `IDE0048`)*
 
