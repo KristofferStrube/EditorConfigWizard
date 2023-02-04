@@ -1,22 +1,37 @@
 ﻿@inject IJSRuntime JSRuntime
 
-<pre><code class="@Language" style="border-radius:5px;" @ref=codeBlock>
+<pre @onclick="InvokeAction" class="@hoverClass" style="border-radius:9px;margin:8px;"><code @ref=codeBlock class="@Language" style="border-radius:5px;">
         @Code.Trim()
 </code></pre>
 
 @code {
     private ElementReference codeBlock;
+    private string hoverClass = "";
 
-    [Parameter]
+    [Parameter, EditorRequired]
     public string Code { get; set; } = "";
 
-    [Parameter]
+    [Parameter, EditorRequired]
     public string Language { get; set; } = "CSharp";
+
+    [Parameter]
+    public HoverColor? HoverColor { get; set; }
+
+    [Parameter]
+    public Func<Task>? OnClick { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (!firstRender) return;
 
         await JSRuntime.InvokeVoidAsync("hljs.highlightElement", codeBlock);
+
+        hoverClass = HoverColor is null ? "" : HoverColor.ToString();
+    }
+
+    async Task InvokeAction()
+    {
+        if (OnClick is null) return;
+        await OnClick();
     }
 }

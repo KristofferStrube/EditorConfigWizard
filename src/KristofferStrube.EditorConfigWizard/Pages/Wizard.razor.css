@@ -1,0 +1,16 @@
+﻿.fade-out {
+    transition: margin-top 0.5s ease-in, opacity 0.5s ease-in;
+    margin-top: -70vh;
+    opacity: 0;
+}
+
+.faded-in {
+    margin-top: 70vh;
+    opacity: 0;
+}
+
+.fade-in {
+    transition: margin-top 0.5s ease-in, opacity 0.5s ease-in;
+    margin-top: 0vh;
+    opacity: 1;
+}

@@ -1,18 +1,18 @@
 using KristofferStrube.EditorConfigWizard.Models;
+using KristofferStrube.EditorConfigWizard.Services;
 using Microsoft.AspNetCore.Components;
-using System.Net.Http.Json;
 
 namespace KristofferStrube.EditorConfigWizard.Pages;
 
 public partial class Index
 {
-    private List<CodeStyleRule> CodeStyleRules = new();
+    List<CodeStyleRule> codeStyleRules = new();
 
     [Inject]
-    HttpClient HttpClient { get; set; }
+    public EditorConfigService ConfigService { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        CodeStyleRules = await HttpClient.GetFromJsonAsync<List<CodeStyleRule>>("Rules.json") ?? new();
+        codeStyleRules = await ConfigService.GetRules();
     }
 }

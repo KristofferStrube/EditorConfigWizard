@@ -1,0 +1,19 @@
+﻿.Red {
+    border: 4px solid transparent;
+}
+.Red:hover {
+    border: 4px solid red;
+}
+.Green {
+    border: 4px solid transparent;
+}
+.Green:hover {
+    border: 4px solid lightgreen;
+}
+
+.Yellow {
+    border: 4px solid transparent;
+}
+.Yellow:hover {
+    border: 4px solid orange;
+}

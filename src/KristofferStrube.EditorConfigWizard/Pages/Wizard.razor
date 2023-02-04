@@ -1,0 +1,42 @@
+﻿@page "/Wizard"
+
+<div class="@fadeClass">
+    @if (currentCodeStyleRule is null)
+    {
+        <div style="display:flex;flex-direction:column;height:80vh;">
+            <div style="display:flex;justify-content:center;align-items:center;flex:1;">
+                <h2>
+                    <center>Begin the Guided tour through making a EditorConfig file for your .NET/C# project.</center>
+                </h2>
+            </div>
+            <div style="display:flex;justify-content:center;align-items:center;flex:1;">
+                <button class="btn btn-success btn-lg" style="width:150px;" @onclick=Increment>Begin</button>
+            </div>
+        </div>
+    }
+    else
+    {
+        <h2>Which of these do you prefer?</h2>
+
+        @for (int i = 0; i < currentCodeStyleRule.Options.Count(); i++)
+        {
+            var option = currentCodeStyleRule.Options[i];
+            var currentChoice = optionChoices[i];
+            <hr />
+            <small><code>@option.Name</code> - @codeStyleRules[index].Title (@codeStyleRules[index].Id)</small>
+            @if (option.ValueOptions is OneOfManyValueOptions oneOfMany)
+            {
+                <div class="row">
+                    @foreach (var optionValue in oneOfMany.Options)
+                    {
+                        <div class="col col-12 col-xl-6">
+                            <big style="font-weight:@(optionValue.Value == oneOfMany.DefaultOptionValue ? "900" : "500")"><code>@optionValue.Value</code> - </big>
+                            @optionValue.Description
+                            <HighLightedCode Code=@optionValue.Sample.AsMultilineString() HoverColor="HoverColor.Yellow" />
+                        </div>
+                    }
+                </div>
+            }
+        }
+    }
+</div>
