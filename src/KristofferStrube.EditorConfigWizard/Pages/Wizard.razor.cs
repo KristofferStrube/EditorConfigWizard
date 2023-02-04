@@ -1,5 +1,4 @@
 using KristofferStrube.EditorConfigWizard.Models;
-using KristofferStrube.EditorConfigWizard.Models.Options;
 using KristofferStrube.EditorConfigWizard.Services;
 using Microsoft.AspNetCore.Components;
 
@@ -8,10 +7,9 @@ namespace KristofferStrube.EditorConfigWizard.Pages;
 public partial class Wizard
 {
     CodeStyleRule? currentCodeStyleRule = null;
-    List<string> optionChoices = new();
+    List<string?> optionChoices = new();
     List<CodeStyleRule> codeStyleRules = new();
-    string fadeClass;
-    string text = "Hey";
+    string fadeClass = "";
     int index = -1;
 
     [Inject]
@@ -28,7 +26,7 @@ public partial class Wizard
         {
             index++;
             currentCodeStyleRule = codeStyleRules[index];
-            optionChoices = currentCodeStyleRule.Options.Select(o => "").ToList();
+            optionChoices = currentCodeStyleRule.Options.Select<RuleOption, string?>(_ => null).ToList();
         });
     }
 
@@ -38,10 +36,21 @@ public partial class Wizard
         StateHasChanged();
         await Task.Delay(500);
         action();
-        fadeClass = "faded-in";
-        StateHasChanged();
         fadeClass = "fade-in";
         StateHasChanged();
         await Task.Delay(500);
+        fadeClass = "";
+        StateHasChanged();
+    }
+
+    async Task SelectOption(int choice, string value)
+    {
+        optionChoices[choice] = value;
+        if (optionChoices.All(o => o is not null))
+        {
+            await Increment();
+            return;
+        }
+        StateHasChanged();
     }
 }

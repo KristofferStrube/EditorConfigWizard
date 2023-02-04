@@ -152,7 +152,7 @@
                         "volatile",
                         "async"
                     ],
-                    "DefaultOptionValue": "public, private, protected, internal, file, static, extern, new, virtual, abstract, sealed, override, readonly, unsafe, required, volatile, async"
+                    "DefaultOptionValue": "public,private,protected,internal,file,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,required,volatile,async"
                 }
             }
         ]

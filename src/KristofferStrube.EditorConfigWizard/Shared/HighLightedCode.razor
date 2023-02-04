@@ -1,24 +1,34 @@
 ﻿@inject IJSRuntime JSRuntime
 
-<pre @onclick="InvokeAction" class="@hoverClass" style="border-radius:9px;margin:8px;"><code @ref=codeBlock class="@Language" style="border-radius:5px;">
+<pre @onclick="InvokeAction" class="@colorClass @hoverClass" style="border-radius:13px;margin:8px;"><code @ref=codeBlock class="@Language" style="border-radius:5px;font-size:20px;">
         @Code.Trim()
 </code></pre>
 
 @code {
     private ElementReference codeBlock;
     private string hoverClass = "";
+    private string colorClass = "";
 
     [Parameter, EditorRequired]
     public string Code { get; set; } = "";
 
     [Parameter, EditorRequired]
-    public string Language { get; set; } = "CSharp";
+    public string Language { get; set; } = "";
 
     [Parameter]
-    public HoverColor? HoverColor { get; set; }
+    public Color? BorderHoverColor { get; set; }
+
+    [Parameter]
+    public Color? BorderColor { get; set; }
 
     [Parameter]
     public Func<Task>? OnClick { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        hoverClass = BorderHoverColor is null ? "" : $"{BorderHoverColor.ToString().ToLower()}-hover";
+        colorClass = BorderColor is null ? "" : $"{BorderColor.ToString().ToLower()}";
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -26,7 +36,6 @@
 
         await JSRuntime.InvokeVoidAsync("hljs.highlightElement", codeBlock);
 
-        hoverClass = HoverColor is null ? "" : HoverColor.ToString();
     }
 
     async Task InvokeAction()

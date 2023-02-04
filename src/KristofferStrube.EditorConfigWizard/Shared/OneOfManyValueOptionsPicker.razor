@@ -1,0 +1,26 @@
+﻿<div class="row">
+    @foreach (var optionValue in ValueOptions.Options)
+    {
+        <div class="col col-12 col-xl-6">
+            <big style="font-weight:@(optionValue.Value == ValueOptions.DefaultOptionValue ? "900" : "500")"><code>@optionValue.Value</code> - </big>
+            @optionValue.Description
+            <HighLightedCode
+                Code=@optionValue.Sample.AsMultilineString()
+                Language="csharp"
+                BorderColor="@(OptionChoice == optionValue.Value ? Color.Green : null)"
+                BorderHoverColor="@(OptionChoice != optionValue.Value ? Color.Yellow : null)"
+                OnClick="() => SelectOption(optionValue.Value)"/>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public OneOfManyValueOptions ValueOptions { get; set; }
+
+    [Parameter]
+    public Func<string, Task> SelectOption { get; set; }
+
+    [Parameter]
+    public string OptionChoice { get; set; }
+}

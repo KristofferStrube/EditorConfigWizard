@@ -1,0 +1,20 @@
+﻿<div style="display:flex;flex-direction:row;flex-wrap:wrap;gap:5px;">
+    <h3>pick the ones you want:</h3>
+    @foreach (var value in ValueOptions.Options)
+    {
+        <div style="background-color:#272822;border-radius:5px;padding:5px;">
+            <code>@value</code>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public OrderedSetWithOneOrMoreOfManyValueOptions ValueOptions { get; set; }
+
+    [Parameter]
+    public Func<string, Task> SelectOption { get; set; }
+
+    [Parameter]
+    public string OptionChoice { get; set; }
+}

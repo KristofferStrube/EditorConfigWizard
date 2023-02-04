@@ -1,19 +1,27 @@
-﻿.Red {
+﻿pre {
     border: 4px solid transparent;
-}
-.Red:hover {
-    border: 4px solid red;
-}
-.Green {
-    border: 4px solid transparent;
-}
-.Green:hover {
-    border: 4px solid lightgreen;
 }
 
-.Yellow {
-    border: 4px solid transparent;
+.red-hover:hover {
+    border: 4px solid red;
 }
-.Yellow:hover {
+
+.green-hover:hover {
+    border: 4px solid green;
+}
+
+.yellow-hover:hover {
     border: 4px solid orange;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
+.yellow {
+    background-color: orange;
 }

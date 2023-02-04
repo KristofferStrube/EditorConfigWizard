@@ -20,22 +20,17 @@
 
         @for (int i = 0; i < currentCodeStyleRule.Options.Count(); i++)
         {
+            var k = i;
             var option = currentCodeStyleRule.Options[i];
-            var currentChoice = optionChoices[i];
             <hr />
             <small><code>@option.Name</code> - @codeStyleRules[index].Title (@codeStyleRules[index].Id)</small>
             @if (option.ValueOptions is OneOfManyValueOptions oneOfMany)
             {
-                <div class="row">
-                    @foreach (var optionValue in oneOfMany.Options)
-                    {
-                        <div class="col col-12 col-xl-6">
-                            <big style="font-weight:@(optionValue.Value == oneOfMany.DefaultOptionValue ? "900" : "500")"><code>@optionValue.Value</code> - </big>
-                            @optionValue.Description
-                            <HighLightedCode Code=@optionValue.Sample.AsMultilineString() HoverColor="HoverColor.Yellow" />
-                        </div>
-                    }
-                </div>
+                <OneOfManyValueOptionsPicker ValueOptions="oneOfMany" SelectOption="(value) => SelectOption(k, value)" OptionChoice=@optionChoices[k] />
+            }
+            else if (option.ValueOptions is OrderedSetWithOneOrMoreOfManyValueOptions orderedSet)
+            {
+                <OrderedSetWithOneOrMoreOfManyValueOptionsPicker ValueOptions="orderedSet" SelectOption="(value) => SelectOption(k, value)" OptionChoice=@optionChoices[k] />
             }
         }
     }

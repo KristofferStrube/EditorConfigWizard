@@ -1,6 +1,6 @@
 ﻿namespace KristofferStrube.EditorConfigWizard.Shared;
 
-public enum HoverColor
+public enum Color
 {
     Green,
     Red,
