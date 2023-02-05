@@ -37,5 +37,5 @@ var v = a + b * c;
 - [ ] Define all Rules and be able to present them.
 - [ ] Be able to parse an existing EditorConfig file.
 - [ ] Be able to edit an EditorConfig file.
-- [ ] Be able to generate new EditorConfig files.
+- [x] Be able to generate new EditorConfig files.
 - [ ] Be able to compare two EditorConfig files and present their differences.
