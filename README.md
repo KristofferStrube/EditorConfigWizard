@@ -5,6 +5,13 @@ The current goal is to support all the standard C#/.NET EditorConfig rules.
 ## Demo
 The current progress can be seen at https://kristofferstrube.github.io/EditorConfigWizard/
 
+## Goals
+- [ ] Define all Rules and be able to present them.
+- [ ] Be able to parse an existing EditorConfig file.
+- [ ] Be able to edit an EditorConfig file.
+- [x] Be able to generate new EditorConfig files.
+- [ ] Be able to compare two EditorConfig files and present their differences.
+
 ## Example
 An EditorConfig file could have the following content:
 ```ini
@@ -32,10 +39,3 @@ Prefer no parentheses when arithmetic operator precedence is obvious.
 ```csharp
 var v = a + b * c;
 ```
-
-## Goals
-- [ ] Define all Rules and be able to present them.
-- [ ] Be able to parse an existing EditorConfig file.
-- [ ] Be able to edit an EditorConfig file.
-- [x] Be able to generate new EditorConfig files.
-- [ ] Be able to compare two EditorConfig files and present their differences.
