@@ -6,7 +6,7 @@ namespace KristofferStrube.EditorConfigWizard.Pages;
 
 public partial class Index
 {
-    List<CodeStyleRule> codeStyleRules = new();
+    private List<CodeStyleRule> codeStyleRules = new();
 
     [Inject]
     public EditorConfigService ConfigService { get; set; }

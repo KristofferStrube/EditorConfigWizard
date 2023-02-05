@@ -1,5 +1,5 @@
-﻿using System.Text.Json.Serialization;
-using System.Text.Json;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 using static System.Text.Json.JsonSerializer;
 
 namespace KristofferStrube.EditorConfigWizard.JsonConverters;
@@ -21,7 +21,7 @@ public class MultilineStringConverter : JsonConverter<string>
 
     public override void Write(Utf8JsonWriter writer, string value, JsonSerializerOptions options)
     {
-        var lineSplittetString = value.Split('\n');
+        string[] lineSplittetString = value.Split('\n');
         if (lineSplittetString.Length is 1)
         {
             writer.WriteRawValue(Serialize(value, options));

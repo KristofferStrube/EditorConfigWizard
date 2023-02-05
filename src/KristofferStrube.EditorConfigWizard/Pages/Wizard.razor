@@ -1,7 +1,7 @@
 ﻿@page "/Wizard"
 
-<div class="@fadeClass">
-    @if (currentCodeStyleRule is null)
+<div class="@fadeClass" style="pointer-events:@(fadeClass == "fade-out" ? "none" : "auto");">
+    @if (currentCodeStyleRule is null && codeRuleIndex != codeStyleRules.Count)
     {
         <div style="display:flex;flex-direction:column;height:80vh;">
             <div style="display:flex;justify-content:center;align-items:end;flex:1;">
@@ -24,8 +24,10 @@
             </div>
             <div style="display:flex;flex-direction:column;align-items:start;flex:2;">
                 <div style="display:flex;justify-content:center;align-items:baseline;width:100%;">
-                    <code>@currentRuleOption.Name </code>
-                    <span>&nbsp;– @currentCodeStyleRule.Title (@currentCodeStyleRule.Id)</span>
+                    <h4>
+                        <code>@currentRuleOption.Name </code>
+                        <span>&nbsp;– @currentCodeStyleRule.Title (@currentCodeStyleRule.Id)</span>
+                    </h4>
                 </div>
                 <div style="display:flex;justify-content:center;flex-direction:column;width:100%;">
                     @if (currentRuleOption.ValueOptions is OneOfManyValueOptions oneOfMany)
@@ -40,7 +42,7 @@
             </div>
         </div>
     }
-    else
+    else if (ruleOptionIndex == optionChoices.Count)
     {
         <div style="display:flex;flex-direction:column;height:80vh;">
             <div style="display:flex;justify-content:center;align-items:end;flex:1;">
@@ -61,6 +63,21 @@
                     <button @onclick=@(() => SetSeverity("warning")) class="btn btn-lg bg-warning">Warning</button>
                     <button @onclick=@(() => SetSeverity("error")) class="btn btn-lg bg-danger">Error</button>
                 </div>
+            </div>
+        </div>
+    }
+    else {
+        <div style="display:flex;flex-direction:column;height:80vh;">
+            <div style="display:flex;justify-content:center;align-items:end;flex:1;">
+                <h2>
+                    <center>This is your new EditorConfig</center>
+                </h2>
+            </div>
+            <div style="display:flex;justify-content:center;align-items:start;flex:2;">
+                <HighLightedCode Code=@newEditorConfig Language="ini" />
+            </div>
+            <div style="display:flex;justify-content:center;align-items:start;flex:1;">
+                <button @onclick="CopyToClipboard" class="btn btn-success btn-lg" style="width:300px;">Copy To Clipboard</button>
             </div>
         </div>
     }
