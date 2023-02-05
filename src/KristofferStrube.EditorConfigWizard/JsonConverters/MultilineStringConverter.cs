@@ -4,31 +4,32 @@ using static System.Text.Json.JsonSerializer;
 
 namespace KristofferStrube.EditorConfigWizard.JsonConverters;
 
-public class OneOrMultipleConverter<T> : JsonConverter<List<T>?>
+public class MultilineStringConverter : JsonConverter<string>
 {
-    public override List<T>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override string Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         if (JsonDocument.TryParseValue(ref reader, out JsonDocument? doc))
         {
             if (doc.RootElement.ValueKind is JsonValueKind.Array)
             {
-                return doc.RootElement.EnumerateArray().Select(element => element.Deserialize<T>()!).ToList();
+                return string.Join("\n", doc.RootElement.EnumerateArray().Select(element => element.Deserialize<string>()));
             }
-            return new List<T>() { doc.Deserialize<T>()! };
+            return doc.Deserialize<string>()!;
         }
         throw new JsonException("Could not be parsed as a JsonDocument.");
     }
 
-    public override void Write(Utf8JsonWriter writer, List<T>? value, JsonSerializerOptions options)
+    public override void Write(Utf8JsonWriter writer, string value, JsonSerializerOptions options)
     {
-        if (value?.Count() is 1)
+        var lineSplittetString = value.Split('\n');
+        if (lineSplittetString.Length is 1)
         {
-            writer.WriteRawValue(Serialize(value.First(), options));
+            writer.WriteRawValue(Serialize(value, options));
         }
         else if (value is not null)
         {
             writer.WriteStartArray();
-            foreach (T element in value)
+            foreach (string element in lineSplittetString)
             {
                 writer.WriteRawValue(Serialize(element, options));
             }

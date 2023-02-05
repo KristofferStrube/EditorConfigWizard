@@ -1,11 +1,9 @@
 ﻿.fade-out {
-    transition: margin-top 0.5s ease-in, opacity 0.5s ease-in;
-    margin-top: -70vh;
+    transition: opacity 0.5s ease-in;
     opacity: 0;
 }
 
 .fade-in {
-    transition: margin-top 0.5s ease-in, opacity 0.5s ease-in;
-    margin-top: 0vh;
+    transition: opacity 0.5s ease-in;
     opacity: 1;
 }

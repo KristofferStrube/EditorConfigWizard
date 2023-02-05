@@ -1,6 +1,6 @@
 ﻿@inject IJSRuntime JSRuntime
 
-<pre @onclick="InvokeAction" class="@colorClass @hoverClass" style="border-radius:13px;margin:8px;"><code @ref=codeBlock class="@Language" style="border-radius:5px;font-size:20px;">
+<pre @onclick="InvokeAction" class="@colorClass @hoverClass @(colorClass is not "" || hoverClass is not "" ? "hasHover" : "")"><code @ref=codeBlock class="@Language" style="border-radius:5px;font-size:20px;">
         @Code.Trim()
 </code></pre>
 
@@ -35,7 +35,6 @@
         if (!firstRender) return;
 
         await JSRuntime.InvokeVoidAsync("hljs.highlightElement", codeBlock);
-
     }
 
     async Task InvokeAction()

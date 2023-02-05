@@ -1,14 +1,52 @@
-﻿<div style="display:flex;flex-direction:row;flex-wrap:wrap;gap:5px;">
-    <h3>pick the ones you want:</h3>
-    @foreach (var value in ValueOptions.Options)
+﻿<p>
+    @ValueOptions.Description
+</p>
+<h3>Currently selected Options</h3>
+<div style="display:flex;flex-direction:row;flex-wrap:wrap;gap:5px;">
+    @for (int i = 0; i < selectedOptions.Count(); i++)
     {
-        <div style="background-color:#272822;border-radius:5px;padding:5px;">
-            <code>@value</code>
+        var value = selectedOptions[i];
+        <div style="background-color:#272822;border-radius:5px;padding:5px;min-width:110px;display:flex;flex-direction:column;">
+            <div style="display:flex; flex-direction:row;">
+                <div style="display:flex; justify-content: left;color:white;font-family:Courier New, Courier, monospace">@(i+1).</div>
+                <code style="display:flex;flex:1;justify-content:right;">@value</code>
+            </div>
+            <div style="display:flex; flex-direction:row;gap:5px;">
+                <span @onclick="() => MoveLeft(value)" class="btn btn-sm bg-primary flex1">&#60;</span>
+                <span @onclick="() => Remove(value)" class="btn btn-sm bg-danger flex1">X</span>
+                <span @onclick="() => MoveRight(value)" class="btn btn-sm bg-primary flex1">&#62;</span>
+            </div>
         </div>
     }
 </div>
+@if (nonSelectedOptions.Count() > 0)
+{
+    <h3>Non-selected options</h3>
+    <div style="display:flex;flex-direction:row;flex-wrap:wrap;gap:5px;">
+        @foreach (var value in nonSelectedOptions)
+        {
+            <div style="background-color:#272822;border-radius:5px;padding:5px;min-width:110px;display:flex;flex-direction:column;">
+                <code style="display:flex;flex:1;justify-content:center;">@value</code>
+                <div style="display:flex; flex-direction:row;gap:5px;">
+                    <span @onclick="() => Add(value)" class="btn btn-sm bg-success flex1">+</span>
+                </div>
+            </div>
+        }
+    </div>
+}
+<h3>
+    Samples
+</h3>
+@foreach(var template in ValueOptions.PresenterTemplates)
+{
+    <TemplatePresenter @key=@(OptionChoice + template.Template) PresenterTemplate="template" Separator=@ValueOptions.PresenterSeperator SelectedOptions="selectedOptions" />
+}
+<button @onclick="() => SelectOption(OptionChoice)" class="btn btn-lg btn-success">Finish Selecting Order</button>
 
 @code {
+    private List<string> selectedOptions = new();
+    private List<string> nonSelectedOptions = new();
+
     [Parameter]
     public OrderedSetWithOneOrMoreOfManyValueOptions ValueOptions { get; set; }
 
@@ -17,4 +55,48 @@
 
     [Parameter]
     public string OptionChoice { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        selectedOptions = OptionChoice is not null ? OptionChoice.Split(ValueOptions.EncodedValueSeperator).ToList() : new();
+        nonSelectedOptions = ValueOptions.Options.Except(selectedOptions).ToList();
+    }
+
+    void Remove(string value)
+    {
+        selectedOptions.Remove(value);
+        UpdateOptions();
+    }
+
+    void Add(string value)
+    {
+        selectedOptions.Add(value);
+        UpdateOptions();
+    }
+
+    void MoveLeft(string value)
+    {
+        var index = selectedOptions.IndexOf(value);
+        if (index == 0) return;
+
+        selectedOptions.RemoveAt(index);
+        selectedOptions.Insert(index - 1, value);
+        UpdateOptions();
+    }
+
+    void MoveRight(string value)
+    {
+        var index = selectedOptions.IndexOf(value);
+        if (index == selectedOptions.Count - 1) return;
+
+        selectedOptions.RemoveAt(index);
+        selectedOptions.Insert(index + 1, value);
+        UpdateOptions();
+    }
+
+    void UpdateOptions()
+    {
+        OptionChoice = string.Join(ValueOptions.EncodedValueSeperator, selectedOptions);
+        nonSelectedOptions = ValueOptions.Options.Except(selectedOptions).ToList();
+    }
 }

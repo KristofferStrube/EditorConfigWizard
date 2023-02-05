@@ -4,34 +4,64 @@
     @if (currentCodeStyleRule is null)
     {
         <div style="display:flex;flex-direction:column;height:80vh;">
-            <div style="display:flex;justify-content:center;align-items:center;flex:1;">
+            <div style="display:flex;justify-content:center;align-items:end;flex:1;">
                 <h2>
                     <center>Begin the Guided tour through making a EditorConfig file for your .NET/C# project.</center>
                 </h2>
             </div>
-            <div style="display:flex;justify-content:center;align-items:center;flex:1;">
-                <button class="btn btn-success btn-lg" style="width:150px;" @onclick=Increment>Begin</button>
+            <div style="display:flex;justify-content:center;align-items:start;flex:2;">
+                <button class="btn btn-success btn-lg" style="width:150px;" @onclick=IncrementCodeRule>Begin</button>
+            </div>
+        </div>
+    }
+    else if (currentRuleOption is not null)
+    {
+        <div style="display:flex; flex-direction:column;height:80vh;">
+            <div style="display:flex;justify-content:center;align-items:end;flex:1;">
+                <h2>
+                    <center>Which one do you like?</center>
+                </h2>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:start;flex:2;">
+                <div style="display:flex;justify-content:center;align-items:baseline;width:100%;">
+                    <code>@currentRuleOption.Name </code>
+                    <span>&nbsp;– @currentCodeStyleRule.Title (@currentCodeStyleRule.Id)</span>
+                </div>
+                <div style="display:flex;justify-content:center;flex-direction:column;width:100%;">
+                    @if (currentRuleOption.ValueOptions is OneOfManyValueOptions oneOfMany)
+                    {
+                        <OneOfManyValueOptionsPicker ValueOptions="oneOfMany" SelectOption="(value) => SelectOption(ruleOptionIndex, value)" OptionChoice=@optionChoices[ruleOptionIndex] />
+                    }
+                    else if (currentRuleOption.ValueOptions is OrderedSetWithOneOrMoreOfManyValueOptions orderedSet)
+                    {
+                        <OrderedSetWithOneOrMoreOfManyValueOptionsPicker ValueOptions="orderedSet" SelectOption="(value) => SelectOption(ruleOptionIndex, value)" OptionChoice=@optionChoices[ruleOptionIndex] />
+                    }
+                </div>
             </div>
         </div>
     }
     else
     {
-        <h2>Which of these do you prefer?</h2>
-
-        @for (int i = 0; i < currentCodeStyleRule.Options.Count(); i++)
-        {
-            var k = i;
-            var option = currentCodeStyleRule.Options[i];
-            <hr />
-            <small><code>@option.Name</code> - @codeStyleRules[index].Title (@codeStyleRules[index].Id)</small>
-            @if (option.ValueOptions is OneOfManyValueOptions oneOfMany)
-            {
-                <OneOfManyValueOptionsPicker ValueOptions="oneOfMany" SelectOption="(value) => SelectOption(k, value)" OptionChoice=@optionChoices[k] />
-            }
-            else if (option.ValueOptions is OrderedSetWithOneOrMoreOfManyValueOptions orderedSet)
-            {
-                <OrderedSetWithOneOrMoreOfManyValueOptionsPicker ValueOptions="orderedSet" SelectOption="(value) => SelectOption(k, value)" OptionChoice=@optionChoices[k] />
-            }
-        }
+        <div style="display:flex;flex-direction:column;height:80vh;">
+            <div style="display:flex;justify-content:center;align-items:end;flex:1;">
+                <h2>
+                    <center>What severity should these rules be prompted as?</center>
+                </h2>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:start;flex:2;">
+                <div style="display:flex;justify-content:center;width:100%;">
+                    <h3 style="font-style:italic;">
+                        "@currentCodeStyleRule.Title (@currentCodeStyleRule.Id)"
+                    </h3>
+                </div>
+                <div style="display:flex;justify-content:center;width:100%;gap:5px;">
+                    <button @onclick=@(() => SetSeverity("none")) class="btn btn-lg bg-light">None</button>
+                    <button @onclick=@(() => SetSeverity("silent")) class="btn btn-lg bg-secondary">Silent</button>
+                    <button @onclick=@(() => SetSeverity("suggestion")) class="btn btn-lg bg-primary">Suggestion</button>
+                    <button @onclick=@(() => SetSeverity("warning")) class="btn btn-lg bg-warning">Warning</button>
+                    <button @onclick=@(() => SetSeverity("error")) class="btn btn-lg bg-danger">Error</button>
+                </div>
+            </div>
+        </div>
     }
 </div>

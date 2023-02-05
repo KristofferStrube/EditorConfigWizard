@@ -20,7 +20,7 @@
                         <div class="col col-12 col-xl-6">
                             <big style="font-weight:@(optionValue.Value == oneOfMany.DefaultOptionValue ? "900" : "500")"><code>@optionValue.Value</code> - </big>
                             @optionValue.Description
-                            <HighLightedCode Code=@optionValue.Sample.AsMultilineString() />
+                            <HighLightedCode Code=@optionValue.Sample Language="CSharp" />
                         </div>
                     }
                 </div>

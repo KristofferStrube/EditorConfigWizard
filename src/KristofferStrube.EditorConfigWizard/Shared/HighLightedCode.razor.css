@@ -1,5 +1,12 @@
-﻿pre {
+﻿.hasHover {
     border: 4px solid transparent;
+}
+
+pre {
+    border-radius: 13px;
+    margin: 0;
+    margin-bottom: 8px;
+    margin-top: 8px;
 }
 
 .red-hover:hover {

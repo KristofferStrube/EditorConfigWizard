@@ -1,11 +1,12 @@
-﻿<div class="row">
+﻿<div class="row" style="width:100%;">
     @foreach (var optionValue in ValueOptions.Options)
     {
-        <div class="col col-12 col-xl-6">
-            <big style="font-weight:@(optionValue.Value == ValueOptions.DefaultOptionValue ? "900" : "500")"><code>@optionValue.Value</code> - </big>
+        <div @key=optionValue.Description class="col col-12 col-xl-6">
+            <big><code>@optionValue.Value</code> @(optionValue.Value == ValueOptions.DefaultOptionValue ? " (default)" : "")</big>
+            <br />
             @optionValue.Description
             <HighLightedCode
-                Code=@optionValue.Sample.AsMultilineString()
+                Code=@optionValue.Sample
                 Language="csharp"
                 BorderColor="@(OptionChoice == optionValue.Value ? Color.Green : null)"
                 BorderHoverColor="@(OptionChoice != optionValue.Value ? Color.Yellow : null)"

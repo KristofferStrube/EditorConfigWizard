@@ -3,12 +3,13 @@ using System.Text.Json.Serialization;
 
 namespace KristofferStrube.EditorConfigWizard.Models;
 
-public class OptionValue
+public class PresenterTemplate
 {
-    public string Value { get; set; } = "";
-
-    public string Description { get; set; } = "";
+    public string[] OptionsApplying { get; set; } = default!;
 
     [JsonConverter(typeof(MultilineStringConverter))]
-    public string Sample { get; set; } = "";
+    public string Template { get; set; } = "";
+
+    public string TemplateToken { get; set; } = "";
 }
+

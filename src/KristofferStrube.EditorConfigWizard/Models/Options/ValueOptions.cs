@@ -6,4 +6,5 @@ namespace KristofferStrube.EditorConfigWizard.Models.Options;
 [JsonDerivedType(typeof(OrderedSetWithOneOrMoreOfManyValueOptions), "OrderedSetWithOneOrMoreOfMany")]
 public class ValueOptions
 {
+    public string DefaultOptionValue { get; set; } = "";
 }

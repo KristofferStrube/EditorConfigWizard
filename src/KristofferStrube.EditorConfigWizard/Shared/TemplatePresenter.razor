@@ -1,0 +1,47 @@
+﻿<HighLightedCode Code=@sample Language="CSharp"></HighLightedCode>
+
+@code {
+    private string sample;
+
+    [Parameter, EditorRequired]
+    public PresenterTemplate PresenterTemplate { get; set; }
+
+    [Parameter, EditorRequired]
+    public string Separator { get; set; }
+
+    [Parameter, EditorRequired]
+    public List<string> SelectedOptions { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        Console.WriteLine("DD");
+        var options = PresenterTemplate.OptionsApplying.Order(new ModifierComparer(PresenterTemplate.OptionsApplying, SelectedOptions));
+
+        var tokenReplacement = string.Join(Separator, options);
+        Console.WriteLine(string.Join(Separator, SelectedOptions));
+        Console.WriteLine(tokenReplacement);
+        sample = PresenterTemplate.Template.Replace(PresenterTemplate.TemplateToken, tokenReplacement);
+    }
+
+    public class ModifierComparer : IComparer<string>
+    {
+        private readonly List<string> optionsApplying;
+        private readonly List<string> selectedOptions;
+
+        public ModifierComparer(string[] optionsApplying, List<string> selectedOptions)
+        {
+            this.optionsApplying = optionsApplying.ToList();
+            this.selectedOptions = selectedOptions;
+        }
+
+        int IComparer<string>.Compare(string? x, string? y)
+        {
+            if (x is null || y is null) return 0;
+            if (selectedOptions.Contains(x) && selectedOptions.Contains(y))
+            {
+                return selectedOptions.IndexOf(x).CompareTo(selectedOptions.IndexOf(y));
+            }
+            return optionsApplying.IndexOf(x).CompareTo(optionsApplying.IndexOf(y));
+        }
+    }
+}

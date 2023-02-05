@@ -152,7 +152,37 @@
                         "volatile",
                         "async"
                     ],
-                    "DefaultOptionValue": "public,private,protected,internal,file,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,required,volatile,async"
+                    "Description": "Change the order of the modifiers so that they fit with your style using the arrows or remove one if you don't care about its order. The initial setup is the default order. You can see how the order reflects on the samples in the bottom.",
+                    "DefaultOptionValue": "public,private,protected,internal,file,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,required,volatile,async",
+                    "EncodedValueSeperator": ",",
+                    "PresenterSeperator": " ",
+                    "PresenterTemplates": [
+                        {
+                            "OptionsApplying": [
+                                "public",
+                                "override",
+                                "unsafe",
+                                "async"
+                            ],
+                            "Template": [
+                                "modifiers Task FastCopyAsync() => { }"
+                            ],
+                            "TemplateToken": "modifiers"
+                        },
+                        {
+                            "OptionsApplying": [
+                                "internal",
+                                "file",
+                                "sealed"
+                            ],
+                            "Template": [
+                                "modifiers class MyClass",
+                                "{",
+                                "}"
+                            ],
+                            "TemplateToken": "modifiers"
+                        }
+                    ]
                 }
             }
         ]
@@ -172,7 +202,7 @@
                             "Sample": [
                                 "class MyClass",
                                 "{",
-                                "    public const string thisFieldIsConst = \"constant\";",
+                                "    private const string thisFieldIsConst = \"constant\";",
                                 "}",
                                 "",
                                 "interface IMyInterface",
@@ -204,6 +234,7 @@
                                 "{",
                                 "    const string thisFieldIsConst = \"constant\";",
                                 "}",
+                                "",
                                 "interface IMyInterface",
                                 "{",
                                 "    string SomeProperty { get; set; }",
@@ -218,6 +249,7 @@
                                 "{",
                                 "    const string thisFieldIsConst = \"constant\";",
                                 "}",
+                                "",
                                 "interface IMyInterface",
                                 "{",
                                 "    string SomeProperty { get; set; }",
