@@ -13,6 +13,8 @@ public partial class Index
 
     protected override async Task OnInitializedAsync()
     {
-        codeStyleRules = await ConfigService.GetRules();
+        codeStyleRules = (await ConfigService.LanguagesRulesAsync()).CodeStyleRules
+            .Concat((await ConfigService.UnnecessaryColeRulesAsync()).CodeStyleRules)
+            .ToList();
     }
 }

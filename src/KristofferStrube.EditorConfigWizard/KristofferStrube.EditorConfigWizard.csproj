@@ -11,14 +11,5 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.2" PrivateAssets="all" />
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties wwwroot_4rules_1json__JsonSchema="./Schema.json" /></VisualStudio></ProjectExtensions>
-
-  <ItemGroup>
-    <EditorConfigFiles Remove="F:\repos\EditorConfigWizard\src\KristofferStrube.EditorConfigWizard\.editorconfig" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="F:\repos\EditorConfigWizard\src\KristofferStrube.EditorConfigWizard\.editorconfig" />
-  </ItemGroup>
 
 </Project>

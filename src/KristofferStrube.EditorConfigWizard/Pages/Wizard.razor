@@ -9,8 +9,21 @@
                     <center>Begin the guided tour through making a EditorConfig file for your .NET/C# project.</center>
                 </h2>
             </div>
-            <div style="display:flex;justify-content:center;align-items:start;flex:2;">
-                <button class="btn btn-success btn-lg" style="width:150px;" @onclick=IncrementCodeRule>Begin</button>
+            <div style="display:flex;flex-direction:column;justify-content:start;align-items:center;flex:2;">
+                <h4>
+                    Selected Categories
+                </h4>
+                <div style="max-width:800px;">
+                    @foreach (var category in codeStyleCategories)
+                    {
+                        <input type="checkbox" id="@category.Title" @bind=@category.Used />
+                        <label for="@category.Title">@category.Title</label>
+                        <br />
+                        <small>@category.Description</small>
+                        <br />
+                    }
+                </div>
+                <button class="btn btn-success btn-lg" style="width:150px;" @onclick=Begin>Begin</button>
             </div>
         </div>
     }
@@ -42,12 +55,12 @@
             </div>
         </div>
     }
-    else if (ruleOptionIndex == optionChoices.Count)
+    else if (ruleOptionIndex == currentCodeStyleRule?.Options.Count)
     {
         <div style="display:flex;flex-direction:column;height:80vh;">
             <div style="display:flex;justify-content:center;align-items:end;flex:1;">
                 <h2>
-                    <center>What severity should these rules be prompted as?</center>
+                    <center>What severity should @(ruleOptionIndex is 0 or 1 ? "this rule" : "these rules") be prompted as?</center>
                 </h2>
             </div>
             <div style="display:flex;flex-direction:column;align-items:start;flex:2;">
@@ -56,24 +69,39 @@
                         "@currentCodeStyleRule.Title (@currentCodeStyleRule.Id)"
                     </h3>
                 </div>
-                <div style="display:flex;justify-content:center;width:100%;gap:5px;">
+                <div style="display:flex;flex-wrap:wrap;justify-content:center;width:100%;gap:5px;">
                     <button @onclick=@(() => SetSeverity("none")) class="btn btn-lg bg-light">None</button>
                     <button @onclick=@(() => SetSeverity("silent")) class="btn btn-lg bg-secondary">Silent</button>
                     <button @onclick=@(() => SetSeverity("suggestion")) class="btn btn-lg bg-primary">Suggestion</button>
                     <button @onclick=@(() => SetSeverity("warning")) class="btn btn-lg bg-warning">Warning</button>
                     <button @onclick=@(() => SetSeverity("error")) class="btn btn-lg bg-danger">Error</button>
                 </div>
+                @if (currentCodeStyleRule.Sample is { Length: > 0 } sample)
+                {
+                    <big style="color:red;"><b>Sample</b></big>
+                    <div style="width:100%;">
+                        <HighLightedCode Code=@sample Language="CSharp" BorderColor="Color.Red" />
+                    </div>
+                }
+                @if (currentCodeStyleRule.FixedSample is { Length: > 0 } fixedSample)
+                {
+                    <big style="color:green;"><b>Fixed</b></big>
+                    <div style="width:100%;">
+                        <HighLightedCode Code=@fixedSample Language="CSharp" BorderColor="Color.Green" />
+                    </div>
+                }
             </div>
         </div>
     }
-    else {
-        <div style="display:flex;flex-direction:column;height:80vh;">
+    else
+    {
+        <div style="display:flex;flex-direction:column;align-items:center;height:80vh;">
             <div style="display:flex;justify-content:center;align-items:end;flex:1;">
                 <h2>
                     <center>This is your new EditorConfig</center>
                 </h2>
             </div>
-            <div style="display:flex;justify-content:center;align-items:start;flex:2;">
+            <div style="display:flex;justify-content:center;align-items:start;flex:2;max-width:60vw;">
                 <HighLightedCode Code=@newEditorConfig Language="ini" />
             </div>
             <div style="display:flex;justify-content:center;align-items:start;flex:1;">

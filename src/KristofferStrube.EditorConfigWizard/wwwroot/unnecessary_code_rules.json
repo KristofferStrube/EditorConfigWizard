@@ -1,0 +1,18 @@
+[
+    {
+        "Id": "IDE0001",
+        "Title": "Simplify name",
+        "Sample": [
+            "using System.Text.Json;",
+            "",
+            "var person = new { Name = \"Bob\" };",
+            "var serializedPerson = System.Text.Json.JsonSerializer.Serialize(person);"
+        ],
+        "FixedSample": [
+            "using System.Text.Json;",
+            "",
+            "var person = new { Name = \"Bob\" };",
+            "var serializedPerson = JsonSerializer.Serialize(person);"
+        ]
+    }
+]

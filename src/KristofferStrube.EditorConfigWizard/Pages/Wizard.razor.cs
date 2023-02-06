@@ -7,7 +7,7 @@ using System.Text;
 
 namespace KristofferStrube.EditorConfigWizard.Pages;
 
-public partial class Wizard
+public partial class Wizard : ComponentBase
 {
     private CodeStyleRule? currentCodeStyleRule = null;
     private RuleOption? currentRuleOption = null;
@@ -20,6 +20,8 @@ public partial class Wizard
     private readonly Dictionary<string, string> severities = new();
     private string newEditorConfig = "";
 
+    private readonly List<CodeStyleCategory> codeStyleCategories = new();
+
     [Inject]
     public EditorConfigService ConfigService { get; set; }
 
@@ -28,7 +30,17 @@ public partial class Wizard
 
     protected override async Task OnInitializedAsync()
     {
-        codeStyleRules = await ConfigService.GetRules();
+        codeStyleCategories.Add(await ConfigService.LanguagesRulesAsync());
+        codeStyleCategories.Add(await ConfigService.UnnecessaryColeRulesAsync());
+    }
+
+    private async Task Begin()
+    {
+        codeStyleRules = codeStyleCategories
+            .Where(category => category.Used)
+            .SelectMany(category => category.CodeStyleRules)
+            .ToList();
+        await IncrementCodeRule();
     }
 
     private async Task IncrementCodeRule()
@@ -39,28 +51,18 @@ public partial class Wizard
             ruleOptionIndex = 0;
             if (codeRuleIndex == codeStyleRules.Count)
             {
-                StringBuilder editorConfigSB = new StringBuilder();
-                editorConfigSB.AppendLine("[*]");
-                editorConfigSB.AppendLine("# All files");
-                foreach (CodeStyleRule codeRule in codeStyleRules)
-                {
-                    foreach (RuleOption option in codeRule.Options)
-                    {
-                        editorConfigSB.AppendLine($"{option.Name} = {ruleOptionChoices[option.Name]}");
-                    }
-                    foreach (string id in codeRule.Id.Split(','))
-                    {
-                        editorConfigSB.AppendLine($"dotnet_diagnostic.{id}.severity = {severities[codeRule.Id]}");
-                    }
-                }
-                newEditorConfig = editorConfigSB.ToString();
+                GenerateNewEditorConfig();
                 currentCodeStyleRule = null;
                 return;
             }
             currentCodeStyleRule = codeStyleRules[codeRuleIndex];
-            currentRuleOption = currentCodeStyleRule.Options[ruleOptionIndex];
-            optionChoices = currentCodeStyleRule.Options
-            .Select(o => o.ValueOptions is OrderedSetWithOneOrMoreOfManyValueOptions ? o.ValueOptions.DefaultOptionValue : null).ToList();
+            if (ruleOptionIndex != currentCodeStyleRule.Options.Count)
+            {
+                currentRuleOption = currentCodeStyleRule.Options[ruleOptionIndex];
+                optionChoices = currentCodeStyleRule.Options
+                    .Select(o => o.ValueOptions is OrderedSetWithOneOrMoreOfManyValueOptions ? o.ValueOptions.DefaultOptionValue : null)
+                    .ToList();
+            }
         });
     }
 
@@ -79,6 +81,25 @@ public partial class Wizard
                 currentRuleOption = currentCodeStyleRule.Options[ruleOptionIndex];
             }
         });
+    }
+
+    private void GenerateNewEditorConfig()
+    {
+        StringBuilder editorConfigSB = new StringBuilder();
+        editorConfigSB.AppendLine("[*]");
+        editorConfigSB.AppendLine("# All files");
+        foreach (CodeStyleRule codeRule in codeStyleRules)
+        {
+            foreach (RuleOption option in codeRule.Options)
+            {
+                editorConfigSB.AppendLine($"{option.Name} = {ruleOptionChoices[option.Name]}");
+            }
+            foreach (string id in codeRule.Id.Split(','))
+            {
+                editorConfigSB.AppendLine($"dotnet_diagnostic.{id}.severity = {severities[codeRule.Id]}");
+            }
+        }
+        newEditorConfig = editorConfigSB.ToString();
     }
 
     private async Task ChangeAsync(Action action)

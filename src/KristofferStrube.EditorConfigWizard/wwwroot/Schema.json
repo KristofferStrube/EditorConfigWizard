@@ -16,6 +16,34 @@
                 "Title": {
                     "type": "string"
                 },
+                "Sample": {
+                    "anyOf": [
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "title": "Sample"
+                },
+                "FixedSample": {
+                    "anyOf": [
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "title": "Sample"
+                },
                 "Options": {
                     "type": "array",
                     "items": {
@@ -25,7 +53,6 @@
             },
             "required": [
                 "Id",
-                "Options",
                 "Title"
             ],
             "title": "Element"

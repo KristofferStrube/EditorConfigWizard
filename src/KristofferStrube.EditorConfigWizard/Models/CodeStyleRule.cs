@@ -1,3 +1,20 @@
-﻿namespace KristofferStrube.EditorConfigWizard.Models;
+﻿using KristofferStrube.EditorConfigWizard.JsonConverters;
+using System.Text.Json.Serialization;
 
-public record CodeStyleRule(string Id, string Title, List<RuleOption> Options);
+namespace KristofferStrube.EditorConfigWizard.Models;
+
+public class CodeStyleRule
+{
+
+    public string Id { get; set; } = "";
+
+    public string Title { get; set; } = "";
+
+    [JsonConverter(typeof(MultilineStringConverter))]
+    public string Sample { get; set; } = "";
+
+    [JsonConverter(typeof(MultilineStringConverter))]
+    public string FixedSample { get; set; } = "";
+
+    public List<RuleOption> Options { get; set; } = new();
+}
