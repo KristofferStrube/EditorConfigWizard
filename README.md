@@ -39,3 +39,9 @@ Prefer no parentheses when arithmetic operator precedence is obvious.
 ```csharp
 var v = a + b * c;
 ```
+## Sample EditorConfigs out in the wild
+While exploring this I have found some prominent examples used by professionals in the industry and big open source projects. Here are a few:
+- [dotnet/razor/.editorconfig](https://github.com/dotnet/razor/blob/main/.editorconfig)
+- [David McCarter's EditorConfig](https://gist.github.com/RealDotNetDave/dbae4d97358ba4515dd52e5b8ca87671)
+
+We would like to eventually make it possible to cover many of the sames rules that they use and to compare ones own config to theirs.
