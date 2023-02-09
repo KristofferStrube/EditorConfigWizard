@@ -358,5 +358,171 @@
                 }
             }
         ]
+    },
+    {
+        "Id": "IDE0010",
+        "Title": "Add missing cases to switch statement",
+        "Sample": [
+            "enum Color { Red, Green, Blue }",
+            "",
+            "// Unfixed",
+            "static string HexColor(Color color)",
+            "{",
+            "    switch (color)",
+            "    {",
+            "        case Color.Red: return \"F00\";",
+            "        case Color.Green: return \"0F0\";",
+            "    }",
+            "    retirn throw new InvalidArgumentException($\"Non-supported color: {color}\");",
+            "}"
+        ],
+        "FixedSample": [
+            "enum Color { Red, Green, Blue }",
+            "",
+            "static string HexColor(Color color)",
+            "{",
+            "    switch (color)",
+            "    {",
+            "        case Color.Red: return \"F00\";",
+            "        case Color.Green: return \"0F0\";",
+            "        case Color.Blue: return \"00F\";",
+            "        case default: throw new InvalidArgumentException($\"Non-supported color: {color}\");",
+            "    }",
+            "}"
+        ]
+    },
+    {
+        "Id": "IDE0017",
+        "Title": "Use object initializers",
+        "Options": [
+            {
+                "Name": "dotnet_style_object_initializer",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer objects to be initialized using object initializers when possible.",
+                            "Sample": [
+                                "var p1 = new Person()",
+                                "{",
+                                "    Height = 176",
+                                "};"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer objects to not be initialized using object initializers.",
+                            "Sample": [
+                                "var p1 = new Person();",
+                                "p1.Height = 176;"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0018",
+        "Title": "Inline variable declaration",
+        "Options": [
+            {
+                "Name": "csharp_style_inlined_variable_declaration",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer out variables to be declared inline in the argument list of a method call when possible.",
+                            "Sample": [
+                                "if (double.TryParse(value, out double i))",
+                                "{",
+                                "    Console.WriteLine($\"{i}*{i}={i*i}\");",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer out variables to be declared before the method call.",
+                            "Sample": [
+                                "double i;",
+                                "if (double.TryParse(value, out i))",
+                                "{",
+                                "    Console.WriteLine($\"{i}*{i}={i*i}\");",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0028",
+        "Title": "Use collection initializers",
+        "Options": [
+            {
+                "Name": "dotnet_style_collection_initializer",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer collections to be initialized using collection initializers when possible",
+                            "Sample": "List<string> numbers = new() { \"one\", \"two\", \"three\" };"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer collections to not be initialized using collection initializers",
+                            "Sample": [
+                                "List<string> numbers = new();",
+                                "numbers.Add(\"one\");",
+                                "numbers.Add(\"two\");",
+                                "numbers.Add(\"three\");"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0032",
+        "Title": "Use auto-implemented property",
+        "Options": [
+            {
+                "Name": "dotnet_style_prefer_auto_properties",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer auto-implemented properties.",
+                            "Sample": "private int Age { get; }"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer properties with private backing fields.",
+                            "Sample": [
+                                "private int _age;",
+                                "",
+                                "public int Age",
+                                "{",
+                                "    get",
+                                "    {",
+                                "        return _age;",
+                                "    }",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
     }
 ]

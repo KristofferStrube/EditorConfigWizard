@@ -137,7 +137,6 @@
                 "Name": "csharp_style_unused_value_expression_statement_preference",
                 "ValueOptions": {
                     "$type": "OneOfMany",
-                    "Description": "This rule flags unused expression values.",
                     "Options": [
                         {
                             "Value": "discard_variable",
@@ -175,7 +174,6 @@
                 "Name": "csharp_style_unused_value_assignment_preference",
                 "ValueOptions": {
                     "$type": "OneOfMany",
-                    "Description": "This rule flags unnecessary value assignments.",
                     "Options": [
                         {
                             "Value": "discard_variable",
@@ -217,7 +215,8 @@
                                 ""
                             ]
                         }
-                    ]
+                    ],
+                    "DefaultOptionValue": "discard_variable"
                 }
             }
         ]

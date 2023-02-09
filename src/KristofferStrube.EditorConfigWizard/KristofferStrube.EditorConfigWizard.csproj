@@ -11,7 +11,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.2" PrivateAssets="all" />
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties wwwroot_4unnecessary_3code_3rules_1json__JsonSchema="Schema.json" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties wwwroot_4language_3rules_1json__JsonSchema="Schema.json" wwwroot_4unnecessary_3code_3rules_1json__JsonSchema="Schema.json" /></VisualStudio></ProjectExtensions>
 
 
 </Project>
