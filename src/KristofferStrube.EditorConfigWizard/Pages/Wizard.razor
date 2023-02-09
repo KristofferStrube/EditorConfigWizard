@@ -11,13 +11,13 @@
             </div>
             <div style="display:flex;flex-direction:column;justify-content:start;align-items:center;flex:2;">
                 <h4>
-                    Selected Categories
+                    Select Categories
                 </h4>
                 <div style="max-width:800px;">
                     @foreach (var category in codeStyleCategories)
                     {
                         <input type="checkbox" id="@category.Title" @bind=@category.Used />
-                        <label for="@category.Title">@category.Title</label>
+                        <label for="@category.Title">@category.Title (@category.CodeStyleRules.Count @(@category.CodeStyleRules.Count == 1 ? "rule" : "rules"))</label>
                         <br />
                         <small>@category.Description</small>
                         <br />
@@ -79,14 +79,14 @@
                 @if (currentCodeStyleRule.Sample is { Length: > 0 } sample)
                 {
                     <big style="color:red;"><b>Sample</b></big>
-                    <div style="width:100%;">
+                    <div style="width:100%;" @key=@sample>
                         <HighLightedCode Code=@sample Language="CSharp" BorderColor="Color.Red" />
                     </div>
                 }
                 @if (currentCodeStyleRule.FixedSample is { Length: > 0 } fixedSample)
                 {
                     <big style="color:green;"><b>Fixed</b></big>
-                    <div style="width:100%;">
+                    <div style="width:100%;" @key=@fixedSample>
                         <HighLightedCode Code=@fixedSample Language="CSharp" BorderColor="Color.Green" />
                     </div>
                 }
