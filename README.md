@@ -45,3 +45,6 @@ While exploring this I have found some prominent examples used by professionals 
 - [David McCarter's EditorConfig](https://gist.github.com/RealDotNetDave/dbae4d97358ba4515dd52e5b8ca87671)
 
 We would like to eventually make it possible to cover many of the sames rules that they use and to compare ones own config to theirs.
+
+# Related articles
+- [Rendering dynamic content in Blazor Wasm using DynamicComponent](https://blog.elmah.io/rendering-dynamic-content-in-blazor-wasm-using-dynamiccomponent/)
