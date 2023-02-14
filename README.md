@@ -46,5 +46,9 @@ While exploring this I have found some prominent examples used by professionals 
 
 We would like to eventually make it possible to cover many of the sames rules that they use and to compare ones own config to theirs.
 
-# Related articles
+# Issues
+Feel free to open issues on the repository if you find any errors with the package or have wishes for features.
+
+## Related articles
+This project uses the idea of making a component for showing code from this article.
 - [Rendering dynamic content in Blazor Wasm using DynamicComponent](https://blog.elmah.io/rendering-dynamic-content-in-blazor-wasm-using-dynamiccomponent/)
