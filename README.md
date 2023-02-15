@@ -46,6 +46,122 @@ While exploring this I have found some prominent examples used by professionals 
 
 We would like to eventually make it possible to cover many of the sames rules that they use and to compare ones own config to theirs.
 
+## Checklist for rules
+### Code quality rules
+#### Design rules
+- uncuantified
+#### Design rules
+- uncuantified
+#### Documentation rules
+- uncuantified
+#### Gloablization rules
+- uncuantified
+#### Portability and interopability rules
+- uncuantified
+#### Maintainability rules rules
+- uncuantified
+#### Naming rules
+- uncuantified
+#### Performance rules
+- uncuantified
+#### SingleFile rules
+- uncuantified
+#### Reliability rules
+- uncuantified
+#### Security rules
+- uncuantified
+#### Uage rules
+- uncuantified
+### Code style rules
+#### Language rules
+- [x] IDE0003
+- [x] IDE0049
+- [x] IDE0036
+- [x] IDE0040
+- [x] IDE0044
+- [x] IDE0062
+- [x] IDE0047
+- [x] IDE0048
+- [x] IDE0010
+- [x] IDE0017
+- [x] IDE0018
+- [x] IDE0028
+- [x] IDE0032
+- [ ] IDE0033
+- [ ] IDE0034
+- [ ] IDE0037
+- [ ] IDE0039
+- [ ] IDE0042
+- [ ] IDE0045
+- [ ] IDE0046
+- [ ] IDE0050
+- [ ] IDE0054
+- [ ] IDE0056
+- [ ] IDE0057
+- [ ] IDE0070
+- [ ] IDE0071
+- [ ] IDE0072
+- [ ] IDE0074
+- [ ] IDE0075
+- [ ] IDE0082
+- [ ] IDE0090
+- [ ] IDE0180
+- [ ] IDE0160
+- [ ] IDE0161
+- [ ] IDE0016
+- [ ] IDE0029
+- [ ] IDE0030
+- [ ] IDE0031
+- [ ] IDE0041
+- [ ] IDE0150
+- [ ] IDE1005
+- [ ] IDE0007
+- [ ] IDE0008
+- [ ] IDE0021
+- [ ] IDE0022
+- [ ] IDE0023
+- [ ] IDE0024
+- [ ] IDE0025
+- [ ] IDE0026
+- [ ] IDE0027
+- [ ] IDE0053
+- [ ] IDE0061
+- [ ] IDE0019
+- [ ] IDE0020
+- [ ] IDE0038
+- [ ] IDE0066
+- [ ] IDE0078
+- [ ] IDE0083
+- [ ] IDE0084
+- [ ] IDE0170
+- [ ] IDE0011
+- [ ] IDE0063
+- [ ] IDE0065
+- [ ] IDE0073
+- [ ] IDE0130
+#### Unnecesary code rules
+- [x] IDE0001
+- [x] IDE0002
+- [x] IDE0004
+- [x] IDE0005
+- [x] IDE0035
+- [x] IDE0051
+- [x] IDE0052
+- [x] IDE0058
+- [x] IDE0059
+- [ ] IDE0060
+- [ ] IDE0079
+- [ ] IDE0080
+- [ ] IDE0081
+- [ ] IDE0100
+- [ ] IDE0110
+- [ ] IDE0140
+#### Miscelllaneous rules
+- [ ] IDE0076
+- [ ] IDE0077
+#### Miscelllaneous rules
+- [ ] IDE0055
+
 # Issues
 Feel free to open issues on the repository if you find any errors with the project or have wishes for features.
 
