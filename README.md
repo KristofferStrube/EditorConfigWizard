@@ -49,29 +49,29 @@ We would like to eventually make it possible to cover many of the sames rules th
 ## Checklist for rules
 ### Code quality rules
 #### Design rules
-- uncuantified
+- unquantified
 #### Design rules
-- uncuantified
+- unquantified
 #### Documentation rules
-- uncuantified
+- unquantified
 #### Gloablization rules
-- uncuantified
+- unquantified
 #### Portability and interopability rules
-- uncuantified
+- unquantified
 #### Maintainability rules rules
-- uncuantified
+- unquantified
 #### Naming rules
-- uncuantified
+- unquantified
 #### Performance rules
-- uncuantified
+- unquantified
 #### SingleFile rules
-- uncuantified
+- unquantified
 #### Reliability rules
-- uncuantified
+- unquantified
 #### Security rules
-- uncuantified
+- unquantified
 #### Uage rules
-- uncuantified
+- unquantified
 ### Code style rules
 #### Language rules
 - [x] IDE0003
