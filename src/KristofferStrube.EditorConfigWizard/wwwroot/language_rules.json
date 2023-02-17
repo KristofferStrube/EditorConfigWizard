@@ -373,7 +373,7 @@
             "        case Color.Red: return \"F00\";",
             "        case Color.Green: return \"0F0\";",
             "    }",
-            "    retirn throw new InvalidArgumentException($\"Non-supported color: {color}\");",
+            "    return throw new InvalidArgumentException($\"Non-supported color: {color}\");",
             "}"
         ],
         "FixedSample": [
