@@ -3,6 +3,7 @@ using KristofferStrube.EditorConfigWizard.Models.Options;
 using KristofferStrube.EditorConfigWizard.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System;
 using System.Text;
 
 namespace KristofferStrube.EditorConfigWizard.Pages;
@@ -19,6 +20,8 @@ public partial class Wizard : ComponentBase
     private readonly Dictionary<string, string> ruleOptionChoices = new();
     private readonly Dictionary<string, string> severities = new();
     private string newEditorConfig = "";
+    private int totalQuestions;
+    private int progress;
 
     private readonly List<CodeStyleCategory> codeStyleCategories = new();
 
@@ -40,6 +43,7 @@ public partial class Wizard : ComponentBase
             .Where(category => category.Used)
             .SelectMany(category => category.CodeStyleRules)
             .ToList();
+        totalQuestions = codeStyleRules.Count + codeStyleRules.Sum(rule => rule.Options.Count);
         await IncrementCodeRule();
     }
 
@@ -47,6 +51,7 @@ public partial class Wizard : ComponentBase
     {
         await ChangeAsync(async () =>
         {
+            progress++;
             codeRuleIndex++;
             ruleOptionIndex = 0;
             if (codeRuleIndex == codeStyleRules.Count)
@@ -70,6 +75,7 @@ public partial class Wizard : ComponentBase
     {
         await ChangeAsync(() =>
         {
+            progress++;
             ruleOptionChoices[currentRuleOption.Name] = optionChoices[ruleOptionIndex];
             ruleOptionIndex++;
             if (ruleOptionIndex == currentCodeStyleRule.Options.Count)
