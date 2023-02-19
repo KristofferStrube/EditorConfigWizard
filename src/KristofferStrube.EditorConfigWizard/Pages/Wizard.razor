@@ -18,9 +18,9 @@
                     {
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="@category.Title" @bind=@category.Used />
-                            <label class="form-check-label" for="@category.Title">@category.Title - @((category.CodeStyleRules.Count + category.CodeStyleRules.Sum(rule => rule.Options.Count)).Pluralize("question")) (@category.CodeStyleRules.Count.Pluralize("severity question"), @category.CodeStyleRules.Sum(rule => rule.Options.Count).Pluralize("option question"))</label>
+                            <label class="form-check-label fw-semibold" for="@category.Title">@category.Title - @((category.CodeStyleRules.Count + category.CodeStyleRules.Sum(rule => rule.Options.Count)).Pluralize("question")) (@category.CodeStyleRules.Count.Pluralize("severity question"), @category.CodeStyleRules.Sum(rule => rule.Options.Count).Pluralize("option question"))</label>
                         </div>
-                        <small>@category.Description</small>
+                        <p class="mb-3">@category.Description</p>
                     }
                 </div>
                 <button class="btn btn-success btn-lg" style="width:150px;" @onclick=Begin>Begin</button>
