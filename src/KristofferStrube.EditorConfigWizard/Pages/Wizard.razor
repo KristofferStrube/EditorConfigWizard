@@ -30,22 +30,18 @@
     {
         <div style="display:flex; flex-direction:column;height:80vh;" @key=@currentRuleOption>
             <div style="display:flex;justify-content:center;align-items:start;">
-                <h4>
-                    <center>Question @progress of @totalQuestions</center>
-                </h4>
+                <h4>Question @progress of @totalQuestions</h4>
             </div>
             <div style="display:flex;justify-content:center;align-items:end;flex:1;">
-                <h2>
-                    <center>Which one do you like?</center>
-                </h2>
-            </div>
-            <div style="display:flex;flex-direction:column;align-items:start;flex:2;">
                 <div style="display:flex;justify-content:center;align-items:baseline;width:100%;">
-                    <h4>
+                    <h1 class="h3 mb-5 text-center">
                         <code>@currentRuleOption.Name </code>
                         <span>&nbsp;– @currentCodeStyleRule.Title (@currentCodeStyleRule.Id)</span>
-                    </h4>
+                    </h1>
                 </div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:start;flex:2;">
+                <h2 class="h3 mb-3">Which do you prefer?</h2>
                 <div style="display:flex;justify-content:center;flex-direction:column;width:100%;">
                     @if (currentRuleOption.ValueOptions is OneOfManyValueOptions oneOfMany)
                     {
