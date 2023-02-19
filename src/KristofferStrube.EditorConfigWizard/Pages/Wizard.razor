@@ -1,6 +1,6 @@
 ﻿@page "/Wizard"
 
-<div class="@fadeClass" style="pointer-events:@(fadeClass == "fade-out" ? "none" : "auto");">
+<div class="@fadeClass">
     @if (currentCodeStyleRule is null && codeRuleIndex != codeStyleRules.Count)
     {
         <div style="display:flex;flex-direction:column;height:80vh;">
@@ -111,7 +111,7 @@
                     <center>This is your new EditorConfig</center>
                 </h2>
             </div>
-            <div style="display:flex;justify-content:center;align-items:start;flex:2;max-width:60vw;">
+            <div style="display:flex;justify-content:center;align-items:start;flex:2;max-width:60vw;max-height:80vh;">
                 <HighLightedCode Code=@newEditorConfig Language="ini" />
             </div>
             <div style="display:flex;justify-content:center;align-items:start;flex:1;">

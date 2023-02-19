@@ -9,6 +9,10 @@ pre {
     margin-top: 8px;
 }
 
+code {
+    max-height: 70vh;
+}
+
 .red-hover:hover {
     border: 4px solid red;
 }
