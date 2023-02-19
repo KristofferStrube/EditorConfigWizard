@@ -80,11 +80,11 @@
                     </h3>
                 </div>
                 <div style="display:flex;flex-wrap:wrap;justify-content:center;width:100%;gap:5px;">
-                    <button @onclick=@(() => SetSeverity("none")) class="btn btn-lg bg-light">None</button>
-                    <button @onclick=@(() => SetSeverity("silent")) class="btn btn-lg bg-secondary">Silent</button>
-                    <button @onclick=@(() => SetSeverity("suggestion")) class="btn btn-lg bg-primary">Suggestion</button>
-                    <button @onclick=@(() => SetSeverity("warning")) class="btn btn-lg bg-warning">Warning</button>
-                    <button @onclick=@(() => SetSeverity("error")) class="btn btn-lg bg-danger">Error</button>
+                    <button @onclick=@(() => SetSeverity("none")) class="btn btn-lg btn-light">None</button>
+                    <button @onclick=@(() => SetSeverity("silent")) class="btn btn-lg btn-secondary">Silent</button>
+                    <button @onclick=@(() => SetSeverity("suggestion")) class="btn btn-lg btn-primary">Suggestion</button>
+                    <button @onclick=@(() => SetSeverity("warning")) class="btn btn-lg btn-warning">Warning</button>
+                    <button @onclick=@(() => SetSeverity("error")) class="btn btn-lg btn-danger">Error</button>
                 </div>
                 @if (currentCodeStyleRule.Sample is { Length: > 0 } sample)
                 {

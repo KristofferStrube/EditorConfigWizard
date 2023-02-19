@@ -12,9 +12,9 @@
                 <code style="display:flex;flex:1;justify-content:right;">@value</code>
             </div>
             <div style="display:flex; flex-direction:row;gap:5px;">
-                <span @onclick="() => MoveLeft(value)" class="btn btn-sm bg-primary flex1">&#60;</span>
-                <span @onclick="() => Remove(value)" class="btn btn-sm bg-danger flex1">X</span>
-                <span @onclick="() => MoveRight(value)" class="btn btn-sm bg-primary flex1">&#62;</span>
+                <span @onclick="() => MoveLeft(value)" class="btn btn-sm btn-primary flex1">&#60;</span>
+                <span @onclick="() => Remove(value)" class="btn btn-sm btn-danger flex1">X</span>
+                <span @onclick="() => MoveRight(value)" class="btn btn-sm btn-primary flex1">&#62;</span>
             </div>
         </div>
     }
@@ -28,7 +28,7 @@
             <div style="background-color:#272822;border-radius:5px;padding:5px;min-width:110px;display:flex;flex-direction:column;">
                 <code style="display:flex;flex:1;justify-content:center;">@value</code>
                 <div style="display:flex; flex-direction:row;gap:5px;">
-                    <span @onclick="() => Add(value)" class="btn btn-sm bg-success flex1">+</span>
+                    <span @onclick="() => Add(value)" class="btn btn-sm btn-success flex1">+</span>
                 </div>
             </div>
         }
