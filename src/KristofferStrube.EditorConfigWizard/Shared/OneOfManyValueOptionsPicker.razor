@@ -1,19 +1,20 @@
-﻿<div class="row" style="width:100%;">
+﻿<ul class="row list-unstyled">
     @foreach (var optionValue in ValueOptions.Options)
     {
-        <div @key=optionValue.Description class="col col-12 col-xl-6">
-            <big><code>@optionValue.Value</code> @(optionValue.Value == ValueOptions.DefaultOptionValue ? " (default)" : "")</big>
-            <br />
-            @optionValue.Description
+        <li @key=optionValue.Description class="col col-12 col-xl-6">
+            <div class="fs-5 mt-3">
+                <code>@optionValue.Value</code> @(optionValue.Value == ValueOptions.DefaultOptionValue ? " (default)" : "")
+            </div>
+            <p>@optionValue.Description</p>
             <HighLightedCode
                 Code=@optionValue.Sample
                 Language="csharp"
                 BorderColor="@(OptionChoice == optionValue.Value ? Color.Green : null)"
                 BorderHoverColor="@(OptionChoice != optionValue.Value ? Color.Yellow : null)"
                 OnClick="() => SelectOption(optionValue.Value)"/>
-        </div>
+        </li>
     }
-</div>
+</ul>
 
 @code {
     [Parameter]
