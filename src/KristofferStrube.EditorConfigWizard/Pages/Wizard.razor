@@ -5,14 +5,13 @@
     {
         <div style="display:flex;flex-direction:column;height:80vh;">
             <div style="display:flex;justify-content:center;align-items:end;flex:1;">
-                <h2>
-                    <center>Begin the guided tour through making a EditorConfig file for your .NET/C# project.</center>
-                </h2>
+                <h1 class="h2 mb-5">Create an EditorConfig file for your .NET/C# project.</h1>
             </div>
             <div style="display:flex;flex-direction:column;justify-content:start;align-items:center;flex:2;">
-                <h4>
+                <h2 class="h4 mb-3">
                     Select Categories
-                </h4>
+                </h2>
+
                 <div style="max-width:800px;">
                     @foreach (var category in codeStyleCategories)
                     {
@@ -23,7 +22,7 @@
                         <p class="mb-3">@category.Description</p>
                     }
                 </div>
-                <button class="btn btn-success btn-lg" style="width:150px;" @onclick=Begin>Begin</button>
+                <button class="btn btn-success btn-lg" @onclick=Begin>Begin your guided tour</button>
             </div>
         </div>
     }
