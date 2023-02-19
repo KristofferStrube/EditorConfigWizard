@@ -64,15 +64,15 @@
                 </h4>
             </div>
             <div style="display:flex;justify-content:center;align-items:end;flex:1;">
-                <h2>
-                    <center>What severity should @(ruleOptionIndex is 0 or 1 ? "this rule" : "these rules") be prompted as?</center>
+                <h2 class="mb-4"> 
+                    What severity should @(ruleOptionIndex is 0 or 1 ? "this rule" : "these rules") be prompted as?
                 </h2>
             </div>
             <div style="display:flex;flex-direction:column;align-items:start;flex:2;">
                 <div style="display:flex;justify-content:center;width:100%;">
-                    <h3 style="font-style:italic;">
-                        "@currentCodeStyleRule.Title (@currentCodeStyleRule.Id)"
-                    </h3>
+                    <p class="h4 mb-5 fs-italic" style="font-style:italic;">
+                        @currentCodeStyleRule.Id: "@currentCodeStyleRule.Title"
+                    </p>
                 </div>
                 <div style="display:flex;flex-wrap:wrap;justify-content:center;width:100%;gap:5px;">
                     <button @onclick=@(() => SetSeverity("none")) class="btn btn-lg btn-light">None</button>
