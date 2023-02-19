@@ -17,7 +17,7 @@
                     @foreach (var category in codeStyleCategories)
                     {
                         <input type="checkbox" id="@category.Title" @bind=@category.Used />
-                        <label for="@category.Title">@category.Title (@category.CodeStyleRules.Count @(@category.CodeStyleRules.Count == 1 ? "rule" : "rules"))</label>
+                        <label for="@category.Title">@category.Title - @((category.CodeStyleRules.Count + category.CodeStyleRules.Sum(rule => rule.Options.Count)).Pluralize("question")) (@category.CodeStyleRules.Count.Pluralize("severity question"), @category.CodeStyleRules.Sum(rule => rule.Options.Count).Pluralize("option question"))</label>
                         <br />
                         <small>@category.Description</small>
                         <br />
@@ -29,7 +29,12 @@
     }
     else if (currentRuleOption is not null)
     {
-        <div style="display:flex; flex-direction:column;height:80vh;">
+        <div style="display:flex; flex-direction:column;height:80vh;" @key=@currentRuleOption>
+            <div style="display:flex;justify-content:center;align-items:start;">
+                <h4>
+                    <center>Question @progress of @totalQuestions</center>
+                </h4>
+            </div>
             <div style="display:flex;justify-content:center;align-items:end;flex:1;">
                 <h2>
                     <center>Which one do you like?</center>
@@ -57,7 +62,12 @@
     }
     else if (ruleOptionIndex == currentCodeStyleRule?.Options.Count)
     {
-        <div style="display:flex;flex-direction:column;height:80vh;">
+        <div style="display:flex;flex-direction:column;height:80vh;" @key=@currentCodeStyleRule>
+            <div style="display:flex;justify-content:center;align-items:start;">
+                <h4>
+                    <center>Question @progress of @totalQuestions</center>
+                </h4>
+            </div>
             <div style="display:flex;justify-content:center;align-items:end;flex:1;">
                 <h2>
                     <center>What severity should @(ruleOptionIndex is 0 or 1 ? "this rule" : "these rules") be prompted as?</center>
@@ -79,7 +89,7 @@
                 @if (currentCodeStyleRule.Sample is { Length: > 0 } sample)
                 {
                     <big style="color:red;"><b>Sample</b></big>
-                    <div style="width:100%;" @key=@sample>
+                    <div style="width:100%;">
                         <HighLightedCode Code=@sample Language="CSharp" BorderColor="Color.Red" />
                     </div>
                 }
