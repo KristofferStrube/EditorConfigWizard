@@ -1,13 +1,16 @@
-﻿@inject IJSRuntime JSRuntime
+﻿@using System.Text
+@inject IJSRuntime JSRuntime
 
-<pre @onclick="InvokeAction" class="@colorClass @hoverClass @(colorClass is not "" || hoverClass is not "" ? "hasHover" : "")"><code @ref=codeBlock class="@Language" style="border-radius:5px;font-size:18px;">
+<pre @onclick="InvokeAction" class="@preClass" style="cursor: @cursor">
+    <code @ref="@codeBlock" class="@Language" style="border-radius:5px;font-size:18px;">
         @Code.Trim()
-</code></pre>
+    </code>
+</pre>
 
 @code {
     private ElementReference codeBlock;
-    private string hoverClass = "";
-    private string colorClass = "";
+    private string? preClass;
+    private string cursor = "";
 
     [Parameter, EditorRequired]
     public string Code { get; set; } = "";
@@ -26,8 +29,26 @@
 
     protected override void OnParametersSet()
     {
-        hoverClass = BorderHoverColor is null ? "" : $"{BorderHoverColor.ToString().ToLower()}-hover";
-        colorClass = BorderColor is null ? "" : $"{BorderColor.ToString().ToLower()}";
+        cursor = OnClick is not null ? "pointer" : "default";
+
+        var hasHover = BorderHoverColor is not null || BorderColor is not null;
+
+        if (hasHover)
+        {
+            var sb = new StringBuilder();
+
+            if (BorderHoverColor is not null)
+            {
+                sb.Append($"{BorderHoverColor.Value.ToString().ToLower()}-hover ");
+            }
+            if (BorderColor is not null)
+            {
+                sb.Append($"{BorderColor.Value.ToString().ToLower()} ");
+            }
+
+            sb.Append("hasHover");
+            preClass = sb.ToString();
+        }
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
