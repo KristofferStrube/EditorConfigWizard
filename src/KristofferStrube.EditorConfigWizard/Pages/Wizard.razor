@@ -16,11 +16,11 @@
                 <div style="max-width:800px;">
                     @foreach (var category in codeStyleCategories)
                     {
-                        <input type="checkbox" id="@category.Title" @bind=@category.Used />
-                        <label for="@category.Title">@category.Title - @((category.CodeStyleRules.Count + category.CodeStyleRules.Sum(rule => rule.Options.Count)).Pluralize("question")) (@category.CodeStyleRules.Count.Pluralize("severity question"), @category.CodeStyleRules.Sum(rule => rule.Options.Count).Pluralize("option question"))</label>
-                        <br />
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="@category.Title" @bind=@category.Used />
+                            <label class="form-check-label" for="@category.Title">@category.Title - @((category.CodeStyleRules.Count + category.CodeStyleRules.Sum(rule => rule.Options.Count)).Pluralize("question")) (@category.CodeStyleRules.Count.Pluralize("severity question"), @category.CodeStyleRules.Sum(rule => rule.Options.Count).Pluralize("option question"))</label>
+                        </div>
                         <small>@category.Description</small>
-                        <br />
                     }
                 </div>
                 <button class="btn btn-success btn-lg" style="width:150px;" @onclick=Begin>Begin</button>
