@@ -112,11 +112,11 @@ public partial class Wizard : ComponentBase
     {
         fadeClass = "fade-out";
         StateHasChanged();
-        await Task.Delay(500);
+        await Task.Delay(200);
         action();
         fadeClass = "fade-in";
         StateHasChanged();
-        await Task.Delay(500);
+        await Task.Delay(200);
         fadeClass = "";
         StateHasChanged();
     }
