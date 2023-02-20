@@ -14,12 +14,9 @@
 
     protected override void OnParametersSet()
     {
-        Console.WriteLine("DD");
         var options = PresenterTemplate.OptionsApplying.Order(new ModifierComparer(PresenterTemplate.OptionsApplying, SelectedOptions));
 
         var tokenReplacement = string.Join(Separator, options);
-        Console.WriteLine(string.Join(Separator, SelectedOptions));
-        Console.WriteLine(tokenReplacement);
         sample = PresenterTemplate.Template.Replace(PresenterTemplate.TemplateToken, tokenReplacement);
     }
 

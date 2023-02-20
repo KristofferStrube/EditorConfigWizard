@@ -1,117 +1,116 @@
 ﻿@page "/Wizard"
 
-<div class="@fadeClass">
+<div style="display:flex;height:40px;">
+    <div style="display:flex;flex:1;justify-content:start;">
+        @if (progress is not 0)
+        {
+            <button class="btn btn-warning btn-sm" @onclick="GoBackAsync"><nobr>Go Back</nobr></button>
+        }
+    </div>
+    <h4 style="display:flex;flex:2;justify-content:center;">
+        @if (progress is not 0 && progress != totalQuestions + 1)
+        {
+            <span>Question @progress of @totalQuestions</span>
+        }
+    </h4>
+    <span style="display:flex;flex:1;"></span>
+</div>
+<div class="@fadeClass" style="display:flex;flex-direction:column;height:80vh;align-items:center;width:100%;" @key=progress>
     @if (currentCodeStyleRule is null && codeRuleIndex != codeStyleRules.Count)
     {
-        <div style="display:flex;flex-direction:column;height:80vh;">
-            <div style="display:flex;justify-content:center;align-items:end;flex:1;">
-                <h1 class="h2 mb-5">Create an EditorConfig file for your .NET/C# project.</h1>
-            </div>
-            <div style="display:flex;flex-direction:column;justify-content:start;align-items:center;flex:2;">
-                <h2 class="h4 mb-3">
-                    Select Categories
-                </h2>
+        <div style="display:flex;justify-content:center;align-items:end;flex:1;">
+            <h1 class="h2 mb-5">Create an EditorConfig file for your .NET/C# project.</h1>
+        </div>
+        <div style="display:flex;flex-direction:column;justify-content:start;align-items:center;flex:2;">
+            <h2 class="h4 mb-3">
+                Select Categories
+            </h2>
 
-                <div style="max-width:800px;">
-                    @foreach (var category in codeStyleCategories)
-                    {
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="@category.Title" @bind=@category.Used />
-                            <label class="form-check-label fw-semibold" for="@category.Title">@category.Title - @((category.CodeStyleRules.Count + category.CodeStyleRules.Sum(rule => rule.Options.Count)).Pluralize("question")) (@category.CodeStyleRules.Count.Pluralize("severity question"), @category.CodeStyleRules.Sum(rule => rule.Options.Count).Pluralize("option question"))</label>
-                        </div>
-                        <p class="mb-3">@category.Description</p>
-                    }
-                </div>
-                <button class="btn btn-success btn-lg" @onclick=Begin>Begin your guided tour</button>
+            <div style="max-width:800px;">
+                @foreach (var category in codeStyleCategories)
+                {
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="@category.Title" @bind=@category.Used />
+                        <label class="form-check-label fw-semibold" for="@category.Title">@category.Title - @((category.CodeStyleRules.Count + category.CodeStyleRules.Sum(rule => rule.Options.Count)).Pluralize("question")) (@category.CodeStyleRules.Count.Pluralize("severity question"), @category.CodeStyleRules.Sum(rule => rule.Options.Count).Pluralize("option question"))</label>
+                    </div>
+                    <p class="mb-3">@category.Description</p>
+                }
             </div>
+            <button class="btn btn-success btn-lg" @onclick=Begin>Begin your guided tour</button>
         </div>
     }
     else if (currentRuleOption is not null)
     {
-        <div style="display:flex; flex-direction:column;height:80vh;" @key=@currentRuleOption>
-            <div style="display:flex;justify-content:center;align-items:start;">
-                <h4>Question @progress of @totalQuestions</h4>
+        <div style="display:flex;justify-content:center;align-items:end;flex:1;width:100%;">
+            <div style="display:flex;justify-content:center;align-items:baseline;width:100%;">
+                <h1 class="h3 mb-5 text-center" style="width:100%;">
+                    <code>@((MarkupString)string.Join("_", currentRuleOption.Name.Split("_").Select(part => $"<span style=\"display: inline-block;\">{part}</span>"))) </code>
+                    <span>&nbsp;– @currentCodeStyleRule.Title (@currentCodeStyleRule.Id)</span>
+                </h1>
             </div>
-            <div style="display:flex;justify-content:center;align-items:end;flex:1;">
-                <div style="display:flex;justify-content:center;align-items:baseline;width:100%;">
-                    <h1 class="h3 mb-5 text-center">
-                        <code>@currentRuleOption.Name </code>
-                        <span>&nbsp;– @currentCodeStyleRule.Title (@currentCodeStyleRule.Id)</span>
-                    </h1>
-                </div>
-            </div>
-            <div style="display:flex;flex-direction:column;align-items:start;flex:2;">
-                <h2 class="h3 mb-3">Which do you prefer?</h2>
-                <div style="display:flex;justify-content:center;flex-direction:column;width:100%;">
-                    @if (currentRuleOption.ValueOptions is OneOfManyValueOptions oneOfMany)
-                    {
-                        <OneOfManyValueOptionsPicker ValueOptions="oneOfMany" SelectOption="(value) => SelectOption(ruleOptionIndex, value)" OptionChoice=@optionChoices[ruleOptionIndex] />
-                    }
-                    else if (currentRuleOption.ValueOptions is OrderedSetWithOneOrMoreOfManyValueOptions orderedSet)
-                    {
-                        <OrderedSetWithOneOrMoreOfManyValueOptionsPicker ValueOptions="orderedSet" SelectOption="(value) => SelectOption(ruleOptionIndex, value)" OptionChoice=@optionChoices[ruleOptionIndex] />
-                    }
-                </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:start;flex:2;width:100%;">
+            <h2 class="h3 mb-3">Which do you prefer?</h2>
+            <div style="display:flex;justify-content:center;flex-direction:column;width:100%;">
+                @if (currentRuleOption.ValueOptions is OneOfManyValueOptions oneOfMany)
+                {
+                    <OneOfManyValueOptionsPicker ValueOptions="oneOfMany" SelectOption="(value) => SelectOptionAsync(ruleOptionIndex, value)" OptionChoice=@optionChoices[ruleOptionIndex] />
+                }
+                else if (currentRuleOption.ValueOptions is OrderedSetWithOneOrMoreOfManyValueOptions orderedSet)
+                {
+                    <OrderedSetWithOneOrMoreOfManyValueOptionsPicker ValueOptions="orderedSet" SelectOption="(value) => SelectOptionAsync(ruleOptionIndex, value)" OptionChoice=@optionChoices[ruleOptionIndex] />
+                }
             </div>
         </div>
     }
     else if (ruleOptionIndex == currentCodeStyleRule?.Options.Count)
     {
-        <div style="display:flex;flex-direction:column;height:80vh;" @key=@currentCodeStyleRule>
-            <div style="display:flex;justify-content:center;align-items:start;">
-                <h4>
-                    <center>Question @progress of @totalQuestions</center>
-                </h4>
+        <div style="display:flex;justify-content:center;align-items:end;flex:1;">
+            <h2 class="mb-4">
+                What severity should @(ruleOptionIndex is 0 or 1 ? "this rule" : "these rules") be prompted as?
+            </h2>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:start;flex:2;">
+            <div style="display:flex;justify-content:center;width:100%;">
+                <p class="h4 mb-5 fs-italic" style="font-style:italic;">
+                    @currentCodeStyleRule.Id: "@currentCodeStyleRule.Title"
+                </p>
             </div>
-            <div style="display:flex;justify-content:center;align-items:end;flex:1;">
-                <h2 class="mb-4"> 
-                    What severity should @(ruleOptionIndex is 0 or 1 ? "this rule" : "these rules") be prompted as?
-                </h2>
+            <div style="display:flex;flex-wrap:wrap;justify-content:center;width:100%;gap:5px;">
+                <button @onclick=@(() => SetSeverityAsync("none")) class="btn btn-lg btn-light">None</button>
+                <button @onclick=@(() => SetSeverityAsync("silent")) class="btn btn-lg btn-secondary">Silent</button>
+                <button @onclick=@(() => SetSeverityAsync("suggestion")) class="btn btn-lg btn-primary">Suggestion</button>
+                <button @onclick=@(() => SetSeverityAsync("warning")) class="btn btn-lg btn-warning">Warning</button>
+                <button @onclick=@(() => SetSeverityAsync("error")) class="btn btn-lg btn-danger">Error</button>
             </div>
-            <div style="display:flex;flex-direction:column;align-items:start;flex:2;">
-                <div style="display:flex;justify-content:center;width:100%;">
-                    <p class="h4 mb-5 fs-italic" style="font-style:italic;">
-                        @currentCodeStyleRule.Id: "@currentCodeStyleRule.Title"
-                    </p>
+            @if (currentCodeStyleRule.Sample is { Length: > 0 } sample)
+            {
+                <big style="color:red;"><b>Sample</b></big>
+                <div style="width:100%;">
+                    <HighLightedCode Code=@sample Language="CSharp" BorderColor="Color.Red" />
                 </div>
-                <div style="display:flex;flex-wrap:wrap;justify-content:center;width:100%;gap:5px;">
-                    <button @onclick=@(() => SetSeverity("none")) class="btn btn-lg btn-light">None</button>
-                    <button @onclick=@(() => SetSeverity("silent")) class="btn btn-lg btn-secondary">Silent</button>
-                    <button @onclick=@(() => SetSeverity("suggestion")) class="btn btn-lg btn-primary">Suggestion</button>
-                    <button @onclick=@(() => SetSeverity("warning")) class="btn btn-lg btn-warning">Warning</button>
-                    <button @onclick=@(() => SetSeverity("error")) class="btn btn-lg btn-danger">Error</button>
+            }
+            @if (currentCodeStyleRule.FixedSample is { Length: > 0 } fixedSample)
+            {
+                <big style="color:green;"><b>Fixed</b></big>
+                <div style="width:100%;" @key=@fixedSample>
+                    <HighLightedCode Code=@fixedSample Language="CSharp" BorderColor="Color.Green" />
                 </div>
-                @if (currentCodeStyleRule.Sample is { Length: > 0 } sample)
-                {
-                    <big style="color:red;"><b>Sample</b></big>
-                    <div style="width:100%;">
-                        <HighLightedCode Code=@sample Language="CSharp" BorderColor="Color.Red" />
-                    </div>
-                }
-                @if (currentCodeStyleRule.FixedSample is { Length: > 0 } fixedSample)
-                {
-                    <big style="color:green;"><b>Fixed</b></big>
-                    <div style="width:100%;" @key=@fixedSample>
-                        <HighLightedCode Code=@fixedSample Language="CSharp" BorderColor="Color.Green" />
-                    </div>
-                }
-            </div>
+            }
         </div>
     }
     else
     {
-        <div style="display:flex;flex-direction:column;align-items:center;height:80vh;">
-            <div style="display:flex;justify-content:center;align-items:end;flex:1;">
-                <h2>
-                    <center>This is your new EditorConfig</center>
-                </h2>
-            </div>
-            <div style="display:flex;justify-content:center;align-items:start;flex:2;max-width:60vw;max-height:80vh;">
-                <HighLightedCode Code=@newEditorConfig Language="ini" />
-            </div>
-            <div style="display:flex;justify-content:center;align-items:start;flex:1;">
-                <button @onclick="CopyToClipboard" class="btn btn-success btn-lg" style="width:300px;">Copy To Clipboard</button>
-            </div>
+        <div style="display:flex;justify-content:center;align-items:end;flex:1;">
+            <h2>
+                <center>This is your new EditorConfig</center>
+            </h2>
+        </div>
+        <div style="display:flex;justify-content:center;align-items:start;flex:2;max-width:60vw;max-height:80vh;">
+            <HighLightedCode Code=@newEditorConfig Language="ini" />
+        </div>
+        <div style="display:flex;justify-content:center;align-items:start;flex:1;">
+            <button @onclick="CopyToClipboardAsync" class="btn btn-success btn-lg" style="width:300px;">Copy To Clipboard</button>
         </div>
     }
 </div>
