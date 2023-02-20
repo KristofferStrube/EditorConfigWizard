@@ -5,25 +5,24 @@
     {
         <div style="display:flex;flex-direction:column;height:80vh;">
             <div style="display:flex;justify-content:center;align-items:end;flex:1;">
-                <h2>
-                    <center>Begin the guided tour through making a EditorConfig file for your .NET/C# project.</center>
-                </h2>
+                <h1 class="h2 mb-5">Create an EditorConfig file for your .NET/C# project.</h1>
             </div>
             <div style="display:flex;flex-direction:column;justify-content:start;align-items:center;flex:2;">
-                <h4>
+                <h2 class="h4 mb-3">
                     Select Categories
-                </h4>
+                </h2>
+
                 <div style="max-width:800px;">
                     @foreach (var category in codeStyleCategories)
                     {
-                        <input type="checkbox" id="@category.Title" @bind=@category.Used />
-                        <label for="@category.Title">@category.Title - @((category.CodeStyleRules.Count + category.CodeStyleRules.Sum(rule => rule.Options.Count)).Pluralize("question")) (@category.CodeStyleRules.Count.Pluralize("severity question"), @category.CodeStyleRules.Sum(rule => rule.Options.Count).Pluralize("option question"))</label>
-                        <br />
-                        <small>@category.Description</small>
-                        <br />
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="@category.Title" @bind=@category.Used />
+                            <label class="form-check-label fw-semibold" for="@category.Title">@category.Title - @((category.CodeStyleRules.Count + category.CodeStyleRules.Sum(rule => rule.Options.Count)).Pluralize("question")) (@category.CodeStyleRules.Count.Pluralize("severity question"), @category.CodeStyleRules.Sum(rule => rule.Options.Count).Pluralize("option question"))</label>
+                        </div>
+                        <p class="mb-3">@category.Description</p>
                     }
                 </div>
-                <button class="btn btn-success btn-lg" style="width:150px;" @onclick=Begin>Begin</button>
+                <button class="btn btn-success btn-lg" @onclick=Begin>Begin your guided tour</button>
             </div>
         </div>
     }
@@ -31,22 +30,18 @@
     {
         <div style="display:flex; flex-direction:column;height:80vh;" @key=@currentRuleOption>
             <div style="display:flex;justify-content:center;align-items:start;">
-                <h4>
-                    <center>Question @progress of @totalQuestions</center>
-                </h4>
+                <h4>Question @progress of @totalQuestions</h4>
             </div>
             <div style="display:flex;justify-content:center;align-items:end;flex:1;">
-                <h2>
-                    <center>Which one do you like?</center>
-                </h2>
-            </div>
-            <div style="display:flex;flex-direction:column;align-items:start;flex:2;">
                 <div style="display:flex;justify-content:center;align-items:baseline;width:100%;">
-                    <h4>
+                    <h1 class="h3 mb-5 text-center">
                         <code>@currentRuleOption.Name </code>
                         <span>&nbsp;– @currentCodeStyleRule.Title (@currentCodeStyleRule.Id)</span>
-                    </h4>
+                    </h1>
                 </div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:start;flex:2;">
+                <h2 class="h3 mb-3">Which do you prefer?</h2>
                 <div style="display:flex;justify-content:center;flex-direction:column;width:100%;">
                     @if (currentRuleOption.ValueOptions is OneOfManyValueOptions oneOfMany)
                     {
@@ -69,15 +64,15 @@
                 </h4>
             </div>
             <div style="display:flex;justify-content:center;align-items:end;flex:1;">
-                <h2>
-                    <center>What severity should @(ruleOptionIndex is 0 or 1 ? "this rule" : "these rules") be prompted as?</center>
+                <h2 class="mb-4"> 
+                    What severity should @(ruleOptionIndex is 0 or 1 ? "this rule" : "these rules") be prompted as?
                 </h2>
             </div>
             <div style="display:flex;flex-direction:column;align-items:start;flex:2;">
                 <div style="display:flex;justify-content:center;width:100%;">
-                    <h3 style="font-style:italic;">
-                        "@currentCodeStyleRule.Title (@currentCodeStyleRule.Id)"
-                    </h3>
+                    <p class="h4 mb-5 fs-italic" style="font-style:italic;">
+                        @currentCodeStyleRule.Id: "@currentCodeStyleRule.Title"
+                    </p>
                 </div>
                 <div style="display:flex;flex-wrap:wrap;justify-content:center;width:100%;gap:5px;">
                     <button @onclick=@(() => SetSeverity("none")) class="btn btn-lg btn-light">None</button>

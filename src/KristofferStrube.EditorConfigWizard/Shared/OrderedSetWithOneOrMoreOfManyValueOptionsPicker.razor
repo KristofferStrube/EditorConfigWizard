@@ -21,7 +21,7 @@
 </div>
 @if (nonSelectedOptions.Count() > 0)
 {
-    <h3>Non-selected options</h3>
+    <h3 class="mt-3">Non-selected options</h3>
     <div style="display:flex;flex-direction:row;flex-wrap:wrap;gap:5px;">
         @foreach (var value in nonSelectedOptions)
         {
@@ -34,7 +34,7 @@
         }
     </div>
 }
-<h3>
+<h3 class="mt-4">
     Samples
 </h3>
 @foreach(var template in ValueOptions.PresenterTemplates)

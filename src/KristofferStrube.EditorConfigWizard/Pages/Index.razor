@@ -1,44 +1,50 @@
 ﻿@page "/"
 
-<h1>Code-style Rules for C#/.NET EditorConfig</h1>
-<p>For a start this page lists the rules we have put into our system and lists their choices and samples for the different options.</p>
+<h1 class="mb-3">Code-style Rules for C#/.NET EditorConfig</h1>
+<p class="lead fw-normal">This page lists the rules that are currently supported, their options, and corresponding code samples.</p>
 <hr />
 
+<ul class="list-unstyled">
 @foreach (var codeStyleRule in codeStyleRules)
 {
     @foreach (var option in codeStyleRule.Options)
     {
-        <details>
-            <summary>
-                <span style="font-size:25px;"><code>@option.Name</code> </span> - @codeStyleRule.Title (@codeStyleRule.Id)
-            </summary>
-            @if (option.ValueOptions is OneOfManyValueOptions oneOfMany)
-            {
-                <div class="row">
-                    @foreach (var optionValue in oneOfMany.Options)
-                    {
-                        <div class="col col-12 col-xl-6">
-                            <big style="font-weight:@(optionValue.Value == oneOfMany.DefaultOptionValue ? "900" : "500")"><code>@optionValue.Value</code> - </big>
-                            @optionValue.Description
-                            <HighLightedCode Code=@optionValue.Sample Language="CSharp" />
-                        </div>
-                    }
-                </div>
-            }
-            else if (option.ValueOptions is OrderedSetWithOneOrMoreOfManyValueOptions orderedSet)
-            {
-                <p>
-                    This rule takes an ordered list of the following options without repititions.
-                </p>
-                <div style="display:flex;flex-direction:row;flex-wrap:wrap;gap:5px;">
-                    @foreach (var value in orderedSet.Options)
-                    {
-                        <div style="background-color:#272822;border-radius:5px;padding:5px;">
-                            <code>@value</code>
-                        </div>
-                    }
-                </div>
-            }
-        </details>
+        <li>
+            <details>
+                <summary>
+                    <span class="fs-5"><code>@option.Name</code></span> - @codeStyleRule.Title (@codeStyleRule.Id)
+                </summary>
+                @if (option.ValueOptions is OneOfManyValueOptions oneOfMany)
+                {
+                    <ul class="list-unstyled row">
+                        @foreach (var optionValue in oneOfMany.Options)
+                        {
+                            <li class="col col-12 col-xl-6">
+                                <big style="font-weight:@(optionValue.Value == oneOfMany.DefaultOptionValue ? "900" : "500")"><code>@optionValue.Value</code> - </big>
+                                @optionValue.Description
+                                <HighLightedCode Code=@optionValue.Sample Language="CSharp" />
+                            </li>
+                        }
+                    </ul>
+                }
+                else if (option.ValueOptions is OrderedSetWithOneOrMoreOfManyValueOptions orderedSet)
+                {
+                    <p>
+                        This rule takes an ordered list of the following options without repititions.
+                    </p>
+                    <ol style="display:flex;flex-direction:row;flex-wrap:wrap;gap:5px;">
+                        @foreach (var value in orderedSet.Options)
+                        {
+                            <li>
+                                <div style="background-color:#272822;border-radius:5px;padding:5px;">
+                                    <code>@value</code>
+                                </div>
+                            </li>
+                        }
+                    </ol>
+                }
+            </details>
+        </li>
     }
 }
+</ul>
