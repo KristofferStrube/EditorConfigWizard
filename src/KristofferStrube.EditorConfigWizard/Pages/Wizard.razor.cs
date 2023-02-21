@@ -3,13 +3,14 @@ using KristofferStrube.EditorConfigWizard.Models.Options;
 using KristofferStrube.EditorConfigWizard.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using System;
 using System.Text;
 
 namespace KristofferStrube.EditorConfigWizard.Pages;
 
 public partial class Wizard : ComponentBase
 {
+    private const int TRANSITION_TIME = 200;
+
     private CodeStyleRule? currentCodeStyleRule = null;
     private RuleOption? currentRuleOption = null;
     private List<string?> optionChoices = new();
@@ -26,15 +27,64 @@ public partial class Wizard : ComponentBase
     private readonly List<CodeStyleCategory> codeStyleCategories = new();
 
     [Inject]
-    public EditorConfigService ConfigService { get; set; }
+    public EditorConfigService ConfigService { get; set; } = default!;
 
     [Inject]
-    public IJSRuntime JSRuntime { get; set; }
+    public IJSRuntime JSRuntime { get; set; } = default!;
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; } = default!;
 
     protected override async Task OnInitializedAsync()
     {
         codeStyleCategories.Add(await ConfigService.LanguagesRulesAsync());
         codeStyleCategories.Add(await ConfigService.UnnecessaryColeRulesAsync());
+        NavigationManager.RegisterLocationChangingHandler(async (context) =>
+        {
+            if (context.HistoryEntryState is null && context.TargetLocation.EndsWith("/wizard"))
+            {
+                await ChangeAsync(() =>
+                {
+                    codeRuleIndex = -1;
+                    currentCodeStyleRule = null;
+                    progress = 0;
+                    StateHasChanged();
+                });
+            }
+            else if (context.HistoryEntryState == (progress - 1).ToString())
+            {
+                await ChangeAsync(() =>
+                {
+                    progress--;
+                    if (codeRuleIndex == codeStyleRules.Count && currentCodeStyleRule is null)
+                    {
+                        codeRuleIndex--;
+                        currentCodeStyleRule = codeStyleRules.Last();
+                        ruleOptionIndex = currentCodeStyleRule.Options.Count;
+                        currentRuleOption = null;
+                        optionChoices = currentCodeStyleRule.Options
+                            .Select(o => o.ValueOptions is OrderedSetWithOneOrMoreOfManyValueOptions ? o.ValueOptions.DefaultOptionValue : null)
+                            .ToList();
+                    }
+                    else if (ruleOptionIndex is not 0)
+                    {
+                        ruleOptionIndex--;
+                        currentRuleOption = currentCodeStyleRule.Options[ruleOptionIndex];
+                    }
+                    else
+                    {
+                        codeRuleIndex--;
+                        currentCodeStyleRule = codeStyleRules[codeRuleIndex];
+                        ruleOptionIndex = currentCodeStyleRule.Options.Count;
+                        currentRuleOption = null;
+                        optionChoices = currentCodeStyleRule.Options
+                            .Select(o => o.ValueOptions is OrderedSetWithOneOrMoreOfManyValueOptions ? o.ValueOptions.DefaultOptionValue : null)
+                            .ToList();
+                    }
+                    StateHasChanged();
+                });
+            }
+        });
     }
 
     private async Task Begin()
@@ -49,7 +99,7 @@ public partial class Wizard : ComponentBase
 
     private async Task IncrementCodeRule()
     {
-        await ChangeAsync(async () =>
+        await ChangeAsync(() =>
         {
             progress++;
             codeRuleIndex++;
@@ -58,6 +108,7 @@ public partial class Wizard : ComponentBase
             {
                 GenerateNewEditorConfig();
                 currentCodeStyleRule = null;
+                NavigationManager.NavigateTo("/wizard", new NavigationOptions() { HistoryEntryState = progress.ToString() });
                 return;
             }
             currentCodeStyleRule = codeStyleRules[codeRuleIndex];
@@ -68,6 +119,7 @@ public partial class Wizard : ComponentBase
                     .Select(o => o.ValueOptions is OrderedSetWithOneOrMoreOfManyValueOptions ? o.ValueOptions.DefaultOptionValue : null)
                     .ToList();
             }
+            NavigationManager.NavigateTo("/wizard", new NavigationOptions() { HistoryEntryState = progress.ToString() });
         });
     }
 
@@ -86,6 +138,7 @@ public partial class Wizard : ComponentBase
             {
                 currentRuleOption = currentCodeStyleRule.Options[ruleOptionIndex];
             }
+            NavigationManager.NavigateTo("/wizard", new NavigationOptions() { HistoryEntryState = progress.ToString() });
         });
     }
 
@@ -112,30 +165,35 @@ public partial class Wizard : ComponentBase
     {
         fadeClass = "fade-out";
         StateHasChanged();
-        await Task.Delay(200);
+        await Task.Delay(TRANSITION_TIME);
         action();
         fadeClass = "fade-in";
         StateHasChanged();
-        await Task.Delay(200);
+        await Task.Delay(TRANSITION_TIME);
         fadeClass = "";
         StateHasChanged();
     }
 
-    private async Task SelectOption(int choice, string value)
+    private async Task SelectOptionAsync(int choice, string value)
     {
         optionChoices[choice] = value;
         await IncrementRuleOption();
         StateHasChanged();
     }
 
-    private async Task SetSeverity(string severity)
+    private async Task SetSeverityAsync(string severity)
     {
         severities[currentCodeStyleRule.Id] = severity;
         await IncrementCodeRule();
     }
 
-    private async Task CopyToClipboard()
+    private async Task CopyToClipboardAsync()
     {
         await JSRuntime.InvokeVoidAsync("navigator.clipboard.writeText", newEditorConfig);
+    }
+
+    private async Task GoBackAsync()
+    {
+        await JSRuntime.InvokeVoidAsync("history.back");
     }
 }
