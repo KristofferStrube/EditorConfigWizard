@@ -524,5 +524,144 @@
                 }
             }
         ]
+    },
+    {
+        "Id": "IDE0033",
+        "Title": "Use explicitly provided tuple name",
+        "Options": [
+            {
+                "Name": "dotnet_style_explicit_tuple_names",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer tuple names to ItemX properties",
+                            "Sample": [
+                                "(double x, double y) coordinate = CalculateCoodinate();",
+                                "var x = coordinate.x;"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer ItemX properties to tuple names",
+                            "Sample": [
+                                "(double x, double y) coordinate = CalculateCoodinate();",
+                                "var name = customer.Item1;"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0034",
+        "Title": "Simplify default expression",
+        "Options": [
+            {
+                "Name": "csharp_prefer_simple_default_expression",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer default over default(T)",
+                            "Sample": [
+                                "public enum Currency { USD, EUR, DKK }",
+                                "int CalculatePrice(Currency currency = default) { ... }"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer default(T) over default",
+                            "Sample": [
+                                "public enum Currency { USD, EUR, DKK }",
+                                "int CalculatePrice(Currency currency = default(Currency)) { ... }"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0037",
+        "Title": "Use inferred member name",
+        "Options": [
+            {
+                "Name": "dotnet_style_prefer_inferred_tuple_names",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer inferred tuple element names",
+                            "Sample": "var coordinate = (x, y);"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer explicit tuple element names",
+                            "Sample": "var coordinate = (x: x, y: y);"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            },
+            {
+                "Name": "otnet_style_prefer_inferred_anonymous_type_member_names",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer inferred anonymous type member names",
+                            "Sample": "return new { color, shape, width }"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer explicit anonymous type member names",
+                            "Sample": "return new { color: color, shape: shape, width: width }"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0039",
+        "Title": "Use local function instead of lambda",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_local_over_anonymous_function",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer local functions over anonymous functions",
+                            "Sample": [
+                                "int price(int amount, decimal itemPrice) {",
+                                "    return amount * itemprice;",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer anonymous functions over local functions",
+                            "Sample": [
+                                "Func<int, decimal, decimal> price = (int amount, decimal itemPrice) => {",
+                                "    return amount * itemprice;",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
     }
 ]
