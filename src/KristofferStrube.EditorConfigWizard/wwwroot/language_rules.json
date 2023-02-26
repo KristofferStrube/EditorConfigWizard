@@ -645,7 +645,7 @@
                             "Description": "Prefer local functions over anonymous functions",
                             "Sample": [
                                 "int price(int amount, decimal itemPrice) {",
-                                "    return amount * itemprice;",
+                                "    return amount * itemPrice;",
                                 "}"
                             ]
                         },
@@ -654,7 +654,7 @@
                             "Description": "Prefer anonymous functions over local functions",
                             "Sample": [
                                 "Func<int, decimal, decimal> price = (int amount, decimal itemPrice) => {",
-                                "    return amount * itemprice;",
+                                "    return amount * itemPrice;",
                                 "}"
                             ]
                         }
