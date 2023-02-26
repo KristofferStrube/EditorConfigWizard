@@ -87,10 +87,10 @@ We would like to eventually make it possible to cover many of the sames rules th
 - [x] IDE0018
 - [x] IDE0028
 - [x] IDE0032
-- [ ] IDE0033
-- [ ] IDE0034
-- [ ] IDE0037
-- [ ] IDE0039
+- [x] IDE0033
+- [x] IDE0034
+- [x] IDE0037
+- [x] IDE0039
 - [ ] IDE0042
 - [ ] IDE0045
 - [ ] IDE0046
