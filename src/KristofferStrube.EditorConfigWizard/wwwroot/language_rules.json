@@ -694,5 +694,40 @@
                 }
             }
         ]
+    },
+    {
+        "Id": "IDE0045",
+        "Title": "Use conditional expression for assignment",
+        "Options": [
+            {
+                "Name": "dotnet_style_prefer_conditional_expression_over_assignment",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer assignments with a ternary conditional",
+                            "Sample": "var isEvenText = isEven(x) ? \"even\" : \"odd\";"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer assignments with an if-else statement",
+                            "Sample": [
+                                "string isEvenText;",
+                                "if (isEven(x))",
+                                "{",
+                                "    isEvenText = \"even\"",
+                                "}",
+                                "else",
+                                "{",
+                                "    isEvenText = \"odd\"",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
     }
 ]
