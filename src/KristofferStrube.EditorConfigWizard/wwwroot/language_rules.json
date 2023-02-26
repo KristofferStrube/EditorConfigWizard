@@ -763,5 +763,42 @@
                 }
             }
         ]
+    },
+    {
+        "Id": "IDE0054,IDE0074",
+        "Title": "Use (coalesce) compound assignment",
+        "Options": [
+            {
+                "Name": "dotnet_style_prefer_compound_assignment",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer compound assignment expressions",
+                            "Sample": [
+                                "product ??= new Product(SaleType.None)",
+                                "if (product.SaleType is SaleType.Active)",
+                                "{",
+                                "    price *= 1.1;",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Don't prefer compound assignment expressions",
+                            "Sample": [
+                                "product = product ?? new Product(SaleType.None)",
+                                "if (product.SaleType is SaleType.Active)",
+                                "{",
+                                "    price = price * 1.1;",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
     }
 ]
