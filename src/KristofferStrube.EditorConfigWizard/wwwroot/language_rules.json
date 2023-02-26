@@ -547,7 +547,7 @@
                             "Description": "Prefer ItemX properties to tuple names",
                             "Sample": [
                                 "(double x, double y) coordinate = CalculateCoordinate();",
-                                "var name = customer.Item1;"
+                                "var x = coordinate.Item1;"
                             ]
                         }
                     ],
@@ -656,6 +656,37 @@
                                 "Func<int, decimal, decimal> price = (int amount, decimal itemPrice) => {",
                                 "    return amount * itemPrice;",
                                 "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0042",
+        "Title": "Deconstruct variable declaration",
+        "Options": [
+            {
+                "Name": "csharp_style_deconstructed_variable_declaration",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer deconstructed variable declaration",
+                            "Sample": [
+                                "var (x, y) = CalculateCoordinate();",
+                                "Console.WriteLine($\"The x coordinate is {x}\");"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Do not prefer deconstruction in variable declarations",
+                            "Sample": [
+                                "var coordinate = CalculateCoordinate();",
+                                "Console.WriteLine($\"The x coordinate is {coordinate.x}\");"
                             ]
                         }
                     ],
