@@ -94,17 +94,17 @@ We would like to eventually make it possible to cover many of the sames rules th
 - [x] IDE0042
 - [x] IDE0045
 - [x] IDE0046
-- [ ] IDE0054
-- [ ] IDE0056
-- [ ] IDE0057
-- [ ] IDE0070
-- [ ] IDE0071
-- [ ] IDE0072
-- [ ] IDE0074
-- [ ] IDE0075
-- [ ] IDE0082
-- [ ] IDE0090
-- [ ] IDE0180
+- [x] IDE0054
+- [x] IDE0056
+- [x] IDE0057
+- [x] IDE0070
+- [x] IDE0071
+- [x] IDE0072
+- [x] IDE0074
+- [x] IDE0075
+- [x] IDE0082
+- [x] IDE0090
+- [x] IDE0180
 - [ ] IDE0160
 - [ ] IDE0161
 - [ ] IDE0016
