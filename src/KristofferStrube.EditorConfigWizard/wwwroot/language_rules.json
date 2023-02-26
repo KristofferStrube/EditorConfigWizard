@@ -800,5 +800,185 @@
                 }
             }
         ]
+    },
+    {
+        "Id": "IDE0056",
+        "Title": "Use index operator",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_index_operator",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer to use the ^ operator when calculating an index from the end of a collection",
+                            "Sample": [
+                                "int[] sizes = { 1, 2, 4, 8, 10 };",
+                                "var largestSize = sizes[^1];"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer not to use the ^ operator when calculating an index from the end of a collection",
+                            "Sample": [
+                                "int[] sizes = { 1, 2, 4, 8, 10 };",
+                                "var largestSize = sizes[sizes.Length - 1];"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0057",
+        "Title": "Use range operator",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_range_operator",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer to use the range operator .. when extracting a \"slice\" of a collection",
+                            "Sample": [
+                                "string rhyme = \"Humpty Dumpty sat on a wall.\";",
+                                "var name = rhyme[0..13];"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer not to use the range operator .. when extracting a \"slice\" of a collection",
+                            "Sample": [
+                                "string rhyme = \"Humpty Dumpty sat on a wall.\";",
+                                "var name = rhyme.Substring(0, 13);"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0070",
+        "Title": "Use System.HashCode.Combine",
+        "Sample": [
+            "public class Cat : Animal",
+            "{",
+            "    private string furPattern;",
+            "    ",
+            "    // Unfixed",
+            "    public override int GetHashCode()",
+            "    {",
+            "        var hashCode = 1299709;",
+            "        var hashCode = hashCode * 15485863 + base.GetHashCode();",
+            "        var hashCode = hashCode * 15485863 * furPattern.GetHashCode();",
+            "        return hashCode;",
+            "    }",
+            "}"
+        ],
+        "FixedSample": [
+            "public class Cat : Animal",
+            "{",
+            "    private string furPattern;",
+            "    ",
+            "    public override int GetHashCode()",
+            "    {",
+            "        return System.HashCode.Combine(base.GetHashCode(), furPattern);",
+            "    }",
+            "}"
+        ]
+    },
+    {
+        "Id": "IDE0071",
+        "Title": "Simplify interpolation",
+        "Options": [
+            {
+                "Name": "dotnet_style_prefer_simplified_interpolation",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer simplified interpolated strings",
+                            "Sample": "var result = $\"The price is {price} USD\";"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Do not prefer simplified interpolated strings",
+                            "Sample": "var result = $\"The price is {price.ToString()} USD\";"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0072",
+        "Title": "Add missing cases to switch expression",
+        "Sample": [
+            "enum Color { Red, Green, Blue }",
+            "",
+            "// Unfixed",
+            "static string HexColor(Color color)",
+            "{",
+            "    return color switch",
+            "    {",
+            "        Color.Red => \"F00\",",
+            "        Color.Green => \"0F0\",",
+            "        _ => throw new InvalidArgumentException($\"Non-supported color: {color}\")",
+            "    }",
+            "}"
+        ],
+        "FixedSample": [
+            "enum Color { Red, Green, Blue }",
+            "",
+            "static string HexColor(Color color)",
+            "{",
+            "    return color switch",
+            "    {",
+            "        Color.Red => \"F00\",",
+            "        Color.Green => \"0F0\",",
+            "        Color.Blue => \"00F\",",
+            "        _ => throw new InvalidArgumentException($\"Non-supported color: {color}\")",
+            "    }",
+            "}"
+        ]
+    },
+    {
+        "Id": "IDE0075",
+        "Title": "Simplify conditional expression",
+        "Options": [
+            {
+                "Name": "dotnet_style_prefer_simplified_boolean_expressions",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer simplified conditional expressions",
+                            "Sample": [
+                                "var M1AndM2 = M1() && M2();",
+                                "var M1OrM2 = M1() || M2();"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Do not prefer simplified conditional expressions",
+                            "Sample": [
+                                "var M1AndM2 = M1() && M2() ? true : false;",
+                                "var M1OrM2 = M1() ? true : M2();"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
     }
 ]
