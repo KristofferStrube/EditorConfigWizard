@@ -538,7 +538,7 @@
                             "Value": "true",
                             "Description": "Prefer tuple names to ItemX properties",
                             "Sample": [
-                                "(double x, double y) coordinate = CalculateCoodinate();",
+                                "(double x, double y) coordinate = CalculateCoordinate();",
                                 "var x = coordinate.x;"
                             ]
                         },
@@ -546,7 +546,7 @@
                             "Value": "false",
                             "Description": "Prefer ItemX properties to tuple names",
                             "Sample": [
-                                "(double x, double y) coordinate = CalculateCoodinate();",
+                                "(double x, double y) coordinate = CalculateCoordinate();",
                                 "var name = customer.Item1;"
                             ]
                         }
