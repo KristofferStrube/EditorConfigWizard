@@ -41,7 +41,7 @@ public partial class Wizard : ComponentBase
         codeStyleCategories.Add(await ConfigService.UnnecessaryColeRulesAsync());
         NavigationManager.RegisterLocationChangingHandler(async (context) =>
         {
-            if (context.HistoryEntryState is null && context.TargetLocation.EndsWith("/wizard"))
+            if (context.HistoryEntryState is null && context.TargetLocation.EndsWith("wizard"))
             {
                 await ChangeAsync(() =>
                 {
@@ -108,7 +108,7 @@ public partial class Wizard : ComponentBase
             {
                 GenerateNewEditorConfig();
                 currentCodeStyleRule = null;
-                NavigationManager.NavigateTo("/wizard", new NavigationOptions() { HistoryEntryState = progress.ToString() });
+                NavigationManager.NavigateTo("wizard", new NavigationOptions() { HistoryEntryState = progress.ToString() });
                 return;
             }
             currentCodeStyleRule = codeStyleRules[codeRuleIndex];
@@ -119,7 +119,7 @@ public partial class Wizard : ComponentBase
                     .Select(o => o.ValueOptions is OrderedSetWithOneOrMoreOfManyValueOptions ? o.ValueOptions.DefaultOptionValue : null)
                     .ToList();
             }
-            NavigationManager.NavigateTo("/wizard", new NavigationOptions() { HistoryEntryState = progress.ToString() });
+            NavigationManager.NavigateTo("wizard", new NavigationOptions() { HistoryEntryState = progress.ToString() });
         });
     }
 
@@ -138,7 +138,7 @@ public partial class Wizard : ComponentBase
             {
                 currentRuleOption = currentCodeStyleRule.Options[ruleOptionIndex];
             }
-            NavigationManager.NavigateTo("/wizard", new NavigationOptions() { HistoryEntryState = progress.ToString() });
+            NavigationManager.NavigateTo("wizard", new NavigationOptions() { HistoryEntryState = progress.ToString() });
         });
     }
 
