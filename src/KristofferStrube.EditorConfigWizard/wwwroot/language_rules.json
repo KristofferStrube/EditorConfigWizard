@@ -980,5 +980,17 @@
                 }
             }
         ]
+    },
+    {
+        "Id": "IDE0076",
+        "Title": "Convert typeof to nameof",
+        "Sample": [
+            "public record Cat(string Name, int Age);",
+            "Console.WriteLine($\"We have a class named {typeof(Cat).Name}\");"
+        ],
+        "FixedSample": [
+            "public record Cat(string Name, int Age);",
+            "Console.WriteLine($\"We have a class named {nameof(Cat)}\");"
+        ]
     }
 ]
