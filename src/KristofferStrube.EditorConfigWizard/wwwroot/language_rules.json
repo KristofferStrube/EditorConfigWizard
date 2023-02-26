@@ -729,5 +729,39 @@
                 }
             }
         ]
+    },
+    {
+        "Id": "IDE0046",
+        "Title": "Use conditional expression for return",
+        "Options": [
+            {
+                "Name": "dotnet_style_prefer_conditional_expression_over_return",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer return statements to use a ternary conditional",
+                            "Sample": "return isEven(x) ? \"even\" : \"odd\";"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer return statements to use an if-else statement",
+                            "Sample": [
+                                "if (isEven(x))",
+                                "{",
+                                "    return \"even\"",
+                                "}",
+                                "else",
+                                "{",
+                                "    return \"odd\"",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
     }
 ]
