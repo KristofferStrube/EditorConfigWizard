@@ -982,7 +982,7 @@
         ]
     },
     {
-        "Id": "IDE0076",
+        "Id": "IDE0082",
         "Title": "Convert typeof to nameof",
         "Sample": [
             "public record Cat(string Name, int Age);",
