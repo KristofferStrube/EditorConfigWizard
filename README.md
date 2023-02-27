@@ -46,6 +46,13 @@ While exploring this I have found some prominent examples used by professionals 
 
 We would like to eventually make it possible to cover many of the sames rules that they use and to compare ones own config to theirs.
 
+# Issues
+Feel free to open issues on the repository if you find any errors with the project or have wishes for features.
+
+## Related articles
+- [Rendering dynamic content in Blazor Wasm using DynamicComponent](https://blog.elmah.io/rendering-dynamic-content-in-blazor-wasm-using-dynamiccomponent/)
+- [The Blazor NavigationManager](https://kristoffer-strube.dk/post/the-blazor-navigationmanager/)
+
 ## Checklist for rules
 ### Code quality rules
 #### Design rules
@@ -160,10 +167,3 @@ We would like to eventually make it possible to cover many of the sames rules th
 - [ ] IDE0077
 #### Miscelllaneous rules
 - [ ] IDE0055
-
-# Issues
-Feel free to open issues on the repository if you find any errors with the project or have wishes for features.
-
-## Related articles
-This project uses the idea of making a component for showing code from this article.
-- [Rendering dynamic content in Blazor Wasm using DynamicComponent](https://blog.elmah.io/rendering-dynamic-content-in-blazor-wasm-using-dynamiccomponent/)
