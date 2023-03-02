@@ -9,7 +9,9 @@ public partial class Index
     private List<CodeStyleRule> codeStyleRules = new();
 
     private IQueryable<CodeStyleRule> FilteredCodeStyleRules => codeStyleRules
-        .Where(r => r.Id.Contains(search, StringComparison.OrdinalIgnoreCase) || r.Title.Contains(search, StringComparison.OrdinalIgnoreCase))
+        .Where(r => r.Id.Contains(search, StringComparison.OrdinalIgnoreCase)
+            || r.Title.Contains(search, StringComparison.OrdinalIgnoreCase)
+            || r.Options.Any(o => o.Name.Contains(search, StringComparison.OrdinalIgnoreCase)))
         .AsQueryable();
 
     [Inject]
