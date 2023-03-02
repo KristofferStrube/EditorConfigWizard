@@ -28,12 +28,33 @@ code {
     border: 4px solid red;
 }
 
+.red-hover:focus {
+    outline-color: red;
+    outline-style: solid;
+    outline-offset: -4px;
+    outline-width: 4px;
+}
+
 .green-hover:hover {
     border: 4px solid green;
 }
 
+.green-hover:focus {
+    outline-color: green;
+    outline-style: solid;
+    outline-offset: -4px;
+    outline-width: 4px;
+}
+
 .yellow-hover:hover {
     border: 4px solid orange;
+}
+
+.yellow-hover:focus {
+    outline-color: orange;
+    outline-style: solid;
+    outline-offset: -4px;
+    outline-width: 4px;
 }
 
 .red {
