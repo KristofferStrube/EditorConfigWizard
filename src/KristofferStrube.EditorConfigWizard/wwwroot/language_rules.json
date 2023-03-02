@@ -611,7 +611,7 @@
                 }
             },
             {
-                "Name": "otnet_style_prefer_inferred_anonymous_type_member_names",
+                "Name": "dotnet_style_prefer_inferred_anonymous_type_member_names",
                 "ValueOptions": {
                     "$type": "OneOfMany",
                     "Options": [
