@@ -2,11 +2,22 @@
     border: 4px solid transparent;
 }
 
+button {
+    background: none !important;
+    padding: 0 !important;
+    border-radius: 14px !important;
+    width: 100% !important;
+}
+
 pre {
-    border-radius: 13px;
+    border-radius: 10px; /* border-radius of button minus border-width of .hasHover */
+    margin-inline: 0;
+    margin-block: 0.5rem;
+    width: 100%;
+}
+
+button pre {
     margin: 0;
-    margin-bottom: 8px;
-    margin-top: 8px;
 }
 
 code {
@@ -17,12 +28,33 @@ code {
     border: 4px solid red;
 }
 
+.red-hover:focus {
+    outline-color: red;
+    outline-style: solid;
+    outline-offset: -4px;
+    outline-width: 4px;
+}
+
 .green-hover:hover {
     border: 4px solid green;
 }
 
+.green-hover:focus {
+    outline-color: green;
+    outline-style: solid;
+    outline-offset: -4px;
+    outline-width: 4px;
+}
+
 .yellow-hover:hover {
     border: 4px solid orange;
+}
+
+.yellow-hover:focus {
+    outline-color: orange;
+    outline-style: solid;
+    outline-offset: -4px;
+    outline-width: 4px;
 }
 
 .red {

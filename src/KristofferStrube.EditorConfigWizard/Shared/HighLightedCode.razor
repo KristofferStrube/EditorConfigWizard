@@ -1,16 +1,31 @@
 ﻿@using System.Text
 @inject IJSRuntime JSRuntime
 
-<pre @onclick="InvokeAction" class="@preClass" style="cursor: @cursor">
-    <code @ref="@codeBlock" class="@Language" style="border-radius:5px;font-size:18px;">
-        @Code.Trim()
-    </code>
-</pre>
+@if (OnClick is not null)
+{ 
+    <button @onclick="InvokeAction" class="@commonClasses @hoverClasses">
+        <pre>
+            <code @ref="@codeBlock" class="@Language" style="border-radius:5px;font-size:18px;">
+                @Code.Trim()
+            </code>
+        </pre>
+    </button>
+}
+else
+{
+    <pre class="@commonClasses">
+        <code @ref="@codeBlock" class="@Language" style="border-radius:5px;font-size:18px;">
+            @Code.Trim()
+        </code>
+    </pre>
+}
 
 @code {
     private ElementReference codeBlock;
-    private string? preClass;
-    private string cursor = "";
+
+    private string commonClasses = "text-start";
+
+    private string? hoverClasses;
 
     [Parameter, EditorRequired]
     public string Code { get; set; } = "";
@@ -29,8 +44,6 @@
 
     protected override void OnParametersSet()
     {
-        cursor = OnClick is not null ? "pointer" : "default";
-
         var hasHover = BorderHoverColor is not null || BorderColor is not null;
 
         if (hasHover)
@@ -47,7 +60,7 @@
             }
 
             sb.Append("hasHover");
-            preClass = sb.ToString();
+            hoverClasses = sb.ToString();
         }
     }
 
