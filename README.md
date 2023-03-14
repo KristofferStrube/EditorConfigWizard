@@ -112,17 +112,17 @@ Feel free to open issues on the repository if you find any errors with the proje
 - [x] IDE0082
 - [x] IDE0090
 - [x] IDE0180
-- [ ] IDE0160
-- [ ] IDE0161
-- [ ] IDE0016
-- [ ] IDE0029
-- [ ] IDE0030
-- [ ] IDE0031
-- [ ] IDE0041
-- [ ] IDE0150
-- [ ] IDE1005
-- [ ] IDE0007
-- [ ] IDE0008
+- [x] IDE0160
+- [x] IDE0161
+- [x] IDE0016
+- [x] IDE0029
+- [x] IDE0030
+- [x] IDE0031
+- [x] IDE0041
+- [x] IDE0150
+- [x] IDE1005
+- [x] IDE0007
+- [x] IDE0008
 - [ ] IDE0021
 - [ ] IDE0022
 - [ ] IDE0023
