@@ -16,7 +16,7 @@ public class EditorConfigService
 
     public async Task<CodeStyleCategory> LanguagesRulesAsync()
     {
-        return new("Language Rules", "Rules that pertain to the C#. For example, you can specify rules that regard the use of var when defining variables, or whether expression-bodied members are preferred.", await languagesRulesTask.Value)
+        return new("Language rules", "Rules that pertain to the C# language. For example, you can specify rules that regard the use of var when defining variables, or whether expression-bodied members are preferred.", await languagesRulesTask.Value)
         {
             Used = true,
         };
@@ -24,7 +24,7 @@ public class EditorConfigService
 
     public async Task<CodeStyleCategory> UnnecessaryColeRulesAsync()
     {
-        return new("Unnecessary code rules", "Rules that pertain to unnecessary code that indicates a potential readability, maintainability, performance, or functional problem. For example, unreachable code within methods or unused private fields, properties, or methods is unnecessary code.\r\n\r\n", await unnecessaryCodeRulesTask.Value)
+        return new("Unnecessary code rules", "Rules that pertain to unnecessary code that indicates a potential readability, maintainability, performance, or functional problem. For example, unreachable code within methods or unused private fields, properties, or methods is unnecessary code.", await unnecessaryCodeRulesTask.Value)
         {
             Used = true,
         };

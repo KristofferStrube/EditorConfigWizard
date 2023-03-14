@@ -1031,5 +1031,278 @@
             "int[] numbers = new int[] { 2, 1, 3, 4 };",
             "(numbers[0], numbers[1]) = (numbers[1], numbers[0]);"
         ]
+    },
+    {
+        "Id": "IDE0160,IDE0161",
+        "Title": "Use block/file-scoped namespace",
+        "Options": [
+            {
+                "Name": "csharp_style_namespace_declarations",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "block_scoped",
+                            "Description": "Namespace declarations should be block scoped.",
+                            "Sample": [
+                                "namespace MyOrg.MyProject",
+                                "{",
+                                "    class Program",
+                                "    {",
+                                "        Console.WriteLine(\"Hello!\");",
+                                "    }",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "file_scoped",
+                            "Description": "\tNamespace declarations should be file scoped.",
+                            "Sample": [
+                                "namespace MyOrg.MyProject;",
+                                "",
+                                "class Program",
+                                "{",
+                                "    Console.WriteLine(\"Hello!\");",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "block_scoped"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0016",
+        "Title": "Use throw expression",
+        "Options": [
+            {
+                "Name": "csharp_style_throw_expression",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer to use throw expressions instead of throw statements.",
+                            "Sample": "this.name = name ?? throw new ArgumentNullException(nameof(name));"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer to use throw statements instead of throw expressions",
+                            "Sample": [
+                                "if (name == null)",
+                                "{",
+                                "    throw new ArgumentNullException(nameof(name));",
+                                "}",
+                                "this.name = name;"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0029,IDE0030",
+        "Title": "Use coalesce expression (non-nullable/nullable types)",
+        "Options": [
+            {
+                "Name": "dotnet_style_coalesce_expression",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer null coalescing expressions to ternary operator checking.",
+                            "Sample": "int height = length ?? 150;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer ternary operator checking to null coalescing expressions.",
+                            "Sample": "int height = length != null ? length : 150;"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0031",
+        "Title": "Use null propagation",
+        "Options": [
+            {
+                "Name": "dotnet_style_null_propagation",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer to use null-conditional operator when possible.",
+                            "Sample": "int? amount = cats?.Count();"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer to use ternary null checking where possible.",
+                            "Sample": "int? amount = cats != null ? cats.Count() : null;"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0041",
+        "Title": "Use 'is null' check",
+        "Options": [
+            {
+                "Name": "dotnet_style_prefer_is_null_check_over_reference_equality_method",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer 'is null' check.",
+                            "Sample": "string playerName = name is null ? \"Bob\" : name;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer reference equality method",
+                            "Sample": "string playerName = name == null ? \"Bob\" : name;"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0150",
+        "Title": "Prefer 'null' check over type check",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_null_check_over_type_check",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer null check over type check.",
+                            "Sample": [
+                                "if (age is null)",
+                                "{",
+                                "    Console.WriteLine(\"We don't know your age.\");",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Disables the rule.",
+                            "Sample": [
+                                "if (age is not int)",
+                                "{",
+                                "    Console.WriteLine(\"We don't know your age.\");",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE1005",
+        "Title": "Use conditional delegate call",
+        "Options": [
+            {
+                "Name": "csharp_style_conditional_delegate_call",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer to use the conditional coalescing operator (?.) when invoking a lambda expression.",
+                            "Sample": "title = formatter?.Invoke(name);"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer to perform a null check before invoking a lambda expression.",
+                            "Sample": [
+                                "if (formatter != null)",
+                                "{",
+                                "    title = formatter(name);",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0007,IDE0008",
+        "Title": "Use var or explicit type",
+        "Options": [
+            {
+                "Name": "csharp_style_var_for_built_in_types",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer var is used to declare variables with built-in system types such as int.",
+                            "Sample": "var height = 176;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer explicit type over var to declare variables with built-in system types such as int.",
+                            "Sample": "int height = 176;"
+                        }
+                    ],
+                    "DefaultOptionValue": "false"
+                }
+            },
+            {
+                "Name": "csharp_style_var_when_type_is_apparent",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer var when the type is already mentioned on the right-hand side of a declaration expression.",
+                            "Sample": "var cats = new List<Cat>();"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer explicit type when the type is already mentioned on the right-hand side of a declaration expression.",
+                            "Sample": "List<Cat> cats = new List<Cat>();"
+                        }
+                    ],
+                    "DefaultOptionValue": "false"
+                }
+            },
+            {
+                "Name": "csharp_style_var_elsewhere",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer var over explicit type in all cases, unless overridden by another code style rule.",
+                            "Sample": "var mapper = StyleController.Create();"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer explicit type over var in all cases, unless overridden by another code style rule.",
+                            "Sample": "StyleMapper mapper = StyleController.Create();"
+                        }
+                    ],
+                    "DefaultOptionValue": "false"
+                }
+            }
+        ]
     }
 ]
