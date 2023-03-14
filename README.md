@@ -165,5 +165,5 @@ Feel free to open issues on the repository if you find any errors with the proje
 #### Miscelllaneous rules
 - [ ] IDE0076
 - [ ] IDE0077
-#### Miscelllaneous rules
+#### Formatting rules
 - [ ] IDE0055
