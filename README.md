@@ -57,8 +57,6 @@ Feel free to open issues on the repository if you find any errors with the proje
 ### Code quality rules
 #### Design rules
 - unquantified
-#### Design rules
-- unquantified
 #### Documentation rules
 - unquantified
 #### Gloablization rules
