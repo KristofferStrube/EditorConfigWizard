@@ -2,8 +2,10 @@
 This is a EditorConfig Wizard written in Blazor WASM.
 The current goal is to support all the standard C#/.NET EditorConfig rules.
 
-## Demo
-The current progress can be seen at https://kristofferstrube.github.io/EditorConfigWizard/
+## Try it out
+All options that have currently been registered can be seen at: https://kristofferstrube.github.io/EditorConfigWizard/
+
+The Wizard itself can be seen at: https://kristofferstrube.github.io/EditorConfigWizard/wizard
 
 ## Goals
 - [ ] Define all Rules and be able to present them.
