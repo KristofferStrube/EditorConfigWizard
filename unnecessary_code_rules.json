@@ -1,0 +1,224 @@
+[
+    {
+        "Id": "IDE0001",
+        "Title": "Simplify name",
+        "Sample": [
+            "using System.Text.Json;",
+            "",
+            "var person = new { Name = \"Bob\" };",
+            "var serializedPerson = System.Text.Json.JsonSerializer.Serialize(person);"
+        ],
+        "FixedSample": [
+            "using System.Text.Json;",
+            "",
+            "var person = new { Name = \"Bob\" };",
+            "var serializedPerson = JsonSerializer.Serialize(person);"
+        ]
+    },
+    {
+        "Id": "IDE0002",
+        "Title": "Simplify member access",
+        "Sample": [
+            "class MyClass",
+            "{",
+            "    void MyMethod() => MyClass.StaticMethod();",
+            "",
+            "    static void StaticMethod() { }",
+            "}"
+        ],
+        "FixedSample": [
+            "class MyClass",
+            "{",
+            "    void MyMethod() => StaticMethod();",
+            "",
+            "    static void StaticMethod() { }",
+            "}"
+        ]
+    },
+    {
+        "Id": "IDE0004",
+        "Title": "Remove unnecessary cast",
+        "Sample": "var pi = (int)22/7",
+        "FixedSample": "var pi = 22/7"
+    },
+    {
+        "Id": "IDE0005",
+        "Title": "Remove unnecessary import",
+        "Sample": [
+            "using System;",
+            "",
+            "var name = \"Bob\";"
+        ],
+        "FixedSample": [
+            "var name = \"Bob\";"
+        ]
+    },
+    {
+        "Id": "IDE0035",
+        "Title": "Remove unreachable code",
+        "Sample": [
+            "public decimal Cost(int amount, decimal price)",
+            "{",
+            "    var cost = amount * price;",
+            "    return cost;",
+            "    Logger.log($\"Calculated cost: {cost}\");",
+            "}"
+        ],
+        "FixedSample": [
+            "public decimal Cost(int amount, decimal price)",
+            "{",
+            "    var cost = amount * price;",
+            "    return cost;",
+            "}"
+        ]
+    },
+    {
+        "Id": "IDE0051",
+        "Title": "Remove unused private member",
+        "Sample": [
+            "class Person",
+            "{",
+            "    private int _shoeSize;",
+            "    private double _height;",
+            "    public bool IsTall() => _height > 180;",
+            "}"
+        ],
+        "FixedSample": [
+            "class Person",
+            "{",
+            "    private double _height;",
+            "    public bool IsTall() => _height > 180;",
+            "}"
+        ]
+    },
+    {
+        "Id": "IDE0052",
+        "Title": "Remove unread private member",
+        "Sample": [
+            "class Coin",
+            "{",
+            "    private bool _lastWasHeads;",
+            "    private bool _lastWasTails;",
+            "    private int _tosses;",
+            "",
+            "    public void Flip()",
+            "    {",
+            "        toss = Random.Shared.Next(1)",
+            "        _lastWasHeads = toss == 1",
+            "        _lastWasTails = toss == 0",
+            "        _tosses++",
+            "    }",
+            "",
+            "    public bool headWon() => _lastWasHeads;",
+            "}"
+        ],
+        "FixedSample": [
+            "class Coin",
+            "{",
+            "    private bool _lastWasTails;",
+            "    private int _tosses;",
+            "",
+            "    public void Flip()",
+            "    {",
+            "        toss = Random.Shared.Next(1)",
+            "        _lastWasTails = toss == 0",
+            "        _tosses++",
+            "    }",
+            "",
+            "    public bool tailsWon() => _lastWasTails;",
+            "}"
+        ]
+    },
+    {
+        "Id": "IDE0058",
+        "Title": "Remove unnecessary expression value",
+        "Options": [
+            {
+                "Name": "csharp_style_unused_value_expression_statement_preference",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "discard_variable",
+                            "Description": "Prefer to assign an unused expression to a discard.",
+                            "Sample": [
+                                "// Unfixed",
+                                "int.Parse(\"137\");",
+                                "",
+                                "// Fixed",
+                                "_ = int.Parse(\"137\");"
+                            ]
+                        },
+                        {
+                            "Value": "unused_local_variable",
+                            "Description": "Prefer to assign an unused expression to a local variable that's never used.",
+                            "Sample": [
+                                "// Unfixed",
+                                "int.Parse(\"137\");",
+                                "",
+                                "// Fixed",
+                                "var unused = int.Parse(\"137\");"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "discard_variable"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0059",
+        "Title": "Remove unnecessary value assignment",
+        "Options": [
+            {
+                "Name": "csharp_style_unused_value_assignment_preference",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "discard_variable",
+                            "Description": "Prefer to use a discard when assigning a value that's not used.",
+                            "Sample": [
+                                "// Unfixed",
+                                "static double InvariantParseDouble(string stringValue)",
+                                "{",
+                                "    double.TryParse(value, CultureInfo.InvariantCulture, out var value);",
+                                "    return value;",
+                                "}",
+                                "",
+                                "// Fixed",
+                                "static double InvariantParseDouble(string stringValue)",
+                                "{",
+                                "    _ = double.TryParse(value, CultureInfo.InvariantCulture, out var value);",
+                                "    return value;",
+                                "}",
+                                ""
+                            ]
+                        },
+                        {
+                            "Value": "unused_local_variable",
+                            "Description": "Prefer to use a local variable when assigning a value that's not used.",
+                            "Sample": [
+                                "// Unfixed",
+                                "static double InvariantParseDouble(string stringValue)",
+                                "{",
+                                "    double.TryParse(value, CultureInfo.InvariantCulture, out var value);",
+                                "    return value;",
+                                "}",
+                                "",
+                                "// Fixed",
+                                "static double InvariantParseDouble(string stringValue)",
+                                "{",
+                                "    var unused = double.TryParse(value, CultureInfo.InvariantCulture, out var value);",
+                                "    return value;",
+                                "}",
+                                ""
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "discard_variable"
+                }
+            }
+        ]
+    }
+]
