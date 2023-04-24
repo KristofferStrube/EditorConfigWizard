@@ -10,7 +10,7 @@
 {
     @foreach (var option in codeStyleRule.Options)
     {
-        <li>
+        <li @key=option.Name>
             <details>
                 <summary>
                     <span class="fs-5"><code>@option.Name</code></span> - @codeStyleRule.Title (@codeStyleRule.Id)
