@@ -47,7 +47,7 @@ While exploring this I have found some prominent examples used by professionals 
 - [David McCarter's EditorConfig](https://gist.github.com/RealDotNetDave/dbae4d97358ba4515dd52e5b8ca87671)
 - [Mads Kristensen's EditorConfig](https://github.com/madskristensen/MIDL/blob/master/.editorconfig)
 
-We would like to eventually make it possible to cover many of the sames rules that they use and to compare ones own config to theirs.
+We would like to eventually make it possible to cover many of the same rules that they use and to compare ones own config to theirs.
 
 # Issues
 Feel free to open issues on the repository if you find any errors with the project or have wishes for features.
