@@ -1,0 +1,1309 @@
+[
+    {
+        "Id": "IDE0003",
+        "Title": "Remove this qualification",
+        "Options": [
+            {
+                "Name": "dotnet_style_qualification_for_field",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer fields to be prefaced with this in C#.",
+                            "Sample": "this.capacity = 0;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer fields not to be prefaced with this.",
+                            "Sample": "capacity = 0;"
+                        }
+                    ],
+                    "DefaultOptionValue": "false"
+                }
+            },
+            {
+                "Name": "dotnet_style_qualification_for_property",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer properties to be prefaced with this in C#.",
+                            "Sample": "this.ID = 0;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer properties not to be prefaced with this.",
+                            "Sample": "ID = 0;"
+                        }
+                    ],
+                    "DefaultOptionValue": "false"
+                }
+            },
+            {
+                "Name": "dotnet_style_qualification_for_method",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer methods to be prefaced with this in C#.",
+                            "Sample": "this.Display();"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer methods not to be prefaced with this.",
+                            "Sample": "Display();"
+                        }
+                    ],
+                    "DefaultOptionValue": "false"
+                }
+            },
+            {
+                "Name": "dotnet_style_qualification_for_event",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer events to be prefaced with this in C#.",
+                            "Sample": "this.Elapsed += Handler;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer events not to be prefaced with this.",
+                            "Sample": "Elapsed += Handler;"
+                        }
+                    ],
+                    "DefaultOptionValue": "false"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0049",
+        "Title": "Use language keywords instead of framework type names for type references",
+        "Options": [
+            {
+                "Name": "dotnet_style_predefined_type_for_locals_parameters_members",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer the language keyword for local variables, method parameters, and class members.",
+                            "Sample": "private int _member;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer the type name for local variables, method parameters, and class members",
+                            "Sample": "private Int32 _member;"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            },
+            {
+                "Name": "dotnet_style_predefined_type_for_member_access",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer the language keyword for member access expressions.",
+                            "Sample": "var local = int.MaxValue;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer the type name for member access expressions.",
+                            "Sample": "var local = Int32.MaxValue;"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0036",
+        "Title": "Order modifiers",
+        "Options": [
+            {
+                "Name": "csharp_preferred_modifier_order",
+                "ValueOptions": {
+                    "$type": "OrderedSetWithOneOrMoreOfMany",
+                    "Options": [
+                        "public",
+                        "private",
+                        "protected",
+                        "internal",
+                        "file",
+                        "static",
+                        "extern",
+                        "new",
+                        "virtual",
+                        "abstract",
+                        "sealed",
+                        "override",
+                        "readonly",
+                        "unsafe",
+                        "required",
+                        "volatile",
+                        "async"
+                    ],
+                    "Description": "Change the order of the modifiers so that they fit with your style using the arrows or remove one if you don't care about its order. The initial setup is the default order. You can see how the order reflects on the samples in the bottom.",
+                    "DefaultOptionValue": "public,private,protected,internal,file,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,required,volatile,async",
+                    "EncodedValueSeperator": ",",
+                    "PresenterSeperator": " ",
+                    "PresenterTemplates": [
+                        {
+                            "OptionsApplying": [
+                                "public",
+                                "override",
+                                "unsafe",
+                                "async"
+                            ],
+                            "Template": [
+                                "modifiers Task FastCopyAsync() => { }"
+                            ],
+                            "TemplateToken": "modifiers"
+                        },
+                        {
+                            "OptionsApplying": [
+                                "internal",
+                                "file",
+                                "sealed"
+                            ],
+                            "Template": [
+                                "modifiers class MyClass",
+                                "{",
+                                "}"
+                            ],
+                            "TemplateToken": "modifiers"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0040",
+        "Title": "Add accessibility modifiers",
+        "Options": [
+            {
+                "Name": "dotnet_style_require_accessibility_modifiers",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "always",
+                            "Description": "Prefer accessibility modifiers to be specified.",
+                            "Sample": [
+                                "class MyClass",
+                                "{",
+                                "    private const string thisFieldIsConst = \"constant\";",
+                                "}",
+                                "",
+                                "interface IMyInterface",
+                                "{",
+                                "    public string SomeProperty { get; set; }",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "for_non_interface_members",
+                            "Description": "Prefer accessibility modifiers except for public interface members.",
+                            "Sample": [
+                                "class MyClass",
+                                "{",
+                                "    private const string thisFieldIsConst = \"constant\";",
+                                "}",
+                                "",
+                                "interface IMyInterface",
+                                "{",
+                                "    string SomeProperty { get; set; }",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "never",
+                            "Description": "Do not prefer accessibility modifiers to be specified.",
+                            "Sample": [
+                                "class MyClass",
+                                "{",
+                                "    const string thisFieldIsConst = \"constant\";",
+                                "}",
+                                "",
+                                "interface IMyInterface",
+                                "{",
+                                "    string SomeProperty { get; set; }",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "omit_if_default",
+                            "Description": "Prefer accessibility modifiers except if they are the default modifier.",
+                            "Sample": [
+                                "class MyClass",
+                                "{",
+                                "    const string thisFieldIsConst = \"constant\";",
+                                "}",
+                                "",
+                                "interface IMyInterface",
+                                "{",
+                                "    string SomeProperty { get; set; }",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "for_non_interface_members"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0044",
+        "Title": "Add readonly modifier",
+        "Options": [
+            {
+                "Name": "dotnet_style_readonly_field",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer that private fields be marked readonly if they're only ever assigned inline or in a constructor.",
+                            "Sample": [
+                                "class MyClass",
+                                "{",
+                                "    private readonly int _daysInYear = 365;",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Specify no preference over whether private fields are marked readonly.",
+                            "Sample": [
+                                "class MyClass",
+                                "{",
+                                "    private int _daysInYear = 365;",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0062",
+        "Title": "Make local function static",
+        "Options": [
+            {
+                "Name": "csharp_prefer_static_local_function",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer local functions to be marked static.",
+                            "Sample": [
+                                "void M()",
+                                "{",
+                                "    Hello();",
+                                "    static void Hello() => Console.WriteLine(\"Hello\");",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer local functions not to be marked static.",
+                            "Sample": [
+                                "void M()",
+                                "{",
+                                "    Hello();",
+                                "    void Hello() => Console.WriteLine(\"Hello\");",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true:suggestion"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0047,IDE0048",
+        "Title": "Add/Remove parentheses for clarity",
+        "Options": [
+            {
+                "Name": "dotnet_style_parentheses_in_arithmetic_binary_operators",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "always_for_clarity",
+                            "Description": "Prefer parentheses to clarify arithmetic operator precedence.",
+                            "Sample": "var v = a + (b * c);"
+                        },
+                        {
+                            "Value": "never_if_unnecessary",
+                            "Description": "Prefer no parentheses when arithmetic operator precedence is obvious.",
+                            "Sample": "var v = a + b * c;"
+                        }
+                    ],
+                    "DefaultOptionValue": "always_for_clarity"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0010",
+        "Title": "Add missing cases to switch statement",
+        "Sample": [
+            "enum Color { Red, Green, Blue }",
+            "",
+            "// Unfixed",
+            "static string HexColor(Color color)",
+            "{",
+            "    switch (color)",
+            "    {",
+            "        case Color.Red: return \"F00\";",
+            "        case Color.Green: return \"0F0\";",
+            "    }",
+            "    return throw new InvalidArgumentException($\"Non-supported color: {color}\");",
+            "}"
+        ],
+        "FixedSample": [
+            "enum Color { Red, Green, Blue }",
+            "",
+            "static string HexColor(Color color)",
+            "{",
+            "    switch (color)",
+            "    {",
+            "        case Color.Red: return \"F00\";",
+            "        case Color.Green: return \"0F0\";",
+            "        case Color.Blue: return \"00F\";",
+            "        case default: throw new InvalidArgumentException($\"Non-supported color: {color}\");",
+            "    }",
+            "}"
+        ]
+    },
+    {
+        "Id": "IDE0017",
+        "Title": "Use object initializers",
+        "Options": [
+            {
+                "Name": "dotnet_style_object_initializer",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer objects to be initialized using object initializers when possible.",
+                            "Sample": [
+                                "var p1 = new Person()",
+                                "{",
+                                "    Height = 176",
+                                "};"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer objects to not be initialized using object initializers.",
+                            "Sample": [
+                                "var p1 = new Person();",
+                                "p1.Height = 176;"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0018",
+        "Title": "Inline variable declaration",
+        "Options": [
+            {
+                "Name": "csharp_style_inlined_variable_declaration",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer out variables to be declared inline in the argument list of a method call when possible.",
+                            "Sample": [
+                                "if (double.TryParse(value, out double i))",
+                                "{",
+                                "    Console.WriteLine($\"{i}*{i}={i*i}\");",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer out variables to be declared before the method call.",
+                            "Sample": [
+                                "double i;",
+                                "if (double.TryParse(value, out i))",
+                                "{",
+                                "    Console.WriteLine($\"{i}*{i}={i*i}\");",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0028",
+        "Title": "Use collection initializers",
+        "Options": [
+            {
+                "Name": "dotnet_style_collection_initializer",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer collections to be initialized using collection initializers when possible.",
+                            "Sample": "List<string> numbers = new() { \"one\", \"two\", \"three\" };"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer collections to not be initialized using collection initializers.",
+                            "Sample": [
+                                "List<string> numbers = new();",
+                                "numbers.Add(\"one\");",
+                                "numbers.Add(\"two\");",
+                                "numbers.Add(\"three\");"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0032",
+        "Title": "Use auto-implemented property",
+        "Options": [
+            {
+                "Name": "dotnet_style_prefer_auto_properties",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer auto-implemented properties.",
+                            "Sample": "private int Age { get; }"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer properties with private backing fields.",
+                            "Sample": [
+                                "private int _age;",
+                                "",
+                                "public int Age",
+                                "{",
+                                "    get",
+                                "    {",
+                                "        return _age;",
+                                "    }",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0033",
+        "Title": "Use explicitly provided tuple name",
+        "Options": [
+            {
+                "Name": "dotnet_style_explicit_tuple_names",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer tuple names to ItemX properties.",
+                            "Sample": [
+                                "(double x, double y) coordinate = CalculateCoordinate();",
+                                "var x = coordinate.x;"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer ItemX properties to tuple names.",
+                            "Sample": [
+                                "(double x, double y) coordinate = CalculateCoordinate();",
+                                "var x = coordinate.Item1;"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0034",
+        "Title": "Simplify default expression",
+        "Options": [
+            {
+                "Name": "csharp_prefer_simple_default_expression",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer default over default(T).",
+                            "Sample": [
+                                "public enum Currency { USD, EUR, DKK }",
+                                "int CalculatePrice(Currency currency = default) { ... }"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer default(T) over default.",
+                            "Sample": [
+                                "public enum Currency { USD, EUR, DKK }",
+                                "int CalculatePrice(Currency currency = default(Currency)) { ... }"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0037",
+        "Title": "Use inferred member name",
+        "Options": [
+            {
+                "Name": "dotnet_style_prefer_inferred_tuple_names",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer inferred tuple element names.",
+                            "Sample": "var coordinate = (x, y);"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer explicit tuple element names.",
+                            "Sample": "var coordinate = (x: x, y: y);"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            },
+            {
+                "Name": "dotnet_style_prefer_inferred_anonymous_type_member_names",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer inferred anonymous type member names.",
+                            "Sample": "return new { color, shape, width }"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer explicit anonymous type member names.",
+                            "Sample": "return new { color: color, shape: shape, width: width }"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0039",
+        "Title": "Use local function instead of lambda",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_local_over_anonymous_function",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer local functions over anonymous functions.",
+                            "Sample": [
+                                "int price(int amount, decimal itemPrice) {",
+                                "    return amount * itemPrice;",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer anonymous functions over local functions.",
+                            "Sample": [
+                                "Func<int, decimal, decimal> price = (int amount, decimal itemPrice) => {",
+                                "    return amount * itemPrice;",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0042",
+        "Title": "Deconstruct variable declaration",
+        "Options": [
+            {
+                "Name": "csharp_style_deconstructed_variable_declaration",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer deconstructed variable declarations.",
+                            "Sample": [
+                                "var (x, y) = CalculateCoordinate();",
+                                "Console.WriteLine($\"The x coordinate is {x}\");"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Do not prefer deconstruction in variable declarations.",
+                            "Sample": [
+                                "var coordinate = CalculateCoordinate();",
+                                "Console.WriteLine($\"The x coordinate is {coordinate.x}\");"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0045",
+        "Title": "Use conditional expression for assignment",
+        "Options": [
+            {
+                "Name": "dotnet_style_prefer_conditional_expression_over_assignment",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer assignments with a ternary conditional.",
+                            "Sample": "var isEvenText = isEven(x) ? \"even\" : \"odd\";"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer assignments with an if-else statement.",
+                            "Sample": [
+                                "string isEvenText;",
+                                "if (isEven(x))",
+                                "{",
+                                "    isEvenText = \"even\"",
+                                "}",
+                                "else",
+                                "{",
+                                "    isEvenText = \"odd\"",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0046",
+        "Title": "Use conditional expression for return",
+        "Options": [
+            {
+                "Name": "dotnet_style_prefer_conditional_expression_over_return",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer return statements to use a ternary conditional.",
+                            "Sample": "return isEven(x) ? \"even\" : \"odd\";"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer return statements to use an if-else statement.",
+                            "Sample": [
+                                "if (isEven(x))",
+                                "{",
+                                "    return \"even\"",
+                                "}",
+                                "else",
+                                "{",
+                                "    return \"odd\"",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0054,IDE0074",
+        "Title": "Use (coalesce) compound assignment",
+        "Options": [
+            {
+                "Name": "dotnet_style_prefer_compound_assignment",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer compound assignment expressions.",
+                            "Sample": [
+                                "product ??= new Product(SaleType.None)",
+                                "if (product.SaleType is SaleType.Active)",
+                                "{",
+                                "    price *= 1.1;",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Don't prefer compound assignment expressions.",
+                            "Sample": [
+                                "product = product ?? new Product(SaleType.None)",
+                                "if (product.SaleType is SaleType.Active)",
+                                "{",
+                                "    price = price * 1.1;",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0056",
+        "Title": "Use index operator",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_index_operator",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer to use the ^ operator when calculating an index from the end of a collection.",
+                            "Sample": [
+                                "int[] sizes = { 1, 2, 4, 8, 10 };",
+                                "var largestSize = sizes[^1];"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer not to use the ^ operator when calculating an index from the end of a collection.",
+                            "Sample": [
+                                "int[] sizes = { 1, 2, 4, 8, 10 };",
+                                "var largestSize = sizes[sizes.Length - 1];"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0057",
+        "Title": "Use range operator",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_range_operator",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer to use the range operator .. when extracting a \"slice\" of a collection.",
+                            "Sample": [
+                                "string rhyme = \"Humpty Dumpty sat on a wall.\";",
+                                "var name = rhyme[0..13];"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer not to use the range operator .. when extracting a \"slice\" of a collection.",
+                            "Sample": [
+                                "string rhyme = \"Humpty Dumpty sat on a wall.\";",
+                                "var name = rhyme.Substring(0, 13);"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0070",
+        "Title": "Use System.HashCode.Combine",
+        "Sample": [
+            "public class Cat : Animal",
+            "{",
+            "    private string furPattern;",
+            "    ",
+            "    // Unfixed",
+            "    public override int GetHashCode()",
+            "    {",
+            "        var hashCode = 1299709;",
+            "        var hashCode = hashCode * 15485863 + base.GetHashCode();",
+            "        var hashCode = hashCode * 15485863 * furPattern.GetHashCode();",
+            "        return hashCode;",
+            "    }",
+            "}"
+        ],
+        "FixedSample": [
+            "public class Cat : Animal",
+            "{",
+            "    private string furPattern;",
+            "    ",
+            "    public override int GetHashCode()",
+            "    {",
+            "        return System.HashCode.Combine(base.GetHashCode(), furPattern);",
+            "    }",
+            "}"
+        ]
+    },
+    {
+        "Id": "IDE0071",
+        "Title": "Simplify interpolation",
+        "Options": [
+            {
+                "Name": "dotnet_style_prefer_simplified_interpolation",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer simplified interpolated strings.",
+                            "Sample": "var result = $\"The price is {price} USD\";"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Do not prefer simplified interpolated strings.",
+                            "Sample": "var result = $\"The price is {price.ToString()} USD\";"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0072",
+        "Title": "Add missing cases to switch expression",
+        "Sample": [
+            "enum Color { Red, Green, Blue }",
+            "",
+            "// Unfixed",
+            "static string HexColor(Color color)",
+            "{",
+            "    return color switch",
+            "    {",
+            "        Color.Red => \"F00\",",
+            "        Color.Green => \"0F0\",",
+            "        _ => throw new InvalidArgumentException($\"Non-supported color: {color}\")",
+            "    }",
+            "}"
+        ],
+        "FixedSample": [
+            "enum Color { Red, Green, Blue }",
+            "",
+            "static string HexColor(Color color)",
+            "{",
+            "    return color switch",
+            "    {",
+            "        Color.Red => \"F00\",",
+            "        Color.Green => \"0F0\",",
+            "        Color.Blue => \"00F\",",
+            "        _ => throw new InvalidArgumentException($\"Non-supported color: {color}\")",
+            "    }",
+            "}"
+        ]
+    },
+    {
+        "Id": "IDE0075",
+        "Title": "Simplify conditional expression",
+        "Options": [
+            {
+                "Name": "dotnet_style_prefer_simplified_boolean_expressions",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer simplified conditional expressions.",
+                            "Sample": [
+                                "var M1AndM2 = M1() && M2();",
+                                "var M1OrM2 = M1() || M2();"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Do not prefer simplified conditional expressions.",
+                            "Sample": [
+                                "var M1AndM2 = M1() && M2() ? true : false;",
+                                "var M1OrM2 = M1() ? true : M2();"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0082",
+        "Title": "Convert typeof to nameof",
+        "Sample": [
+            "public record Cat(string Name, int Age);",
+            "Console.WriteLine($\"We have a class named {typeof(Cat).Name}\");"
+        ],
+        "FixedSample": [
+            "public record Cat(string Name, int Age);",
+            "Console.WriteLine($\"We have a class named {nameof(Cat)}\");"
+        ]
+    },
+    {
+        "Id": "IDE0090",
+        "Title": "Simplify new expression",
+        "Options": [
+            {
+                "Name": "csharp_style_implicit_object_creation_when_type_is_apparent",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer target-typed new expressions when created type is apparent.",
+                            "Sample": "HttpClient httpClient = new();"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Do not prefer target-typed new expressions.",
+                            "Sample": "HttpClient httpClient = new HttpClient();"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0180",
+        "Title": "Use tuple to swap values",
+        "Sample": [
+            "int[] numbers = new int[] { 2, 1, 3, 4 };",
+            "int temp = numbers[0];",
+            "numbers[0] = numbers[1];",
+            "numbers[1] = temp;"
+        ],
+        "FixedSample": [
+            "int[] numbers = new int[] { 2, 1, 3, 4 };",
+            "(numbers[0], numbers[1]) = (numbers[1], numbers[0]);"
+        ]
+    },
+    {
+        "Id": "IDE0160,IDE0161",
+        "Title": "Use block/file-scoped namespace",
+        "Options": [
+            {
+                "Name": "csharp_style_namespace_declarations",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "block_scoped",
+                            "Description": "Namespace declarations should be block scoped.",
+                            "Sample": [
+                                "namespace MyOrg.MyProject",
+                                "{",
+                                "    class Program",
+                                "    {",
+                                "        Console.WriteLine(\"Hello!\");",
+                                "    }",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "file_scoped",
+                            "Description": "\tNamespace declarations should be file scoped.",
+                            "Sample": [
+                                "namespace MyOrg.MyProject;",
+                                "",
+                                "class Program",
+                                "{",
+                                "    Console.WriteLine(\"Hello!\");",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "block_scoped"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0016",
+        "Title": "Use throw expression",
+        "Options": [
+            {
+                "Name": "csharp_style_throw_expression",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer to use throw expressions instead of throw statements.",
+                            "Sample": "this.name = name ?? throw new ArgumentNullException(nameof(name));"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer to use throw statements instead of throw expressions",
+                            "Sample": [
+                                "if (name == null)",
+                                "{",
+                                "    throw new ArgumentNullException(nameof(name));",
+                                "}",
+                                "this.name = name;"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0029,IDE0030",
+        "Title": "Use coalesce expression (non-nullable/nullable types)",
+        "Options": [
+            {
+                "Name": "dotnet_style_coalesce_expression",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer null coalescing expressions to ternary operator checking.",
+                            "Sample": "int height = length ?? 150;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer ternary operator checking to null coalescing expressions.",
+                            "Sample": "int height = length != null ? length : 150;"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0031",
+        "Title": "Use null propagation",
+        "Options": [
+            {
+                "Name": "dotnet_style_null_propagation",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer to use null-conditional operator when possible.",
+                            "Sample": "int? amount = cats?.Count();"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer to use ternary null checking where possible.",
+                            "Sample": "int? amount = cats != null ? cats.Count() : null;"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0041",
+        "Title": "Use 'is null' check",
+        "Options": [
+            {
+                "Name": "dotnet_style_prefer_is_null_check_over_reference_equality_method",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer 'is null' check.",
+                            "Sample": "string playerName = name is null ? \"Bob\" : name;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer reference equality method",
+                            "Sample": "string playerName = name == null ? \"Bob\" : name;"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0150",
+        "Title": "Prefer 'null' check over type check",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_null_check_over_type_check",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer null check over type check.",
+                            "Sample": [
+                                "if (age is null)",
+                                "{",
+                                "    Console.WriteLine(\"We don't know your age.\");",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Disables the rule.",
+                            "Sample": [
+                                "if (age is not int)",
+                                "{",
+                                "    Console.WriteLine(\"We don't know your age.\");",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE1005",
+        "Title": "Use conditional delegate call",
+        "Options": [
+            {
+                "Name": "csharp_style_conditional_delegate_call",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer to use the conditional coalescing operator (?.) when invoking a lambda expression.",
+                            "Sample": "title = formatter?.Invoke(name);"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer to perform a null check before invoking a lambda expression.",
+                            "Sample": [
+                                "if (formatter != null)",
+                                "{",
+                                "    title = formatter(name);",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0007,IDE0008",
+        "Title": "Use var or explicit type",
+        "Options": [
+            {
+                "Name": "csharp_style_var_for_built_in_types",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer var is used to declare variables with built-in system types such as int.",
+                            "Sample": "var height = 176;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer explicit type over var to declare variables with built-in system types such as int.",
+                            "Sample": "int height = 176;"
+                        }
+                    ],
+                    "DefaultOptionValue": "false"
+                }
+            },
+            {
+                "Name": "csharp_style_var_when_type_is_apparent",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer var when the type is already mentioned on the right-hand side of a declaration expression.",
+                            "Sample": "var cats = new List<Cat>();"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer explicit type when the type is already mentioned on the right-hand side of a declaration expression.",
+                            "Sample": "List<Cat> cats = new List<Cat>();"
+                        }
+                    ],
+                    "DefaultOptionValue": "false"
+                }
+            },
+            {
+                "Name": "csharp_style_var_elsewhere",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer var over explicit type in all cases, unless overridden by another code style rule.",
+                            "Sample": "var mapper = StyleController.Create();"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer explicit type over var in all cases, unless overridden by another code style rule.",
+                            "Sample": "StyleMapper mapper = StyleController.Create();"
+                        }
+                    ],
+                    "DefaultOptionValue": "false"
+                }
+            }
+        ]
+    }
+]
