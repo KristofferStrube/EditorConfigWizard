@@ -1,10 +1,14 @@
 ﻿@page "/Wizard"
 
 <div style="display:flex;height:40px;">
-    <div style="display:flex;flex:1;justify-content:start;">
+    <div style="display:flex;flex:1;justify-content:start;gap:5px;">
         @if (progress is not 0)
         {
             <button class="btn btn-warning btn-sm" @onclick="GoBackAsync"><nobr>Go Back</nobr></button>
+        }
+        @if (progress > 0 && currentCodeStyleRule is not null)
+        {
+            <button class="btn btn-info btn-sm" @onclick="SaveProgressAsync">💾 Save Progress</button>
         }
     </div>
     <h4 style="display:flex;flex:2;justify-content:center;">
@@ -13,7 +17,15 @@
             <span>Question @progress of @totalQuestions</span>
         }
     </h4>
-    <span style="display:flex;flex:1;"></span>
+    <div style="display:flex;flex:1;justify-content:end;">
+        @if (progress is 0)
+        {
+            <label class="btn btn-success btn-sm" style="margin:0;">
+                📂 Load Progress
+                <InputFile OnChange="LoadProgressFromFile" accept=".json" style="display:none;" />
+            </label>
+        }
+    </div>
 </div>
 <div class="@fadeClass" style="display:flex;flex-direction:column;height:80vh;align-items:center;width:100%;" @key=progress>
     @if (currentCodeStyleRule is null && codeRuleIndex != codeStyleRules.Count)

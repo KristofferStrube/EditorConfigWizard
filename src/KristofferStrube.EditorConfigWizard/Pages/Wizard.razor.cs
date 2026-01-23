@@ -2,8 +2,10 @@ using KristofferStrube.EditorConfigWizard.Models;
 using KristofferStrube.EditorConfigWizard.Models.Options;
 using KristofferStrube.EditorConfigWizard.Services;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
 using System.Text;
+using System.Text.Json;
 
 namespace KristofferStrube.EditorConfigWizard.Pages;
 
@@ -71,7 +73,10 @@ public partial class Wizard : ComponentBase
                     else if (ruleOptionIndex is not 0)
                     {
                         ruleOptionIndex--;
-                        currentRuleOption = currentCodeStyleRule.Options[ruleOptionIndex];
+                        if (currentCodeStyleRule.Options.Count > 0)
+                        {
+                            currentRuleOption = currentCodeStyleRule.Options[ruleOptionIndex];
+                        }
                     }
                     else
                     {
@@ -114,7 +119,14 @@ public partial class Wizard : ComponentBase
                 return;
             }
             currentCodeStyleRule = codeStyleRules[codeRuleIndex];
-            if (ruleOptionIndex != currentCodeStyleRule.Options.Count)
+
+            // If rule has no options, go directly to severity question
+            if (currentCodeStyleRule.Options.Count == 0)
+            {
+                currentRuleOption = null;
+                optionChoices = new List<string?>();
+            }
+            else if (ruleOptionIndex != currentCodeStyleRule.Options.Count)
             {
                 currentRuleOption = currentCodeStyleRule.Options[ruleOptionIndex];
                 optionChoices = currentCodeStyleRule.Options
@@ -338,5 +350,129 @@ public partial class Wizard : ComponentBase
     private async Task GoBackAsync()
     {
         await JSRuntime.InvokeVoidAsync("history.back");
+    }
+
+    private async Task SaveProgressAsync()
+    {
+        var state = new WizardState
+        {
+            Progress = progress,
+            CodeRuleIndex = codeRuleIndex,
+            RuleOptionIndex = ruleOptionIndex,
+            RuleOptionChoices = new Dictionary<string, string>(ruleOptionChoices),
+            Severities = new Dictionary<string, string>(severities),
+            SelectedCategoryTitles = codeStyleCategories
+                .Where(c => c.Used)
+                .Select(c => c.Title)
+                .ToList(),
+            SavedAt = DateTime.Now
+        };
+
+        var json = JsonSerializer.Serialize(state, new JsonSerializerOptions { WriteIndented = true });
+        var fileName = $"editorconfig-wizard-progress-{DateTime.Now:yyyyMMdd-HHmmss}.json";
+
+        await JSRuntime.InvokeVoidAsync("downloadFile", fileName, json);
+    }
+
+    private async Task LoadProgressFromFile(InputFileChangeEventArgs e)
+    {
+        try
+        {
+            var file = e.File;
+            if (file.Size > 1024 * 1024) // 1MB limit
+            {
+                return;
+            }
+
+            using var stream = file.OpenReadStream();
+            using var reader = new StreamReader(stream);
+            var json = await reader.ReadToEndAsync();
+
+            var state = JsonSerializer.Deserialize<WizardState>(json);
+            if (state == null) return;
+
+            await ChangeAsync(() =>
+            {
+                // Restore category selections
+                foreach (var category in codeStyleCategories)
+                {
+                    category.Used = state.SelectedCategoryTitles.Contains(category.Title);
+                }
+
+                // Restore choices and severities
+                foreach (var kvp in state.RuleOptionChoices)
+                {
+                    ruleOptionChoices[kvp.Key] = kvp.Value;
+                }
+                foreach (var kvp in state.Severities)
+                {
+                    severities[kvp.Key] = kvp.Value;
+                }
+
+                // Rebuild rules list
+                codeStyleRules = codeStyleCategories
+                    .Where(category => category.Used)
+                    .SelectMany(category => category.CodeStyleRules)
+                    .ToList();
+                totalQuestions = codeStyleRules.Count + codeStyleRules.Sum(rule => rule.Options.Count);
+
+                // Restore progress
+                progress = state.Progress;
+                codeRuleIndex = state.CodeRuleIndex;
+                ruleOptionIndex = state.RuleOptionIndex;
+
+                // Restore current rule state
+                if (codeRuleIndex >= 0 && codeRuleIndex < codeStyleRules.Count)
+                {
+                    currentCodeStyleRule = codeStyleRules[codeRuleIndex];
+
+                    // Initialize optionChoices with defaults
+                    optionChoices = currentCodeStyleRule.Options
+                        .Select(o => o.ValueOptions is OrderedSetWithOneOrMoreOfManyValueOptions ? o.ValueOptions.DefaultOptionValue : null)
+                        .ToList();
+
+                    // Restore saved choices
+                    for (int i = 0; i < currentCodeStyleRule.Options.Count; i++)
+                    {
+                        var optionName = currentCodeStyleRule.Options[i].Name;
+                        if (ruleOptionChoices.ContainsKey(optionName))
+                        {
+                            optionChoices[i] = ruleOptionChoices[optionName];
+                        }
+                    }
+
+                    // Set current rule option if we're not at the severity question yet
+                    if (ruleOptionIndex >= 0 && ruleOptionIndex < currentCodeStyleRule.Options.Count)
+                    {
+                        currentRuleOption = currentCodeStyleRule.Options[ruleOptionIndex];
+                    }
+                    else
+                    {
+                        // We're at the severity question
+                        currentRuleOption = null;
+                    }
+                }
+                else if (codeRuleIndex == codeStyleRules.Count)
+                {
+                    // We're at the final screen
+                    GenerateNewEditorConfig();
+                    currentCodeStyleRule = null;
+                }
+                else
+                {
+                    // Invalid state, reset to beginning
+                    progress = 0;
+                    codeRuleIndex = -1;
+                    currentCodeStyleRule = null;
+                    currentRuleOption = null;
+                }
+
+                StateHasChanged();
+            });
+        }
+        catch (Exception)
+        {
+            // Handle error - could show a message to user
+        }
     }
 }
