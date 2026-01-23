@@ -1305,5 +1305,1047 @@
                 }
             }
         ]
+    },
+    {
+        "Id": "IDE0021",
+        "Title": "Use expression body for constructors",
+        "Options": [
+            {
+                "Name": "csharp_style_expression_bodied_constructors",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer expression bodies for constructors.",
+                            "Sample": "public Customer(int age) => Age = age;"
+                        },
+                        {
+                            "Value": "when_on_single_line",
+                            "Description": "Prefer expression bodies for constructors when they will be a single line.",
+                            "Sample": "public Customer(int age) => Age = age;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer block bodies for constructors.",
+                            "Sample": "public Customer(int age) { Age = age; }"
+                        }
+                    ],
+                    "DefaultOptionValue": "false"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0022",
+        "Title": "Use expression body for methods",
+        "Options": [
+            {
+                "Name": "csharp_style_expression_bodied_methods",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer expression bodies for methods.",
+                            "Sample": "public int GetAge() => this.Age;"
+                        },
+                        {
+                            "Value": "when_on_single_line",
+                            "Description": "Prefer expression bodies for methods when they will be a single line.",
+                            "Sample": "public int GetAge() => this.Age;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer block bodies for methods.",
+                            "Sample": "public int GetAge() { return this.Age; }"
+                        }
+                    ],
+                    "DefaultOptionValue": "false"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0023,IDE0024",
+        "Title": "Use expression body for operators",
+        "Options": [
+            {
+                "Name": "csharp_style_expression_bodied_operators",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer expression bodies for operators.",
+                            "Sample": [
+                                "public static ComplexNumber operator + (ComplexNumber c1, ComplexNumber c2)",
+                                "    => new ComplexNumber(c1.Real + c2.Real, c1.Imaginary + c2.Imaginary);"
+                            ]
+                        },
+                        {
+                            "Value": "when_on_single_line",
+                            "Description": "Prefer expression bodies for operators when they will be a single line.",
+                            "Sample": [
+                                "public static ComplexNumber operator + (ComplexNumber c1, ComplexNumber c2)",
+                                "    => new ComplexNumber(c1.Real + c2.Real, c1.Imaginary + c2.Imaginary);"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer block bodies for operators.",
+                            "Sample": [
+                                "public static ComplexNumber operator + (ComplexNumber c1, ComplexNumber c2)",
+                                "{ return new ComplexNumber(c1.Real + c2.Real, c1.Imaginary + c2.Imaginary); }"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "false"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0025",
+        "Title": "Use expression body for properties",
+        "Options": [
+            {
+                "Name": "csharp_style_expression_bodied_properties",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer expression bodies for properties.",
+                            "Sample": "public int Age => _age;"
+                        },
+                        {
+                            "Value": "when_on_single_line",
+                            "Description": "Prefer expression bodies for properties when they will be a single line.",
+                            "Sample": "public int Age => _age;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer block bodies for properties.",
+                            "Sample": "public int Age { get { return _age; } }"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0026",
+        "Title": "Use expression body for indexers",
+        "Options": [
+            {
+                "Name": "csharp_style_expression_bodied_indexers",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer expression bodies for indexers.",
+                            "Sample": "public T this[int i] => _values[i];"
+                        },
+                        {
+                            "Value": "when_on_single_line",
+                            "Description": "Prefer expression bodies for indexers when they will be a single line.",
+                            "Sample": "public T this[int i] => _values[i];"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer block bodies for indexers.",
+                            "Sample": "public T this[int i] { get { return _values[i]; } }"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0027",
+        "Title": "Use expression body for accessors",
+        "Options": [
+            {
+                "Name": "csharp_style_expression_bodied_accessors",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer expression bodies for accessors.",
+                            "Sample": "public int Age { get => _age; set => _age = value; }"
+                        },
+                        {
+                            "Value": "when_on_single_line",
+                            "Description": "Prefer expression bodies for accessors when they will be a single line.",
+                            "Sample": "public int Age { get => _age; set => _age = value; }"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer block bodies for accessors.",
+                            "Sample": "public int Age { get { return _age; } set { _age = value; } }"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0053",
+        "Title": "Use expression body for lambdas",
+        "Options": [
+            {
+                "Name": "csharp_style_expression_bodied_lambdas",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer expression bodies for lambdas.",
+                            "Sample": "Func<int, int> square = x => x * x;"
+                        },
+                        {
+                            "Value": "when_on_single_line",
+                            "Description": "Prefer expression bodies for lambdas when they will be a single line.",
+                            "Sample": "Func<int, int> square = x => x * x;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer block bodies for lambdas.",
+                            "Sample": "Func<int, int> square = x => { return x * x; };"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0061",
+        "Title": "Use expression body for local functions",
+        "Options": [
+            {
+                "Name": "csharp_style_expression_bodied_local_functions",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer expression bodies for local functions.",
+                            "Sample": [
+                                "void M()",
+                                "{",
+                                "    Hello();",
+                                "    void Hello() => Console.WriteLine(\"Hello\");",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "when_on_single_line",
+                            "Description": "Prefer expression bodies for local functions when they will be a single line.",
+                            "Sample": [
+                                "void M()",
+                                "{",
+                                "    Hello();",
+                                "    void Hello() => Console.WriteLine(\"Hello\");",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer block bodies for local functions.",
+                            "Sample": [
+                                "void M()",
+                                "{",
+                                "    Hello();",
+                                "    void Hello()",
+                                "    {",
+                                "        Console.WriteLine(\"Hello\");",
+                                "    }",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "false"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0011",
+        "Title": "Add braces",
+        "Options": [
+            {
+                "Name": "csharp_prefer_braces",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer curly braces even for one line of code.",
+                            "Sample": "if (test) { this.Display(); }"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer no curly braces if allowed.",
+                            "Sample": "if (test) this.Display();"
+                        },
+                        {
+                            "Value": "when_multiline",
+                            "Description": "Prefer curly braces on multiple lines.",
+                            "Sample": [
+                                "if (test) this.Display();",
+                                "else { this.Display(); Console.WriteLine(\"Multiline\"); }"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0063",
+        "Title": "Use simple 'using' statement",
+        "Options": [
+            {
+                "Name": "csharp_prefer_simple_using_statement",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer to use a using declaration (without curly braces).",
+                            "Sample": "using var a = b;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer to use a using statement with curly braces.",
+                            "Sample": "using (var a = b) { }"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0065",
+        "Title": "'using' directive placement",
+        "Options": [
+            {
+                "Name": "csharp_using_directive_placement",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "outside_namespace",
+                            "Description": "Prefer using directives to be placed outside the namespace.",
+                            "Sample": [
+                                "using System;",
+                                "",
+                                "namespace Conventions",
+                                "{",
+                                "    ...",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "inside_namespace",
+                            "Description": "Prefer using directives to be placed inside the namespace.",
+                            "Sample": [
+                                "namespace Conventions",
+                                "{",
+                                "    using System;",
+                                "    ...",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "outside_namespace"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0200",
+        "Title": "Remove unnecessary lambda expression",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_method_group_conversion",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer to convert a lambda expression to a method group.",
+                            "Sample": [
+                                "bool IsEven(int x) => x % 2 == 0;",
+                                "_ = new[] { 1, 2, 3 }.Where(IsEven);"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Disables the rule.",
+                            "Sample": [
+                                "bool IsEven(int x) => x % 2 == 0;",
+                                "_ = new[] { 1, 2, 3 }.Where(n => IsEven(n));"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0210,IDE0211",
+        "Title": "Use top-level statements or Program.Main style",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_top_level_statements",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer top-level statements.",
+                            "Sample": "Console.WriteLine(\"Hello world.\");"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer Program.Main style program.",
+                            "Sample": [
+                                "internal class Program",
+                                "{",
+                                "    private static void Main(string[] args)",
+                                "    {",
+                                "        Console.WriteLine(\"Hello world.\");",
+                                "    }",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0290",
+        "Title": "Use primary constructor",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_primary_constructors",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer to use primary constructors.",
+                            "Sample": [
+                                "class C(int i)",
+                                "{",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Disables the rule.",
+                            "Sample": [
+                                "class C",
+                                "{",
+                                "    public C(int i) { }",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0019",
+        "Title": "Use pattern matching to avoid 'as' followed by a 'null' check",
+        "Options": [
+            {
+                "Name": "csharp_style_pattern_matching_over_as_with_null_check",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer pattern matching to determine if something is of a particular type.",
+                            "Sample": "if (o is string s) {...}"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer 'as' expressions with null checks.",
+                            "Sample": [
+                                "var s = o as string;",
+                                "if (s != null) {...}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0020,IDE0038",
+        "Title": "Use pattern matching to avoid 'is' check followed by a cast",
+        "Options": [
+            {
+                "Name": "csharp_style_pattern_matching_over_is_with_cast_check",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer pattern matching instead of 'is' expressions with type casts.",
+                            "Sample": "if (o is int i) {...}"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Disables the rule.",
+                            "Sample": "if (o is int) {var i = (int)o; ... }"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0066",
+        "Title": "Use switch expression",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_switch_expression",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer to use a switch expression.",
+                            "Sample": [
+                                "return x switch",
+                                "{",
+                                "    1 => 1 * 1,",
+                                "    2 => 2 * 2,",
+                                "    _ => 0,",
+                                "};"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer to use a switch statement.",
+                            "Sample": [
+                                "switch (x)",
+                                "{",
+                                "    case 1:",
+                                "        return 1 * 1;",
+                                "    case 2:",
+                                "        return 2 * 2;",
+                                "    default:",
+                                "        return 0;",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0078,IDE0260",
+        "Title": "Use pattern matching",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_pattern_matching",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer to use pattern matching constructs, when possible.",
+                            "Sample": [
+                                "var x = i is default(int) or > (default(int));",
+                                "var y = o is not C c;"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer not to use pattern matching constructs.",
+                            "Sample": [
+                                "var x = i == default || i > default(int);",
+                                "var y = !(o is C c);"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0083",
+        "Title": "Use pattern matching ('not' operator)",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_not_pattern",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer to use the 'not' pattern, when possible.",
+                            "Sample": "var y = o is not C c;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Prefer not to use the 'not' pattern.",
+                            "Sample": "var y = !(o is C c);"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0170",
+        "Title": "Simplify property pattern",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_extended_property_pattern",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer the extended property pattern.",
+                            "Sample": "segment is { Start.Y: 0 } or { End.Y: 0 }"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Disables the rule.",
+                            "Sample": "segment is { Start: { Y: 0 } } or { End: { Y: 0 } }"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0064",
+        "Title": "Make struct fields writable",
+        "Sample": [
+            "struct MyStruct",
+            "{",
+            "    public readonly int Value;",
+            "",
+            "    public MyStruct(int value)",
+            "    {",
+            "        Value = value;",
+            "    }",
+            "",
+            "    public void Test()",
+            "    {",
+            "        this = new MyStruct(5);",
+            "    }",
+            "}"
+        ],
+        "FixedSample": [
+            "struct MyStruct",
+            "{",
+            "    public int Value;",
+            "",
+            "    public MyStruct(int value)",
+            "    {",
+            "        Value = value;",
+            "    }",
+            "",
+            "    public void Test()",
+            "    {",
+            "        this = new MyStruct(5);",
+            "    }",
+            "}"
+        ]
+    },
+    {
+        "Id": "IDE0250",
+        "Title": "Struct can be made 'readonly'",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_readonly_struct",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer to make a struct 'readonly' when all its fields are 'readonly'.",
+                            "Sample": [
+                                "readonly struct S",
+                                "{",
+                                "    readonly int i;",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Disables the rule.",
+                            "Sample": [
+                                "struct S",
+                                "{",
+                                "    readonly int i;",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0251",
+        "Title": "Member can be made 'readonly'",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_readonly_struct_member",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer to make struct members 'readonly'.",
+                            "Sample": [
+                                "struct S",
+                                "{",
+                                "    readonly void M() { }",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Disables the rule.",
+                            "Sample": [
+                                "struct S",
+                                "{",
+                                "    void M() { }",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0320",
+        "Title": "Make anonymous function static",
+        "Options": [
+            {
+                "Name": "csharp_prefer_static_anonymous_function",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer anonymous functions to be marked 'static'.",
+                            "Sample": [
+                                "M(static x => x + 1);",
+                                "M(static delegate (int x) { return x + 1; });"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Disables the rule.",
+                            "Sample": [
+                                "M(x => x + 1);",
+                                "M(delegate (int x) { return x + 1; });"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0380",
+        "Title": "Remove unnecessary 'unsafe' modifier",
+        "Sample": [
+            "unsafe class MyClass",
+            "{",
+            "    public void Method()",
+            "    {",
+            "        var x = 5;",
+            "    }",
+            "}"
+        ],
+        "FixedSample": [
+            "class MyClass",
+            "{",
+            "    public void Method()",
+            "    {",
+            "        var x = 5;",
+            "    }",
+            "}"
+        ]
+    },
+    {
+        "Id": "IDE0300,IDE0301,IDE0302,IDE0303,IDE0304,IDE0305,IDE0306",
+        "Title": "Use collection expression",
+        "Options": [
+            {
+                "Name": "dotnet_style_prefer_collection_expression",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "when_types_loosely_match",
+                            "Description": "Prefer collection expressions even when types match loosely.",
+                            "Sample": [
+                                "int[] i = [1, 2, 3];",
+                                "IEnumerable<int> j = [];",
+                                "ReadOnlySpan<int> span = [1, 2, 3];",
+                                "ImmutableArray<int> k = [1, 2, 3];",
+                                "List<int> m = [.. new[] { 1, 2, 3 }];"
+                            ]
+                        },
+                        {
+                            "Value": "when_types_exactly_match",
+                            "Description": "Prefer collection expressions only when types match exactly.",
+                            "Sample": [
+                                "int[] i = [1, 2, 3];",
+                                "List<int> list = [1, 2, 3];"
+                            ]
+                        },
+                        {
+                            "Value": "never",
+                            "Description": "Disables the rule.",
+                            "Sample": [
+                                "int[] i = new int[] { 1, 2, 3 };",
+                                "IEnumerable<int> j = Array.Empty<int>();",
+                                "ReadOnlySpan<int> span = stackalloc int[] { 1, 2, 3 };",
+                                "ImmutableArray<int> k = ImmutableArray.Create(1, 2, 3);"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "when_types_loosely_match"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0080",
+        "Title": "Remove unnecessary suppression operator",
+        "Sample": "if (o !is string) { }",
+        "FixedSample": "if (o is not string) { }"
+    },
+    {
+        "Id": "IDE0110",
+        "Title": "Remove unnecessary discard",
+        "Sample": [
+            "switch (o)",
+            "{",
+            "    case int _:",
+            "        Console.WriteLine(\"Value was an int\");",
+            "        break;",
+            "}"
+        ],
+        "FixedSample": [
+            "switch (o)",
+            "{",
+            "    case int:",
+            "        Console.WriteLine(\"Value was an int\");",
+            "        break;",
+            "}"
+        ]
+    },
+    {
+        "Id": "IDE0220",
+        "Title": "Add explicit cast in foreach loop",
+        "Options": [
+            {
+                "Name": "dotnet_style_prefer_foreach_explicit_cast_in_source",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "always",
+                            "Description": "Prefer explicit casts in source code.",
+                            "Sample": [
+                                "var list = new List<object>();",
+                                "foreach (string item in list.Cast<string>())"
+                            ]
+                        },
+                        {
+                            "Value": "when_strongly_typed",
+                            "Description": "Prefer explicit casts for strongly typed collections but not for legacy collections.",
+                            "Sample": [
+                                "var list = new List<object>();",
+                                "foreach (string item in list.Cast<string>())"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "when_strongly_typed"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0230",
+        "Title": "Use UTF-8 string literal",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_utf8_string_literals",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer UTF-8 string literals to byte arrays.",
+                            "Sample": "ReadOnlySpan<byte> _ = \"ABC\"u8;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Disables the rule.",
+                            "Sample": "ReadOnlySpan<byte> _ = new byte[] { 65, 66, 67 };"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0240",
+        "Title": "Nullable directive is redundant",
+        "Sample": [
+            "// In a project with <Nullable>enable</Nullable>",
+            "#nullable enable",
+            "Console.WriteLine(\"Hello world.\");"
+        ],
+        "FixedSample": "Console.WriteLine(\"Hello world.\");"
+    },
+    {
+        "Id": "IDE0241",
+        "Title": "Nullable directive is unnecessary",
+        "Sample": [
+            "// In a project with <Nullable>enable</Nullable>",
+            "#nullable disable",
+            "enum Place",
+            "{",
+            "    First,",
+            "    Second",
+            "}"
+        ],
+        "FixedSample": [
+            "enum Place",
+            "{",
+            "    First,",
+            "    Second",
+            "}"
+        ]
+    },
+    {
+        "Id": "IDE0340",
+        "Title": "Use unbound generic type",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_unbound_generic_type_in_nameof",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer unbound generic type in nameof expression.",
+                            "Sample": "string name = nameof(List<>);"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Disables the rule.",
+                            "Sample": "string name = nameof(List<int>);"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0350",
+        "Title": "Use implicitly typed lambda",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_implicitly_typed_lambda_expression",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer implicitly typed lambda expressions.",
+                            "Sample": "Action<int> a = x => { };"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Disables the rule.",
+                            "Sample": "Action<int> a = (int x) => { };"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0360",
+        "Title": "Simplify property accessor",
+        "Options": [
+            {
+                "Name": "csharp_style_prefer_simple_property_accessors",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Prefer simplified property accessors.",
+                            "Sample": [
+                                "public int Prop",
+                                "{",
+                                "    get;",
+                                "    set { field = (value > 0) ? value : throw new ArgumentException(); }",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Disables the rule.",
+                            "Sample": [
+                                "public int Prop",
+                                "{",
+                                "    get { return field; }",
+                                "    set { field = (value > 0) ? value : throw new ArgumentException(); }",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
     }
 ]

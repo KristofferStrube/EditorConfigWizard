@@ -216,5 +216,81 @@
                 }
             }
         ]
+    },
+    {
+        "Id": "IDE0060",
+        "Title": "Remove unused parameter",
+        "Options": [
+            {
+                "Name": "dotnet_code_quality_unused_parameters",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "all",
+                            "Description": "Flag methods with any accessibility that contain unused parameters.",
+                            "Sample": [
+                                "public int GetNum1(int unusedParam) { return 1; }",
+                                "internal int GetNum2(int unusedParam) { return 1; }",
+                                "private int GetNum3(int unusedParam) { return 1; }"
+                            ]
+                        },
+                        {
+                            "Value": "non_public",
+                            "Description": "Flag only non-public methods that contain unused parameters.",
+                            "Sample": [
+                                "internal int GetNum4(int unusedParam) { return 1; }",
+                                "private int GetNum5(int unusedParam) { return 1; }"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "all"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0079",
+        "Title": "Remove unnecessary suppression",
+        "Options": [
+            {
+                "Name": "dotnet_remove_unnecessary_suppression_exclusions",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "none",
+                            "Description": "Remove all unnecessary suppressions.",
+                            "Sample": [
+                                "// Remove unnecessary #pragma and SuppressMessage",
+                                "private int UsedMethod() => 0;"
+                            ]
+                        },
+                        {
+                            "Value": "all",
+                            "Description": "Disables the rule entirely.",
+                            "Sample": [
+                                "#pragma warning disable IDE0051",
+                                "private int UsedMethod() => 0;",
+                                "#pragma warning restore IDE0051"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "none"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "IDE0100",
+        "Title": "Remove unnecessary equality operator",
+        "Sample": [
+            "if (x == true) { }",
+            "if (M() != false) { }"
+        ],
+        "FixedSample": [
+            "if (x) { }",
+            "if (M()) { }"
+        ]
     }
 ]
