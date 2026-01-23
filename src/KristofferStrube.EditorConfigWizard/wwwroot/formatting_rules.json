@@ -1,0 +1,495 @@
+[
+    {
+        "Id": "csharp_new_line_before_open_brace",
+        "Title": "Place open brace on new line",
+        "Category": "New Lines",
+        "Options": [
+            {
+                "Name": "csharp_new_line_before_open_brace",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "all",
+                            "Description": "Place open braces on new line for all constructs (Allman style).",
+                            "Sample": [
+                                "void MyMethod()",
+                                "{",
+                                "    if (...)",
+                                "    {",
+                                "        ...",
+                                "    }",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "none",
+                            "Description": "Keep open braces on same line for all constructs (K&R style).",
+                            "Sample": [
+                                "void MyMethod() {",
+                                "    if (...) {",
+                                "        ...",
+                                "    }",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "all"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "csharp_new_line_before_else",
+        "Title": "Place 'else' on new line",
+        "Category": "New Lines",
+        "Options": [
+            {
+                "Name": "csharp_new_line_before_else",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Place 'else' statements on a new line.",
+                            "Sample": [
+                                "if (...)",
+                                "{",
+                                "    ...",
+                                "}",
+                                "else",
+                                "{",
+                                "    ...",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Place 'else' statements on the same line as the closing brace.",
+                            "Sample": [
+                                "if (...)",
+                                "{",
+                                "    ...",
+                                "} else",
+                                "{",
+                                "    ...",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "csharp_new_line_before_catch",
+        "Title": "Place 'catch' on new line",
+        "Category": "New Lines",
+        "Options": [
+            {
+                "Name": "csharp_new_line_before_catch",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Place 'catch' statements on a new line.",
+                            "Sample": [
+                                "try",
+                                "{",
+                                "    ...",
+                                "}",
+                                "catch (Exception e)",
+                                "{",
+                                "    ...",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Place 'catch' statements on the same line as the closing brace.",
+                            "Sample": [
+                                "try",
+                                "{",
+                                "    ...",
+                                "} catch (Exception e)",
+                                "{",
+                                "    ...",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "csharp_new_line_before_finally",
+        "Title": "Place 'finally' on new line",
+        "Category": "New Lines",
+        "Options": [
+            {
+                "Name": "csharp_new_line_before_finally",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Place 'finally' statements on a new line.",
+                            "Sample": [
+                                "try { ... }",
+                                "catch (Exception e) { ... }",
+                                "finally { ... }"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Place 'finally' statements on the same line.",
+                            "Sample": [
+                                "try { ... }",
+                                "catch (Exception e) { ... } finally { ... }"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "csharp_indent_case_contents",
+        "Title": "Indent case contents",
+        "Category": "Indentation",
+        "Options": [
+            {
+                "Name": "csharp_indent_case_contents",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Indent case contents relative to the switch label.",
+                            "Sample": [
+                                "switch(c)",
+                                "{",
+                                "    case Color.Red:",
+                                "        Console.WriteLine(\"Red\");",
+                                "        break;",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Do not indent case contents.",
+                            "Sample": [
+                                "switch(c)",
+                                "{",
+                                "    case Color.Red:",
+                                "    Console.WriteLine(\"Red\");",
+                                "    break;",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "csharp_indent_switch_labels",
+        "Title": "Indent switch labels",
+        "Category": "Indentation",
+        "Options": [
+            {
+                "Name": "csharp_indent_switch_labels",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Indent switch labels relative to the switch statement.",
+                            "Sample": [
+                                "switch(c)",
+                                "{",
+                                "    case Color.Red:",
+                                "        break;",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Align switch labels with the switch statement.",
+                            "Sample": [
+                                "switch(c)",
+                                "{",
+                                "case Color.Red:",
+                                "    break;",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "csharp_indent_labels",
+        "Title": "Label indentation",
+        "Category": "Indentation",
+        "Options": [
+            {
+                "Name": "csharp_indent_labels",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "flush_left",
+                            "Description": "Labels are placed at the leftmost column.",
+                            "Sample": [
+                                "class C",
+                                "{",
+                                "    void M()",
+                                "    {",
+                                "        if (...) goto error;",
+                                "error:",
+                                "        throw new Exception();",
+                                "    }",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "one_less_than_current",
+                            "Description": "Labels are placed one indent less than current context.",
+                            "Sample": [
+                                "class C",
+                                "{",
+                                "    void M()",
+                                "    {",
+                                "        if (...) goto error;",
+                                "    error:",
+                                "        throw new Exception();",
+                                "    }",
+                                "}"
+                            ]
+                        },
+                        {
+                            "Value": "no_change",
+                            "Description": "Labels are placed at the same indent as current context.",
+                            "Sample": [
+                                "class C",
+                                "{",
+                                "    void M()",
+                                "    {",
+                                "        if (...) goto error;",
+                                "        error:",
+                                "        throw new Exception();",
+                                "    }",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "one_less_than_current"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "csharp_space_after_cast",
+        "Title": "Insert space after cast",
+        "Category": "Spacing",
+        "Options": [
+            {
+                "Name": "csharp_space_after_cast",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Insert space between a cast and the value.",
+                            "Sample": "int y = (int) x;"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Remove space between a cast and the value.",
+                            "Sample": "int y = (int)x;"
+                        }
+                    ],
+                    "DefaultOptionValue": "false"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "csharp_space_after_keywords_in_control_flow_statements",
+        "Title": "Insert space after keywords in control flow statements",
+        "Category": "Spacing",
+        "Options": [
+            {
+                "Name": "csharp_space_after_keywords_in_control_flow_statements",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Insert space between keywords and opening parenthesis.",
+                            "Sample": "for (int i = 0; i < x; i++)"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Remove space between keywords and opening parenthesis.",
+                            "Sample": "for(int i = 0; i < x; i++)"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "csharp_space_around_binary_operators",
+        "Title": "Spacing around binary operators",
+        "Category": "Spacing",
+        "Options": [
+            {
+                "Name": "csharp_space_around_binary_operators",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "before_and_after",
+                            "Description": "Insert space before and after binary operators.",
+                            "Sample": "return x * (x - y);"
+                        },
+                        {
+                            "Value": "none",
+                            "Description": "Remove spaces before and after binary operators.",
+                            "Sample": "return x*(x-y);"
+                        },
+                        {
+                            "Value": "ignore",
+                            "Description": "Ignore spaces around binary operators.",
+                            "Sample": "return x  *  (x-y);"
+                        }
+                    ],
+                    "DefaultOptionValue": "before_and_after"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "csharp_space_after_comma",
+        "Title": "Insert space after comma",
+        "Category": "Spacing",
+        "Options": [
+            {
+                "Name": "csharp_space_after_comma",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Insert space after each comma.",
+                            "Sample": "int[] x = new int[] { 1, 2, 3, 4, 5 };"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Remove space after each comma.",
+                            "Sample": "int[] x = new int[] { 1,2,3,4,5 };"
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "csharp_space_after_dot",
+        "Title": "Insert space after dot",
+        "Category": "Spacing",
+        "Options": [
+            {
+                "Name": "csharp_space_after_dot",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Insert space after dot in member access.",
+                            "Sample": "this. Goo();"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Remove space after dot in member access.",
+                            "Sample": "this.Goo();"
+                        }
+                    ],
+                    "DefaultOptionValue": "false"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "csharp_preserve_single_line_statements",
+        "Title": "Leave statements and member declarations on the same line",
+        "Category": "Wrapping",
+        "Options": [
+            {
+                "Name": "csharp_preserve_single_line_statements",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Leave statements and declarations on same line.",
+                            "Sample": "int i = 0; string name = \"John\";"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Place statements and declarations on separate lines.",
+                            "Sample": [
+                                "int i = 0;",
+                                "string name = \"John\";"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "csharp_preserve_single_line_blocks",
+        "Title": "Leave block on single line",
+        "Category": "Wrapping",
+        "Options": [
+            {
+                "Name": "csharp_preserve_single_line_blocks",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "true",
+                            "Description": "Leave code block on single line.",
+                            "Sample": "public int Foo { get; set; }"
+                        },
+                        {
+                            "Value": "false",
+                            "Description": "Place code block elements on separate lines.",
+                            "Sample": [
+                                "public int MyProperty",
+                                "{",
+                                "    get; set;",
+                                "}"
+                            ]
+                        }
+                    ],
+                    "DefaultOptionValue": "true"
+                }
+            }
+        ]
+    }
+]

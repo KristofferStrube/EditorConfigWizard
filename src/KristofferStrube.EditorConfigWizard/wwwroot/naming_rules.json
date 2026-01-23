@@ -1,0 +1,314 @@
+[
+    {
+        "Id": "naming_interfaces",
+        "Title": "Interfaces must begin with 'I'",
+        "Description": "Interfaces should be prefixed with 'I' followed by PascalCase.",
+        "SymbolKinds": "interface",
+        "Accessibilities": "*",
+        "NamingStyle": {
+            "Capitalization": "pascal_case",
+            "RequiredPrefix": "I"
+        },
+        "DefaultSeverity": "warning",
+        "Examples": {
+            "Correct": "IDisposable, IEnumerable, ILogger",
+            "Incorrect": "Disposable, iLogger, Interface1"
+        }
+    },
+    {
+        "Id": "naming_type_parameters",
+        "Title": "Type parameters must begin with 'T'",
+        "Description": "Generic type parameters should be prefixed with 'T' followed by PascalCase.",
+        "SymbolKinds": "type_parameter",
+        "Accessibilities": "*",
+        "NamingStyle": {
+            "Capitalization": "pascal_case",
+            "RequiredPrefix": "T"
+        },
+        "DefaultSeverity": "warning",
+        "Examples": {
+            "Correct": "TKey, TValue, TResult",
+            "Incorrect": "Key, T, tValue"
+        }
+    },
+    {
+        "Id": "naming_classes",
+        "Title": "Classes must be PascalCase",
+        "Description": "Class names should use PascalCase without underscores.",
+        "SymbolKinds": "class",
+        "Accessibilities": "*",
+        "NamingStyle": {
+            "Capitalization": "pascal_case"
+        },
+        "DefaultSeverity": "warning",
+        "Examples": {
+            "Correct": "CustomerService, OrderProcessor, HttpClient",
+            "Incorrect": "customerService, Customer_Service, customer_service"
+        }
+    },
+    {
+        "Id": "naming_structs",
+        "Title": "Structs must be PascalCase",
+        "Description": "Struct names should use PascalCase without underscores.",
+        "SymbolKinds": "struct",
+        "Accessibilities": "*",
+        "NamingStyle": {
+            "Capitalization": "pascal_case"
+        },
+        "DefaultSeverity": "warning",
+        "Examples": {
+            "Correct": "Point, DateTime, Vector3",
+            "Incorrect": "point, date_time, POINT"
+        }
+    },
+    {
+        "Id": "naming_enums",
+        "Title": "Enums must be PascalCase",
+        "Description": "Enum names should use PascalCase without underscores.",
+        "SymbolKinds": "enum",
+        "Accessibilities": "*",
+        "NamingStyle": {
+            "Capitalization": "pascal_case"
+        },
+        "DefaultSeverity": "warning",
+        "Examples": {
+            "Correct": "Color, DayOfWeek, HttpStatusCode",
+            "Incorrect": "color, Day_Of_Week, HTTP_STATUS_CODE"
+        }
+    },
+    {
+        "Id": "naming_methods",
+        "Title": "Methods must be PascalCase",
+        "Description": "Method names should use PascalCase without underscores.",
+        "SymbolKinds": "method",
+        "Accessibilities": "*",
+        "NamingStyle": {
+            "Capitalization": "pascal_case"
+        },
+        "DefaultSeverity": "warning",
+        "Examples": {
+            "Correct": "GetCustomer, ProcessOrder, ToString",
+            "Incorrect": "getCustomer, process_order, GETVALUE"
+        }
+    },
+    {
+        "Id": "naming_properties",
+        "Title": "Properties must be PascalCase",
+        "Description": "Property names should use PascalCase without underscores.",
+        "SymbolKinds": "property",
+        "Accessibilities": "*",
+        "NamingStyle": {
+            "Capitalization": "pascal_case"
+        },
+        "DefaultSeverity": "warning",
+        "Examples": {
+            "Correct": "FirstName, Count, IsValid",
+            "Incorrect": "firstName, count, is_valid, FIRSTNAME"
+        }
+    },
+    {
+        "Id": "naming_events",
+        "Title": "Events must be PascalCase",
+        "Description": "Event names should use PascalCase without underscores.",
+        "SymbolKinds": "event",
+        "Accessibilities": "*",
+        "NamingStyle": {
+            "Capitalization": "pascal_case"
+        },
+        "DefaultSeverity": "warning",
+        "Examples": {
+            "Correct": "Click, PropertyChanged, DataReceived",
+            "Incorrect": "onClick, property_changed, DATA_RECEIVED"
+        }
+    },
+    {
+        "Id": "naming_delegates",
+        "Title": "Delegates must be PascalCase",
+        "Description": "Delegate names should use PascalCase without underscores.",
+        "SymbolKinds": "delegate",
+        "Accessibilities": "*",
+        "NamingStyle": {
+            "Capitalization": "pascal_case"
+        },
+        "DefaultSeverity": "warning",
+        "Examples": {
+            "Correct": "EventHandler, Func, Action",
+            "Incorrect": "eventHandler, event_handler, EVENTHANDLER"
+        }
+    },
+    {
+        "Id": "naming_public_fields",
+        "Title": "Public fields must be PascalCase",
+        "Description": "Public field names should use PascalCase without underscores.",
+        "SymbolKinds": "field",
+        "Accessibilities": "public",
+        "NamingStyle": {
+            "Capitalization": "pascal_case"
+        },
+        "DefaultSeverity": "warning",
+        "Examples": {
+            "Correct": "MaxValue, Empty, DefaultTimeout",
+            "Incorrect": "maxValue, max_value, MAX_VALUE"
+        }
+    },
+    {
+        "Id": "naming_private_fields",
+        "Title": "Private field naming style",
+        "Description": "Choose the naming style for private fields.",
+        "SymbolKinds": "field",
+        "Accessibilities": "private",
+        "Options": [
+            {
+                "Name": "_camelCase",
+                "NamingStyle": {
+                    "Capitalization": "camel_case",
+                    "RequiredPrefix": "_"
+                },
+                "Examples": {
+                    "Correct": "_firstName, _count, _isValid",
+                    "Incorrect": "firstName, _FirstName, first_name"
+                }
+            },
+            {
+                "Name": "camelCase",
+                "NamingStyle": {
+                    "Capitalization": "camel_case"
+                },
+                "Examples": {
+                    "Correct": "firstName, count, isValid",
+                    "Incorrect": "_firstName, FirstName, first_name"
+                }
+            },
+            {
+                "Name": "PascalCase",
+                "NamingStyle": {
+                    "Capitalization": "pascal_case"
+                },
+                "Examples": {
+                    "Correct": "FirstName, Count, IsValid",
+                    "Incorrect": "_firstName, firstName, first_name"
+                }
+            }
+        ],
+        "DefaultOption": "_camelCase",
+        "DefaultSeverity": "warning"
+    },
+    {
+        "Id": "naming_constants",
+        "Title": "Constant naming style",
+        "Description": "Choose the naming style for constant fields.",
+        "SymbolKinds": "field",
+        "Accessibilities": "*",
+        "RequiredModifiers": "const",
+        "Options": [
+            {
+                "Name": "PascalCase",
+                "NamingStyle": {
+                    "Capitalization": "pascal_case"
+                },
+                "Examples": {
+                    "Correct": "MaxValue, DefaultTimeout, Pi",
+                    "Incorrect": "MAX_VALUE, max_value"
+                }
+            },
+            {
+                "Name": "ALL_UPPER_CASE",
+                "NamingStyle": {
+                    "Capitalization": "all_upper"
+                },
+                "Examples": {
+                    "Correct": "MAX_VALUE, DEFAULT_TIMEOUT, PI",
+                    "Incorrect": "MaxValue, max_value"
+                }
+            },
+            {
+                "Name": "camelCase",
+                "NamingStyle": {
+                    "Capitalization": "camel_case"
+                },
+                "Examples": {
+                    "Correct": "maxValue, defaultTimeout, pi",
+                    "Incorrect": "MaxValue, MAX_VALUE"
+                }
+            }
+        ],
+        "DefaultOption": "PascalCase",
+        "DefaultSeverity": "warning"
+    },
+    {
+        "Id": "naming_static_readonly_fields",
+        "Title": "Static readonly fields must be PascalCase",
+        "Description": "Static readonly field names should use PascalCase without underscores.",
+        "SymbolKinds": "field",
+        "Accessibilities": "*",
+        "RequiredModifiers": "static,readonly",
+        "NamingStyle": {
+            "Capitalization": "pascal_case"
+        },
+        "DefaultSeverity": "warning",
+        "Examples": {
+            "Correct": "Empty, DefaultValue, Instance",
+            "Incorrect": "empty, default_value, INSTANCE"
+        }
+    },
+    {
+        "Id": "naming_parameters",
+        "Title": "Parameters must be camelCase",
+        "Description": "Parameter names should use camelCase without underscores.",
+        "SymbolKinds": "parameter",
+        "Accessibilities": "*",
+        "NamingStyle": {
+            "Capitalization": "camel_case"
+        },
+        "DefaultSeverity": "warning",
+        "Examples": {
+            "Correct": "firstName, customerId, isValid",
+            "Incorrect": "FirstName, first_name, FIRSTNAME"
+        }
+    },
+    {
+        "Id": "naming_local_variables",
+        "Title": "Local variables must be camelCase",
+        "Description": "Local variable names should use camelCase without underscores.",
+        "SymbolKinds": "local",
+        "Accessibilities": "*",
+        "NamingStyle": {
+            "Capitalization": "camel_case"
+        },
+        "DefaultSeverity": "warning",
+        "Examples": {
+            "Correct": "customerName, totalCount, isEnabled",
+            "Incorrect": "CustomerName, customer_name, CUSTOMERNAME"
+        }
+    },
+    {
+        "Id": "naming_local_functions",
+        "Title": "Local functions must be PascalCase",
+        "Description": "Local function names should use PascalCase without underscores.",
+        "SymbolKinds": "local_function",
+        "Accessibilities": "*",
+        "NamingStyle": {
+            "Capitalization": "pascal_case"
+        },
+        "DefaultSeverity": "warning",
+        "Examples": {
+            "Correct": "CalculateTotal, ValidateInput, ProcessData",
+            "Incorrect": "calculateTotal, calculate_total, CALCULATETOTAL"
+        }
+    },
+    {
+        "Id": "naming_namespaces",
+        "Title": "Namespaces must be PascalCase",
+        "Description": "Namespace names should use PascalCase without underscores.",
+        "SymbolKinds": "namespace",
+        "Accessibilities": "*",
+        "NamingStyle": {
+            "Capitalization": "pascal_case"
+        },
+        "DefaultSeverity": "warning",
+        "Examples": {
+            "Correct": "System.Collections.Generic, MyCompany.MyProduct",
+            "Incorrect": "system.collections, My_Company.my_product"
+        }
+    }
+]

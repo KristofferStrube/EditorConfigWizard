@@ -39,6 +39,8 @@ public partial class Wizard : ComponentBase
     {
         codeStyleCategories.Add(await ConfigService.LanguagesRulesAsync());
         codeStyleCategories.Add(await ConfigService.UnnecessaryColeRulesAsync());
+        codeStyleCategories.Add(await ConfigService.FormattingRulesAsync());
+        codeStyleCategories.Add(await ConfigService.NamingConventionsAsync());
         NavigationManager.RegisterLocationChangingHandler(async (context) =>
         {
             if (context.HistoryEntryState is null && context.TargetLocation.EndsWith("wizard"))
@@ -147,18 +149,159 @@ public partial class Wizard : ComponentBase
         StringBuilder editorConfigSB = new StringBuilder();
         editorConfigSB.AppendLine("[*]");
         editorConfigSB.AppendLine("# All files");
+
         foreach (CodeStyleRule codeRule in codeStyleRules)
         {
-            foreach (RuleOption option in codeRule.Options)
+            // Handle naming conventions differently
+            if (codeRule.Id.StartsWith("naming_"))
             {
-                editorConfigSB.AppendLine($"{option.Name} = {ruleOptionChoices[option.Name]}");
+                GenerateNamingConvention(editorConfigSB, codeRule);
             }
-            foreach (string id in codeRule.Id.Split(','))
+            else
             {
-                editorConfigSB.AppendLine($"dotnet_diagnostic.{id}.severity = {severities[codeRule.Id]}");
+                // Regular code style rules
+                foreach (RuleOption option in codeRule.Options)
+                {
+                    editorConfigSB.AppendLine($"{option.Name} = {ruleOptionChoices[option.Name]}");
+                }
+                foreach (string id in codeRule.Id.Split(','))
+                {
+                    editorConfigSB.AppendLine($"dotnet_diagnostic.{id}.severity = {severities[codeRule.Id]}");
+                }
             }
         }
         newEditorConfig = editorConfigSB.ToString();
+    }
+
+    private void GenerateNamingConvention(StringBuilder sb, CodeStyleRule rule)
+    {
+        var severity = severities[rule.Id];
+        if (severity == "none") return; // Skip disabled naming rules
+
+        string symbolGroup = rule.Id;
+        string styleName = $"{rule.Id}_style";
+        string ruleName = rule.Id;
+
+        sb.AppendLine();
+        sb.AppendLine($"# {rule.Title}");
+
+        // Generate symbol group
+        switch (rule.Id)
+        {
+            case "naming_interfaces":
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_kinds = interface");
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_accessibilities = *");
+                sb.AppendLine($"dotnet_naming_style.{styleName}.capitalization = pascal_case");
+                sb.AppendLine($"dotnet_naming_style.{styleName}.required_prefix = I");
+                break;
+            case "naming_type_parameters":
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_kinds = type_parameter");
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_accessibilities = *");
+                sb.AppendLine($"dotnet_naming_style.{styleName}.capitalization = pascal_case");
+                sb.AppendLine($"dotnet_naming_style.{styleName}.required_prefix = T");
+                break;
+            case "naming_classes":
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_kinds = class");
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_accessibilities = *");
+                sb.AppendLine($"dotnet_naming_style.{styleName}.capitalization = pascal_case");
+                break;
+            case "naming_structs":
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_kinds = struct");
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_accessibilities = *");
+                sb.AppendLine($"dotnet_naming_style.{styleName}.capitalization = pascal_case");
+                break;
+            case "naming_enums":
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_kinds = enum");
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_accessibilities = *");
+                sb.AppendLine($"dotnet_naming_style.{styleName}.capitalization = pascal_case");
+                break;
+            case "naming_methods":
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_kinds = method");
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_accessibilities = *");
+                sb.AppendLine($"dotnet_naming_style.{styleName}.capitalization = pascal_case");
+                break;
+            case "naming_properties":
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_kinds = property");
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_accessibilities = *");
+                sb.AppendLine($"dotnet_naming_style.{styleName}.capitalization = pascal_case");
+                break;
+            case "naming_events":
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_kinds = event");
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_accessibilities = *");
+                sb.AppendLine($"dotnet_naming_style.{styleName}.capitalization = pascal_case");
+                break;
+            case "naming_public_fields":
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_kinds = field");
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_accessibilities = public");
+                sb.AppendLine($"dotnet_naming_style.{styleName}.capitalization = pascal_case");
+                break;
+            case "naming_private_fields":
+                var privateFieldStyle = rule.Options.Count > 0 && ruleOptionChoices.ContainsKey("private_field_naming_style")
+                    ? ruleOptionChoices["private_field_naming_style"]
+                    : "_camelCase";
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_kinds = field");
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_accessibilities = private");
+                if (privateFieldStyle == "_camelCase")
+                {
+                    sb.AppendLine($"dotnet_naming_style.{styleName}.capitalization = camel_case");
+                    sb.AppendLine($"dotnet_naming_style.{styleName}.required_prefix = _");
+                }
+                else if (privateFieldStyle == "camelCase")
+                {
+                    sb.AppendLine($"dotnet_naming_style.{styleName}.capitalization = camel_case");
+                }
+                else // PascalCase
+                {
+                    sb.AppendLine($"dotnet_naming_style.{styleName}.capitalization = pascal_case");
+                }
+                break;
+            case "naming_constants":
+                var constantStyle = rule.Options.Count > 0 && ruleOptionChoices.ContainsKey("constant_naming_style")
+                    ? ruleOptionChoices["constant_naming_style"]
+                    : "PascalCase";
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_kinds = field");
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_accessibilities = *");
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.required_modifiers = const");
+                if (constantStyle == "PascalCase")
+                {
+                    sb.AppendLine($"dotnet_naming_style.{styleName}.capitalization = pascal_case");
+                }
+                else if (constantStyle == "ALL_UPPER")
+                {
+                    sb.AppendLine($"dotnet_naming_style.{styleName}.capitalization = all_upper");
+                }
+                else // camelCase
+                {
+                    sb.AppendLine($"dotnet_naming_style.{styleName}.capitalization = camel_case");
+                }
+                break;
+            case "naming_static_readonly_fields":
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_kinds = field");
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_accessibilities = *");
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.required_modifiers = static,readonly");
+                sb.AppendLine($"dotnet_naming_style.{styleName}.capitalization = pascal_case");
+                break;
+            case "naming_parameters":
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_kinds = parameter");
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_accessibilities = *");
+                sb.AppendLine($"dotnet_naming_style.{styleName}.capitalization = camel_case");
+                break;
+            case "naming_local_variables":
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_kinds = local");
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_accessibilities = *");
+                sb.AppendLine($"dotnet_naming_style.{styleName}.capitalization = camel_case");
+                break;
+            case "naming_local_functions":
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_kinds = local_function");
+                sb.AppendLine($"dotnet_naming_symbols.{symbolGroup}.applicable_accessibilities = *");
+                sb.AppendLine($"dotnet_naming_style.{styleName}.capitalization = pascal_case");
+                break;
+        }
+
+        // Generate naming rule
+        sb.AppendLine($"dotnet_naming_rule.{ruleName}.symbols = {symbolGroup}");
+        sb.AppendLine($"dotnet_naming_rule.{ruleName}.style = {styleName}");
+        sb.AppendLine($"dotnet_naming_rule.{ruleName}.severity = {severity}");
     }
 
     private async Task ChangeAsync(Action action)

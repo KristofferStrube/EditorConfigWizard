@@ -1,0 +1,157 @@
+[
+    {
+        "Id": "naming_interfaces",
+        "Title": "Interfaces must begin with 'I'",
+        "Sample": "interface Disposable { }",
+        "FixedSample": "interface IDisposable { }",
+        "Options": []
+    },
+    {
+        "Id": "naming_type_parameters",
+        "Title": "Type parameters must begin with 'T'",
+        "Sample": "class List<Element> { }",
+        "FixedSample": "class List<TElement> { }",
+        "Options": []
+    },
+    {
+        "Id": "naming_classes",
+        "Title": "Classes must be PascalCase",
+        "Sample": "class customer_service { }",
+        "FixedSample": "class CustomerService { }",
+        "Options": []
+    },
+    {
+        "Id": "naming_structs",
+        "Title": "Structs must be PascalCase",
+        "Sample": "struct date_time { }",
+        "FixedSample": "struct DateTime { }",
+        "Options": []
+    },
+    {
+        "Id": "naming_enums",
+        "Title": "Enums must be PascalCase",
+        "Sample": "enum day_of_week { }",
+        "FixedSample": "enum DayOfWeek { }",
+        "Options": []
+    },
+    {
+        "Id": "naming_methods",
+        "Title": "Methods must be PascalCase",
+        "Sample": "void doStuff() { }",
+        "FixedSample": "void DoStuff() { }",
+        "Options": []
+    },
+    {
+        "Id": "naming_properties",
+        "Title": "Properties must be PascalCase",
+        "Sample": "public string firstName { get; set; }",
+        "FixedSample": "public string FirstName { get; set; }",
+        "Options": []
+    },
+    {
+        "Id": "naming_events",
+        "Title": "Events must be PascalCase",
+        "Sample": "public event EventHandler dataReceived;",
+        "FixedSample": "public event EventHandler DataReceived;",
+        "Options": []
+    },
+    {
+        "Id": "naming_public_fields",
+        "Title": "Public fields must be PascalCase",
+        "Sample": "public int max_value;",
+        "FixedSample": "public int MaxValue;",
+        "Options": []
+    },
+    {
+        "Id": "naming_private_fields",
+        "Title": "Private field naming style",
+        "Sample": "private int count;",
+        "FixedSample": "private int _count;",
+        "Options": [
+            {
+                "Name": "private_field_naming_style",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "_camelCase",
+                            "Description": "Prefix with underscore, followed by camelCase.",
+                            "Sample": "private int _count;\nprivate string _firstName;"
+                        },
+                        {
+                            "Value": "camelCase",
+                            "Description": "Use camelCase without prefix.",
+                            "Sample": "private int count;\nprivate string firstName;"
+                        },
+                        {
+                            "Value": "PascalCase",
+                            "Description": "Use PascalCase without prefix.",
+                            "Sample": "private int Count;\nprivate string FirstName;"
+                        }
+                    ],
+                    "DefaultOptionValue": "_camelCase"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "naming_constants",
+        "Title": "Constant naming style",
+        "Sample": "const int max_value = 100;",
+        "FixedSample": "const int MaxValue = 100;",
+        "Options": [
+            {
+                "Name": "constant_naming_style",
+                "ValueOptions": {
+                    "$type": "OneOfMany",
+                    "Options": [
+                        {
+                            "Value": "PascalCase",
+                            "Description": "Use PascalCase for constants.",
+                            "Sample": "const int MaxValue = 100;\nconst string DefaultName = \"John\";"
+                        },
+                        {
+                            "Value": "ALL_UPPER",
+                            "Description": "Use ALL_UPPER_CASE for constants.",
+                            "Sample": "const int MAX_VALUE = 100;\nconst string DEFAULT_NAME = \"John\";"
+                        },
+                        {
+                            "Value": "camelCase",
+                            "Description": "Use camelCase for constants.",
+                            "Sample": "const int maxValue = 100;\nconst string defaultName = \"John\";"
+                        }
+                    ],
+                    "DefaultOptionValue": "PascalCase"
+                }
+            }
+        ]
+    },
+    {
+        "Id": "naming_static_readonly_fields",
+        "Title": "Static readonly fields must be PascalCase",
+        "Sample": "private static readonly string default_value = \"\";",
+        "FixedSample": "private static readonly string DefaultValue = \"\";",
+        "Options": []
+    },
+    {
+        "Id": "naming_parameters",
+        "Title": "Parameters must be camelCase",
+        "Sample": "void Method(int FirstParam, string SecondParam) { }",
+        "FixedSample": "void Method(int firstParam, string secondParam) { }",
+        "Options": []
+    },
+    {
+        "Id": "naming_local_variables",
+        "Title": "Local variables must be camelCase",
+        "Sample": "int CustomerCount = 0;",
+        "FixedSample": "int customerCount = 0;",
+        "Options": []
+    },
+    {
+        "Id": "naming_local_functions",
+        "Title": "Local functions must be PascalCase",
+        "Sample": "void calculateTotal() { }",
+        "FixedSample": "void CalculateTotal() { }",
+        "Options": []
+    }
+]
