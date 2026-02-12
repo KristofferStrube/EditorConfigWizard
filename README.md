@@ -5,7 +5,7 @@ The current goal is to support all the standard C#/.NET EditorConfig rules.
 ## Try it out
 All options that have currently been registered can be seen at: https://kristofferstrube.github.io/EditorConfigWizard/
 
-The Wizard itself can be seen at: https://kristofferstrube.github.io/EditorConfigWizard/wizard
+The Wizard itself can be seen at: https://kristofferstrube.github.io/EditorConfigWizard/Wizard
 
 ## Goals
 - [ ] Define all Rules and be able to present them.
